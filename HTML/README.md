@@ -29,4 +29,14 @@ bir tag açılır ve daha sonra kapanır. Arasına gelen şeyler tarayıcıda g�
 Taglerin içerisinde href, src, alt gibi attribute gelebilir. Birazdan bir tablo şeklinde detayına bakacağız.
 
 
+## id & class
 
+id'ler unique olmalıdır. Class ise farklı yerlerde kullanılabilir. Class mantığı, daha çok farklı elementlerde de aynı özelliği kullanmak içindir.
+
+## style in HTML
+
+```<p style="color:blue; font-size: 40px;" class="maviYazi" >paragraf</p>```
+
+## inline
+
+```<p>This is an inline span <span style="color: red;">Hello World</span> element inside a paragraph</p>```
