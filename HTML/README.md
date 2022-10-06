@@ -464,3 +464,31 @@ The meta tag gives information about the document such as description and keywor
    </footer>       
 ```
 <img width="196" alt="image" src="https://user-images.githubusercontent.com/56068905/194291309-f190269b-4860-4ca7-9fdf-9580457af93e.png">
+
+## DOM
+
+       When a web page is loaded, the browser creates a Document Object Model (DOM) of the page. The DOM is a tree of objects. For example, consider the following HTML document:
+       
+<img width="365" alt="image" src="https://user-images.githubusercontent.com/56068905/194291586-7697d775-de6e-4f8b-8a89-fedb2e9cf296.png">
+
+1. add/change/remove HTML elements
+2. add/change/remove HTML attributes
+3. add/change/remove CSS styles
+4. react to HTML events
+5. add/change/remove HTML events
+       
+       
+- Get HTML elements by id, e.g., var myElement = document.getElementById("intro");
+- Get HTML elements by tag name, e.g., var x = document.getElementsByTagName("p");
+- Get HTML elements by class name, e.g., var x = document.getElementsByClassName("intro");
+- Get HTML elements by CSS selectors, e.g., var x = document.querySelectorAll("p.intro");
+- Get HTML elements by HTML object collections, e.g., document.anchors, document.forms, document.links, etc.
+       
+|element.innerHTML = “new html content”|Changes the inner HTML of an element|
+|-----|-----|
+|element.attribute = “new value”|Changes the attribute value of an element|
+|element.setAttribute(attribute, value)|Changes the attribute value of an element|
+|element.style.property = “new value”|Changes the CSS property of an element|
+       
+       
+
