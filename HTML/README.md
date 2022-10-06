@@ -532,4 +532,4 @@ The meta tag gives information about the document such as description and keywor
 |element.style.property = “new value”|Changes the CSS property of an element|
        
        
- 
+  
