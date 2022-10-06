@@ -253,4 +253,67 @@ form elements
 ```
 ``` /process.php?firstName=Ali&lastName=Kaya ```
 
+```
+<form>
+    <fieldset>
+    <legend>Personal Data</legend>
+    <label>First name: </label>
+    <input type="text" name="firstName" value="Ali">
+    <br>
+    <br>        
+    <label>Last name: </label>
+    <input type="text" name="lastName" value="Kaya">        
+    <br>        
+    <br>
+    <input type=”submit” value=”Submit”> 
+    </fieldset>
+</form>
+```
+<img width="326" alt="image" src="https://user-images.githubusercontent.com/56068905/194273928-383f4bdc-de6a-4393-8dd5-21fad56cf560.png">   
+
+### Other Input Elements
+
+**RadioButton**
+
+```
+<form>
+  <input type="radio" name="gender" value="male" checked> Male<br>
+  <input type="radio" name="gender" value="female"> Female<br>
+  <input type="radio" name="gender" value="other"> Other
+</form>
+```
+
+**CheckBox**
+
+```
+<form>
+  <input type="checkbox" name="vehicle1" value="Bike"> I have a bike<br>
+  <input type="checkbox" name="vehicle2" value="Car"> I have a car
+</form>
+```
+
+**AlertDialog**
+```
+<form>
+        <input type="button" onclick="alert('Hello World!')" value="Click Me!">
+</form>
+
+<form>
+<button type="button" onclick="alert('Hello World!')">Click Me!</button>
+</form>
+
+```
+
+**Extra Bilgiler**
+
+```
+  <form>
+  Email: <input type="email" name="email"><br><br>
+  Number: <input type="number" name="number" value="10"><br><br>
+  Date: <input type="date" name="date"><br><br>
+  <input type = "submit" value="Submit">
+  </form>
+```
+
+
 
