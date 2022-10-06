@@ -1,21 +1,256 @@
 # HTML
 
-## style in HTML
+## 1. Headings
 
-```<p style="color:blue; font-size: 40px;" class="maviYazi" >paragraf</p>```
+``` 
+<h1>This is a h1 heading</h1>
+<h2>This is a h2 heading</h2>
+<h3>This is a h3 heading</h3>
+<h4>This is a h4 heading</h4>
+<h5>This is a h5 heading</h5>
+<h6>This is a h6 heading</h6>
+```
 
-## Elements
+## 2. Paragraph
 
-### Başlıklar
+```
+<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+       Another sentence in the paragraph.
+</p>
 
-<img width="1440" alt="Screen Shot 2022-09-29 at 12 07 39" src="https://user-images.githubusercontent.com/56068905/192990717-f805ae99-7b34-4852-8acb-be4c30d3f847.png">
+<pre>
+   This is line 1.
+   This is line 2.
+</pre>
 
-<img width="1440" alt="image" src="https://user-images.githubusercontent.com/56068905/192993854-bd0a3d04-d2d3-4989-924b-9b19db3da669.png">
+``` 
 
-<img width="1440" alt="image" src="https://user-images.githubusercontent.com/56068905/192995017-d3435232-09a5-45fb-ae61-9e8164421485.png">
+## 3.	Some Inline Elements for Formatting Text
 
-<img width="1440" alt="image" src="https://user-images.githubusercontent.com/56068905/192997821-47439b03-9fa3-47b9-9b61-4ab9325b17cc.png">
+```
+This is a very <strong>important</strong> problem.
 
-<img width="1440" alt="image" src="https://user-images.githubusercontent.com/56068905/193000170-78e4f954-0f0e-4c5e-9c08-343c6e20dd06.png">
+This is a very <em>important</em> problem.
 
-fieldset de kaldım.
+The <abbr title=”World Wide Web”>WWW</abbr> is awesome.
+
+<b> - Bold text
+<strong> - Important text
+<i> - Italic text
+<em> - Emphasized text
+<mark> - Marked text
+<small> - Small text
+<del> - Deleted text
+<ins> - Inserted text
+<sub> - Subscript text
+<sup> - Superscript text
+
+```
+
+## 4.	Links
+
+```
+<a href="url">link text</a>
+<a href="http://google.com">Go to google</a>
+
+<a href=https://google.com target="_blank">Go to google</a>
+```
+
+
+## 5.	Images
+
+```
+<img src="img_girl.jpg" alt="Girl in a jacket">
+
+```
+
+## 6. Lists
+
+```
+<ul>
+    <li>Unordered List item 1</li>
+    <li>Unordered List item 2</li>
+    <li>Unordered List item 3</li>
+    <li>Unordered List item 4</li>
+</ul>
+
+ <!-- <ul style="list-style-type:circle;"> -->
+
+<ol>
+    <li>Ordered List item 1</li>
+    <li>Ordered List item 2</li>
+    <li>Ordered List item 3</li>
+    <li>Ordered List item 4</li>
+</ol>
+
+<ol type="A">
+  <li>Coffee</li>
+  <li>Tea</li>
+  <li>Milk</li>
+</ol>
+
+<ol type="1" start="50">
+  <li>Coffee</li>
+  <li>Tea</li>
+  <li>Milk</li>
+</ol>
+
+<dl>
+  <dt>Coffee</dt>
+     <dd>Black hot drink</dd>
+  <dt>Milk</dt>
+     <dd>White cold drink</dd>
+</dl>
+
+```
+
+##  7. Tables
+
+```
+<table>
+    <thead>
+    <tr>
+      <th>Firstname</th>
+      <th>Lastname</th>
+      <th>Age</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr>
+      <td>Ali</td>
+      <td>Kuscu</td>
+      <td>50</td>
+    </tr>
+    <tr>
+      <td>Ayse</td>
+      <td>Kaptan</td>
+      <td>28</td>
+    </tr>
+   </tbody>
+</table>
+``` 
+
+
+
+```
+<table>
+  <tr>
+    <th>Name</th>
+    <th colspan="2">Telephone</th>
+  </tr>
+  <tr>
+    <td>Ali Kuscu</td>
+    <td>55577854</td>
+    <td>55577855</td>
+  </tr>
+</table>
+
+```
+
+```
+<table>
+  <tr>
+    <th>Name:</th>
+    <td>Ali Kuscu</td>
+  </tr>
+  <tr>
+    <th rowspan="2">Telephone:</th>
+    <td>55577854</td>
+  </tr>
+  <tr>
+    <td>55577855</td>
+  </tr>
+</table>
+
+```
+
+
+```
+<table> 
+  <caption>Monthly savings</caption>
+  <tr>
+    <th>Month</th>
+    <th>Savings</th>
+  </tr>
+  <tr>
+    <td>January</td>
+    <td>$100</td>
+  </tr>
+  <tr>
+    <td>February</td>
+    <td>$50</td>
+  </tr>
+</table>
+
+
+## Forms
+
+```
+<form>
+    <label>First name: </label>
+    <input type="text" name="firstName">
+    <br>
+    <br>        
+    <label>Last name: </label>
+    <input type="text" name="lastName">        
+    <br>        
+</form>
+```
+
+
+```
+<form>
+    <div>
+    <label>First name: </label>
+    <input type="text" name="firstName">
+    </div>
+    <br>   
+    <div>     
+    <label>Last name: </label>
+    <input type="text" name="lastName">        
+    </div>        
+</form>
+
+```
+
+
+```
+<form>
+    <label>First name: </label>
+    <input type="text" name="firstName" value="Ali">
+    <br>
+    <br>        
+    <label>Last name: </label>
+    <input type="text" name="lastName" value="Kaya">        
+    <br>        
+</form>
+
+```
+
+```
+<form>
+    <label>First name: </label>
+    <input type="text" name="firstName" value="Ali">
+    <br>
+    <br>        
+    <label>Last name: </label>
+    <input type="text" name="lastName" value="Kaya">        
+    <br>        
+    <br>
+    <input type=”submit” value=”Submit”> 
+</form>
+```
+
+
+----------------------
+
+Form Action
+```
+<form action="process.php" method="POST">
+form elements
+</form>
+```
+``` /process.php?firstName=Ali&lastName=Kaya ```
+
+
