@@ -370,9 +370,7 @@ An article should make sense on its own, and it should be possible to read it in
 ```
 
 ### Footer
-A <footer> element should contain information about its containing element. A footer typically contains the author of the document, copyright information, links to terms of use, contact information, etc. You may have several <footer> elements in one document.
-```
-A <footer> element should contain information about its containing element. A footer typically contains the author of the document, copyright information, links to terms of use, contact information, etc. You may have several <footer> elements in one document.
+A footer element should contain information about its containing element. A footer typically contains the author of the document, copyright information, links to terms of use, contact information, etc. You may have several <footer> elements in one document.
 
 ```
 <footer>
@@ -398,7 +396,7 @@ Notice that NOT all links of a document should be inside a <nav> element. The <n
        
 ### aside 
        
-The <aside> element defines some content aside from the content it is placed in (like a sidebar). The <aside> content should be related to the surrounding content.
+The aside element defines some content aside from the content it is placed in (like a sidebar). The aside content should be related to the surrounding content.
 
 ```
 <p>My family and I visited The Epcot center this summer.</p>
