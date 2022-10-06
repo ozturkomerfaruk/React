@@ -428,4 +428,39 @@ The meta tag gives information about the document such as description and keywor
       
 ```
        
+### Examples
+
+```
+<aside>
+        <h3>Categories</h3>
+          <nav>
+            <ul>
+              <li><a href="#">Category1</a></li>
+              <li><a href="#">Category2</a></li>
+              <li><a href="#">Category3</a></li>
+            </ul>
+        </nav>
+    </aside>
+```
        
+<img width="169" alt="image" src="https://user-images.githubusercontent.com/56068905/194291041-8bc8672f-5af0-45c3-85a4-0b3fbfaae6ff.png">
+
+```
+ <section>
+        <article class="post">
+          <h2>Post 1</h2>
+          <p>Posted on January 14, 2020 at 09:45am</p>
+          <p>Lorem ipsum dolor sit amet consectetur!</p>
+          <a href="post.html">Read more</a>
+        </article>
+<section>            
+```
+       
+<img width="285" alt="image" src="https://user-images.githubusercontent.com/56068905/194291189-f297dbef-a0e5-4c1f-ba72-5f1bc17d64fe.png">
+
+```
+<footer id="main-footer">
+            Copyright &copy; 2020, John Doe.
+   </footer>       
+```
+<img width="196" alt="image" src="https://user-images.githubusercontent.com/56068905/194291309-f190269b-4860-4ca7-9fdf-9580457af93e.png">
