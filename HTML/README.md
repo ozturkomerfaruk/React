@@ -630,3 +630,7 @@ The meta tag gives information about the document such as description and keywor
 
 
 ```
+<img width="814" alt="image" src="https://user-images.githubusercontent.com/56068905/194305906-ab952338-d965-409a-a10a-0032593f2fc9.png">
+
+<img width="266" alt="image" src="https://user-images.githubusercontent.com/56068905/194305941-98ebacab-03a8-47fb-b44a-bb3ce67ca741.png">
+
