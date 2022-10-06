@@ -315,5 +315,62 @@ form elements
   </form>
 ```
 
+**DropDown Menu**
+```
+<select name="car">
+        <option value="volvo" selected>Volvo</option>
+        <option value="saab">Saab</option>
+        <option value="fiat">Fiat</option>
+        <option value="audi">Audi</option>
+</select>
+```
 
+**Large Text Area** 
+```
+<textarea name="message" rows="10" cols="30">
+The cat was playing in the garden.
+</textarea>
+```
+
+**Div ile Ayırma**
+```
+<div style="background-color:black;color:white;padding:20px;">
+    <h2>London</h2>
+    <p>London is the capital city of England. It is the most populous city in the United Kingdom, with a metropolitan area of over 13 million inhabitants.</p>
+    </div>
+```
+
+## HTML5 Semantic Tags
+
+<img width="145" alt="image" src="https://user-images.githubusercontent.com/56068905/194276476-1ac5ae12-6dcc-47b6-8f88-b82fd44f09c9.png">
+
+* <article>
+       
+* <aside>
+       
+* <details>
+       
+* <figcaption>
+       
+* <figure>
+       
+* <footer>
+       
+* <header>
+       
+* <main>
+       
+* <mark>
+       
+* <nav>
+       
+* <section>
+       
+* <summary>
+       
+* <time>
+       
+```
+       asd
+```
 
