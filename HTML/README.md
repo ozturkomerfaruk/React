@@ -345,7 +345,11 @@ The cat was playing in the garden.
 <img width="145" alt="image" src="https://user-images.githubusercontent.com/56068905/194276476-1ac5ae12-6dcc-47b6-8f88-b82fd44f09c9.png">
 
 ***article, aside, details, figcaption, figure, footer, header, main, mark, nav, section, summary, time>***
-       
+
+### Section
+
+ "A section is a thematic grouping of content, typically with a heading." A home page could normally be split into sections for introduction, content, and contact information.
+
 ```
 <section>
   <h1>WWF</h1>
@@ -353,3 +357,16 @@ The cat was playing in the garden.
 </section> 
 ```
 
+### Artickle
+
+An article should make sense on its own, and it should be possible to read it independently from the rest of the web site. Examples of where an <article> element can be used: Forum post, Blog post, Newspaper article
+
+```
+<article>
+  <h1>What Does WWF Do?</h1>
+  <p>WWF's mission is to stop the degradation of our planet's natural environment,
+  and build a future in which humans live in harmony with nature.</p>
+</article>
+```
+
+       
