@@ -369,4 +369,64 @@ An article should make sense on its own, and it should be possible to read it in
 </article>
 ```
 
+### Footer
+A <footer> element should contain information about its containing element. A footer typically contains the author of the document, copyright information, links to terms of use, contact information, etc. You may have several <footer> elements in one document.
+```
+A <footer> element should contain information about its containing element. A footer typically contains the author of the document, copyright information, links to terms of use, contact information, etc. You may have several <footer> elements in one document.
+
+```
+<footer>
+  <p>Posted by: Hege Refsnes</p>
+  <p>Contact information: <a href="mailto:iletisim@ozturkomerfaruk.com">
+  someone@example.com</a>.</p>
+</footer>
+```
+
+### nav 
+       
+Notice that NOT all links of a document should be inside a <nav> element. The <nav> element is intended only for major block of navigation links.
+       
+```
+ <nav>
+  <a href="/html/">HTML</a> |
+  <a href="/css/">CSS</a> |
+  <a href="/js/">JavaScript</a> |
+  <a href="/jquery/">jQuery</a>
+</nav>
+     
+```
+       
+### aside 
+       
+The <aside> element defines some content aside from the content it is placed in (like a sidebar). The <aside> content should be related to the surrounding content.
+
+```
+<p>My family and I visited The Epcot center this summer.</p>
+<aside>
+  <h4>Epcot Center</h4>
+  <p>The Epcot Center is a theme park in Disney World, Florida.</p>
+</aside>
+```
+       
+### figcaption & figure
+       The purpose of a figure caption is to add a visual explanation to an image. In HTML5, an image and a caption can be grouped together in a <figure> element. The <img> element defines the image, the <figcaption> element defines the caption.
+       
+```
+<figure>
+  <img src="pic_trulli.jpg" alt="Trulli">
+  <figcaption>Fig1. - Trulli, Puglia, Italy.</figcaption>
+</figure>
+
+```
+
+### meta
+         
+The meta tag gives information about the document such as description and keywords, which are used by search engines in correctly indexing the page. Again, these do not get displayed to the user nor do they have any functionality as far as the content or layout of the page is concerned. But they give information to the search engines so that your page get indexed correctly.       
+       
+```
+<meta name="description" content="HTML5 Cheat sheet: Examples of HTML5 elements">
+<meta name="keywords" content="HTML5 tags, Web design">
+      
+```
+       
        
