@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>HTML Cheat Sheet</title>
+<meta name="description" content="HTML5 Cheat sheet: Examples of HTML5 elements">
+<meta name="keywords" content="HTML5 tags, Web design">
+</head>
+
+<body>
+<!-- Headings -->
+<h1>This is a h1 heading</h1>
+<h2>This is a h2 heading</h2>
+<h3>This is a h3 heading</h3>
+<h4>This is a h4 heading</h4>
+<h5>This is a h5 heading</h5>
+<h6>This is a h6 heading</h6>
+<hr>
+
+<h2 id="Computer">Computer</h2>
+<h2 id="Phone">Phone</h2>
+<h2 id="Coffee">Coffee</h2>
+
+<!-- Paragraph -->
+<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta voluptatum,
+   iure ipsa harum vel necessitatibus? Saepe reiciendis, maiores incidunt nobis
+   labore in sequi magni ducimus odio quisquam veritatis nam eveniet esse at excepturi corporis.
+   Reprehenderit debitis ut amet placeat veniam delectus saepe dolore voluptate
+   vitae, quas, soluta ad modi quibusdam.
+</p>
+<p>
+    Lorem ipsum dolor sit, <strong>amet consectetur adipisicing elit.</strong>
+    Reiciendis fugit possimus facere soluta, non minima sit
+    voluptates eius! <em>dolorem iste sed debitis </em>
+    provident nihil dolores odio sunt earum ad?
+</p>
+<p>The <abbr title="World Wide Web">WWW</abbr> is awesome</p>
+<hr>
+
+<!-- pre-formatted text: The following will appear as is -->
+<pre>
+This is line 1.
+This is line 2.
+</pre>
+<hr>
+
+<!-- Link -->
+Here is an example link: <a href="https:/google.com/" target="_blank">Goto google</a>
+<hr>
+
+<!-- Image -->
+Here is an image:
+
+<img src="../images/img_girl.jpg" alt="Girl in a jacket" width="50" height="80">
+
+This text appears on the same line as the image because an image is an inline element.
+<hr>
+
+<!-- Image map -->
+<img src="../images/workplace.jpg" alt="Workplace" usemap="#workmap">
+
+<map name="workmap">
+  <area shape="rect" coords="34,44,270,350" alt="Computer" href="#Computer">
+  <area shape="rect" coords="290,172,333,250" alt="Phone" href="#Phone">
+  <area shape="circle" coords="337,300,44" alt="Coffee" href="#Coffee">
+</map>
+
+<!-- Lists -->
+<!-- This is an unordered list -->
+<h3>Here is an unordered list:</h3>
+<ul>
+    <li>Unordered List item 1</li>
+    <li>Unordered List item 2</li>
+    <li>Unordered List item 3</li>
+    <li>Unordered List item 4</li>
+</ul>
+
+<!-- This is an ordered list -->
+<h3>Here is an ordered list:</h3>
+<ol>
+    <li>Ordered List item 1</li>
+    <li>Ordered List item 2</li>
+    <li>Ordered List item 3</li>
+    <li>Ordered List item 4</li>
+</ol>
+
+<!-- An ordered list where the items are labeled with capital letters -->
+<ol type="A">
+  <li>Coffee</li>
+  <li>Tea</li>
+  <li>Milk</li>
+</ol>
+
+<!-- An ordered list where the starting number is 50 -->
+<ol type="1" start="50">
+  <li>Coffee</li>
+  <li>Tea</li>
+  <li>Milk</li>
+</ol>
+
+<hr>
+
+<!-- Table -->
+<table>
+    <thead>
+    <tr>
+      <th>Firstname</th>
+      <th>Lastname</th>
+      <th>Age</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr>
+      <td>Ali</td>
+      <td>Kuscu</td>
+      <td>50</td>
+    </tr>
+    <tr>
+      <td>Ayse</td>
+      <td>Kaptan</td>
+      <td>28</td>
+    </tr>
+   </tbody>
+</table>
+<hr>
+
+<!-- A table where a cell spans 2 columns -->
+<table>
+  <tr>
+    <th>Name</th>
+    <th colspan="2">Telephone</th>
+  </tr>
+  <tr>
+    <td>Ali Kuscu</td>
+    <td>55577854</td>
+    <td>55577855</td>
+  </tr>
+</table>
+<hr>
+
+<!-- A table where a cell spans 2 rows -->
+<table>
+  <tr>
+    <th>Name:</th>
+    <td>Ali Kuscu</td>
+  </tr>
+  <tr>
+    <th rowspan="2">Telephone:</th>
+    <td>55577854</td>
+  </tr>
+  <tr>
+    <td>55577855</td>
+  </tr>
+</table>
+<hr>
+
+<!-- A table with a caption -->
+<table>
+  <caption>Monthly savings</caption>
+  <tr>
+    <th>Month</th>
+    <th>Savings</th>
+  </tr>
+  <tr>
+    <td>January</td>
+    <td>$100</td>
+  </tr>
+  <tr>
+    <td>February</td>
+    <td>$50</td>
+  </tr>
+</table>
+<hr>
+
+
+<!-- Forms -->
+<!-- Notice that both label and input are inline elements-->
+<form action="process.php" method="GET">
+    <fieldset>
+        <legend>Personal Data</legend>
+    <label>First name: </label>
+    <input type="text" name="firstName" placeholder="Enter first name">
+    <br>
+    <br>
+
+    <label>Last name: </label>
+    <input type="text" name="lastName" placeholder="Enter last name">
+    <br>
+    <br>
+    <input type="submit" value="Submit">
+    </fieldset>
+</form>
+<hr>
+
+<!-- text fields with default values specified using the value attribute -->
+<form action="process.php" method="GET">
+    <fieldset>
+        <legend>Personal Data</legend>
+    <label>First name: </label>
+    <input type="text" name="firstName" value="Ali">
+    <br>
+    <br>
+
+    <label>Last name: </label>
+    <input type="text" name="lastName" value="Kaya">
+    <br>
+    <br>
+    <input type="submit" value="Submit">
+    </fieldset>
+</form>
+<hr>
+
+<!-- Form with a radio button -->
+<form>
+    <input type="radio" name="gender" value="male" checked> Male<br>
+    <input type="radio" name="gender" value="female"> Female<br>
+    <input type="radio" name="gender" value="other"> Other<br>
+    <input type="submit" value="Submit">
+  </form>
+  <hr>
+
+  <!-- Form with two check boxes -->
+  <form>
+    <input type="checkbox" name="vehicle1" value="Bike"> I have a bike<br>
+    <input type="checkbox" name="vehicle2" value="Car"> I have a car<br>
+    <input type="submit" value="Submit">
+  </form>
+  <hr>
+
+  <!-- Button using <input type="button">-->
+  <form>
+    <input type="button" onclick="alert('Hello World!')" value="Click Me!">
+  </form>
+  <hr>
+
+  <!-- Button using <button type="button"> -->
+  <form>
+    <button type="button" onclick="alert('My Button is pressed')">My Button</button> <br>
+    <button type="button" onclick="alert('Login button is pressed')">
+        <img src=
+        "https://www.freeiconspng.com/uploads/login-button-png-4.jpg"
+            height="40" width="80">
+        </button><br>
+  </form>
+  <hr>
+
+  <!-- Some more HTML5 input elements: email, number, date -->
+  <form>
+  Email: <input type="email" name="email"><br><br>
+  Number: <input type="number" name="number" value="10"><br><br>
+  Date: <input type="date" name="date"><br><br>
+  <input type = "submit" value="Submit">
+  </form>
+  <hr>
+
+  <!-- Drop down list with the select element -->
+  <form>
+    <select name="car">
+        <option value="volvo" selected>Volvo</option>
+        <option value="saab">Saab</option>
+        <option value="fiat">Fiat</option>
+        <option value="audi">Audi</option>
+      </select><br>
+      <input type="submit" value="Submit">
+  </form>
+  <hr>
+
+  <!-- Textarea example -->
+  <form>
+    <textarea name="message" rows="10" cols="30">The cat was playing in the garden.</textarea><br>
+  <input type="submit" value="Submit">
+  </form>
+  <hr>
+
+  <!-- div element -->
+  <div style="background-color:black;color:white;padding:20px;">
+    <h2>London</h2>
+    <p>London is the capital city of England. It is the most populous city in the United Kingdom, with a metropolitan area of over 13 million inhabitants.</p>
+  </div>
+
+
+</body>
+</html>
