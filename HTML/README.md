@@ -283,6 +283,16 @@ a:active {
 </form>
 ```
 
+## iframe Kullanma
+
+```
+<h2>Custom Iframe Border</h2>
+<p>With CSS, you can also change the size, style and color of the iframe's border:</p>
+
+<iframe src="demo_iframe.htm" style="border:2px solid red;" title="Iframe Example"></iframe>
+```
+<img width="422" alt="image" src="https://user-images.githubusercontent.com/56068905/194304652-aea45fcc-7aed-4619-a31d-1ed19f0ed2c9.png">
+
 
 ----------------------
 
@@ -533,3 +543,17 @@ The meta tag gives information about the document such as description and keywor
        
        
   
+# Responsive Design
+
+Mesela bir resim var ve çözünürlük boyutuna göre değişiyor.
+       
+```
+<picture>
+  <source srcset="img_smallflower.jpg" media="(max-width: 600px)">
+  <source srcset="img_flowers.jpg" media="(max-width: 1500px)">
+  <source srcset="flowers.jpg">
+  <img src="img_smallflower.jpg" alt="Flowers">
+</picture>
+       
+```
+       
