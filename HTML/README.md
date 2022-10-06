@@ -1,6 +1,6 @@
 # HTML
 
-## 1. Headings
+## 1. Headings 
 
 ``` 
 <h1>This is a h1 heading</h1>
@@ -344,7 +344,7 @@ The cat was playing in the garden.
 
 <img width="145" alt="image" src="https://user-images.githubusercontent.com/56068905/194276476-1ac5ae12-6dcc-47b6-8f88-b82fd44f09c9.png">
 
-
+***article, aside, details, figcaption, figure, footer, header, main, mark, nav, section, summary, time>***
        
 ```
 <section>
