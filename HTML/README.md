@@ -34,6 +34,14 @@ This is a very <em>important</em> problem.
 
 The <abbr title=”World Wide Web”>WWW</abbr> is awesome.
 
+<address>
+Written by John Doe.<br> 
+Visit us at:<br>
+Example.com<br>
+Box 564, Disneyland<br>
+USA
+</address>
+
 <b> - Bold text
 <strong> - Important text
 <i> - Italic text
@@ -44,8 +52,12 @@ The <abbr title=”World Wide Web”>WWW</abbr> is awesome.
 <ins> - Inserted text
 <sub> - Subscript text
 <sup> - Superscript text
+<q> - Short Quotations
+<address> for Contact Information
 
 ```
+
+
 
 ## 4.	Links
 
@@ -56,6 +68,35 @@ The <abbr title=”World Wide Web”>WWW</abbr> is awesome.
 <a href=https://google.com target="_blank">Go to google</a>
 ```
 
+### Hover Effect
+
+```
+<style>
+a:link {
+  color: green; 
+  background-color: transparent; 
+  text-decoration: none;
+}
+
+a:visited {
+  color: pink;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:hover {
+  color: red;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+a:active {
+  color: yellow;
+  background-color: transparent;
+  text-decoration: underline;
+}
+</style>
+```
 
 ## 5.	Images
 
