@@ -409,7 +409,8 @@ The <aside> element defines some content aside from the content it is placed in 
 ```
        
 ### figcaption & figure
-       The purpose of a figure caption is to add a visual explanation to an image. In HTML5, an image and a caption can be grouped together in a <figure> element. The <img> element defines the image, the <figcaption> element defines the caption.
+
+The purpose of a figure caption is to add a visual explanation to an image. In HTML5, an image and a caption can be grouped together in a <figure> element. The <img> element defines the image, the <figcaption> element defines the caption.
        
 ```
 <figure>
