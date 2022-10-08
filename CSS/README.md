@@ -143,9 +143,59 @@ div ~ p {
 
 |Selector|Example|Example Description|
 |---|------|---|
-|element element|div p|Selects all <p> elements inside <div> elements|
-|element>element|div > p|Selects all <p> elements where the parent is a <div> element|
-|element+element|div + p|Selects all <p> elements that are placed immediately after <div> elements|
-|element1~element2|p ~ ul|Selects every <ul> element that are preceded by a <p> element|
+|element element|div p|Selects all <p elements inside <div elements|
+|element>element|div > p|Selects all <p elements where the parent is a <div element|
+|element+element|div + p|Selects all <p elements that are placed immediately after <div elements|
+|element1~element2|p ~ ul|Selects every <ul element that are preceded by a <p element|
+
+# CSS Pseudo-classes
+
+- hover effect
+- visidet, unvisited effect
+- focus effect
+
+The syntax of pseudo-classes
+
+```
+selector:pseudo-class {
+    property:value;
+}
+```
+
+```
+a:link {
+  color: #FF0000;
+}
+
+/* visited link */
+a:visited {
+  color: #00FF00;
+}
+
+/* mouse over link */
+a:hover {
+  color: #FF00FF;
+}
+
+/* selected link */
+a:active {
+  color: #0000FF;
+}
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
