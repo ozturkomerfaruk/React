@@ -161,6 +161,7 @@ selector:pseudo-class {
     property:value;
 }
 ```
+## Anchor Pseudo-classes
 
 ```
 a:link {
@@ -181,19 +182,89 @@ a:hover {
 a:active {
   color: #0000FF;
 }
+```
+
+## Anchor Pseudo-classes
+
+Birden fazla çocuk içerisinde ilkine ulaşma sadece
+
+```
+p i:first-child {
+  color: blue;
+}
+
+<body>
+
+<p>I am a <i>strong</i> person. I am a <i>strong</i> person.</p>
+<p>I am a <i>strong</i> person. I am a <i>strong</i> person.</p>
+
+</body>
 
 ```
 
+# CSS Pseudo-elements
+
+## The ::first-line Pseudo-element
+
+```
+p::first-line {
+  color: #ff0000;
+  font-variant: small-caps;
+}
+```
+
+## The ::first-letter Pseudo-element
+
+```
+p::first-letter {
+  color: #ff0000;
+  font-size: xx-large;
+}
+```
+
+## The ::before Pseudo-element
+
+```
+h1::before {
+  content: url(smiley.gif);
+}
+```
+
+## The ::after Pseudo-element
+
+```
+h1::after {
+  content: url(smiley.gif);
+}
+```
+
+## The ::selection Pseudo-element
+
+```
+::selection {
+  color: red;
+  background: yellow;
+}
+```
+
+```
+::selection {
+    color: gold;
+    background-color: red;
+  }
+
+p::selection {
+    color: white;
+    background-color: blue;
+  }
+```
+
+<img width="280" alt="image" src="https://user-images.githubusercontent.com/56068905/194702214-50702408-4676-424b-8398-28905d8a4675.png">
 
 
+# CSS Attribute Selectors
 
-
-
-
-
-
-
-
+## CSS [attribute] Selector
 
 
 
