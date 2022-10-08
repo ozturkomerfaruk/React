@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Variables</title>
+
+    <style>
+        :root {
+            --my-bg-color: black;
+            --my-text-color: white;
+            --my-container-width: 75%;            
+        }
+
+        .container {
+            width: var(--my-container-width);
+            margin: auto;
+        }
+
+        .box {
+            width: 50%;
+            height: 200px;
+            background-color: var(--my-bg-color);
+            color: var(--my-text-color);            
+        }
+    </style>
+
+</head>
+<body>
+    <div class="container">
+        <div class="box">
+            <h1>Some title</h1>
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis inventore natus repudiandae eligendi veniam maiores praesentium repellat exercitationem officia quisquam possimus, eos nam beatae, reiciendis unde impedit ut quos ad temporibus ab pariatur consequuntur quasi. Totam fugiat doloribus incidunt porro.</p>
+        </div>    
+
+        <div class="box" style="float: right;">
+            <h1>Some title</h1>
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis inventore natus repudiandae eligendi veniam maiores praesentium repellat exercitationem officia quisquam possimus, eos nam beatae, reiciendis unde impedit ut quos ad temporibus ab pariatur consequuntur quasi. Totam fugiat doloribus incidunt porro.</p>
+        </div>        
+    </div>
+</body>
+</html>

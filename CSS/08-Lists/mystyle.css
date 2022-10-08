@@ -1,0 +1,26 @@
+ul {
+  width: 30%;
+  background: lightgray;
+  color: red;
+/*  list-style-type: none; */  /* Use this ro remove any styling */
+  list-style-image: url("../images/squarePurple.jpg")
+}
+
+ul.mylist {
+  width: 50%;
+  background: #3399ff;
+  padding: 20px;
+  list-style-image: none;
+  list-style-type: square;
+  list-style-position: outside;
+  color: black;
+}
+
+ul.mylist li {
+  background: #cce5ff;
+  margin: 5px;
+}
+
+ul.mylist li:hover {
+  background: red;
+}

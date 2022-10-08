@@ -1,0 +1,27 @@
+*{
+    /* Reset margins & padding for all elements */    
+    margin: 0;
+    padding: 0;  
+    background-color: lightgray;
+}
+
+p {
+    text-align: center;
+    color: red;
+}
+  
+#para1 {
+    text-align: left;
+    color: blue;
+}
+
+/* p.center would select all <p> elements with class="center" */
+.center {
+    text-align: center;
+    color: green;
+}
+
+.large {
+    font-size: 2em;  /* 1em is 16px. 2em=32px */
+}
+  

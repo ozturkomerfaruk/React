@@ -1,0 +1,21 @@
+div {
+    width: 320px;  /* Also try 50% and scale the window */
+    border: 15px solid red;
+    padding: 10px;
+    margin: 0px;
+  }
+
+  h1 {
+      border: 8px solid black;
+  }
+
+  p {
+    max-width: 50%;
+    border-top: 0.1em solid black;
+    border-right: 0.2em solid green;
+    border-bottom: 0.3em solid blue;
+    border-left: 0.4em dashed red;
+    
+    padding: 0;
+    margin: 0.5em;
+  }
