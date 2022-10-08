@@ -101,12 +101,51 @@ h1, h2, p {
 |*|*|Selects all elements|
 |#id|firstname|Selects the element with id="firstname"|
 |.class|.intro|Selects all elements with class="intro"|
-|element|p|Selects all <p> elements|
-|element, element,..|div,p|Selects all <div> elements and all <p> elements|
+|element|p|Selects all <p elements|
+|element, element,..|div,p|Selects all <div elements and all <p elements|
 
+# Combinator Selectors
 
+## Descendant Selector
 
+div'denra p gelenler için mesela şöyle oluşturulur. İlk çocuk için geçerli
 
+```
+div p {
+  background-color: yellow;
+}
+}
+```
 
+## Child Selector
+
+divden sonra gelen tüm p ler için. Tüm çocuklar için geçerli
+
+```
+div > p {
+  background-color: yellow;
+}
+```
+
+## Adjacent Sibling Selector
+
+Çocuk farketmeden, divden sonra p varsa ağaçta onun için geçerli
+
+## General Sbling Selector
+
+```
+div ~ p {
+  background-color: yellow;
+}
+```
+
+### Summary of CSS Combinator Selectors
+
+|Selector|Example|Example Description|
+|---|------|---|
+|element element|div p|Selects all <p> elements inside <div> elements|
+|element>element|div > p|Selects all <p> elements where the parent is a <div> element|
+|element+element|div + p|Selects all <p> elements that are placed immediately after <div> elements|
+|element1~element2|p ~ ul|Selects every <ul> element that are preceded by a <p> element|
 
 
