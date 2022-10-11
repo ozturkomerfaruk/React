@@ -499,3 +499,13 @@ li a {
 ### Horizontal Navigation Bar
 
 * display: inline 
+
+
+# CSS Variables 
+
+<img width="628" alt="Screen Shot 2022-10-11 at 14 43 44" src="https://user-images.githubusercontent.com/56068905/195081251-afc99395-3d35-4ad0-b8df-7554f154f9e9.png">
+
+<img width="656" alt="Screen Shot 2022-10-11 at 14 44 12" src="https://user-images.githubusercontent.com/56068905/195081276-3f87c6c4-a3f0-444c-870c-8896ad34eba2.png">
+
+Buradaki **@media** etiketi responsive yapmaya yaradı.
+
