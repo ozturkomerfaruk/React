@@ -398,6 +398,104 @@ Also,
 * text-transform
 * text-indent
 * font
-** asd
 
+> generic family
+> font family
 
+## Styling Lists
+
+* list-style-type
+* list-style-position 
+* list-style-image 
+
+## Styling Tables
+
+* border 
+
+```
+table, th, td {
+  border: 1px solid black;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+table, th, td {
+  border: 1px solid black;
+}
+```
+
+* width
+* height
+* text-align
+* vertical-align
+* padding
+* border-bottom
+* hover
+
+```
+tr:nth-child(even) {background-color: #f2f2f2;}
+
+tr:hover {background-color: #baecea;}
+```
+
+## Styling Forms
+
+``` 
+input {
+  width: 100%;
+}
+```
+
+* input[type=text] - will only select text fields
+* input[type=password] - will only select password fields
+* input[type=number] - will only select number fields
+
+```
+input[type=text]:focus {
+  background-color: lightblue;
+}
+```
+
+```
+input[type=text] {
+  background-color: white;
+  background-image: url('searchicon.png');
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  padding-left: 40px;
+}
+```
+
+## Navigation Bars
+
+```
+<ul>
+  <li><a href="default.asp">Home</a></li>
+  <li><a href="news.asp">News</a></li>
+  <li><a href="contact.asp">Contact</a></li>
+  <li><a href="about.asp">About</a></li>
+</ul>
+```
+
+```
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+li a {
+  display: block;  /* Makes the whole area clickable (not just the text) */
+  width: 60px;
+}
+```
+### Vertical Navigation Bar
+
+* display: block; -> (sadece metni değil) tıklanabilir hale getirir ve genişliği (ve isterseniz dolgu, kenar boşluğu, yükseklik vb.) belirlememize olanak tanır.
+* width: 60px
+
+### Horizontal Navigation Bar
+
+* display: inline 
