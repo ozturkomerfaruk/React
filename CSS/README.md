@@ -192,7 +192,7 @@ Birden fazla çocuk içerisinde ilkine ulaşma sadece
 p i:first-child {
   color: blue;
 }
-
+ 
 <body>
 
 <p>I am a <i>strong</i> person. I am a <i>strong</i> person.</p>
@@ -372,11 +372,8 @@ a[target] {
 
 * auto - This is default. The browser calculates the height and width
 * length - Defines the height/width in px, cm, “em” etc.
-
 * % - Defines the height/width in percent of the containing block
-
 * initial - Sets the height/width to its default value
-
 * inherit - The height/width will be inherited from its parent value
 
 ```
@@ -391,15 +388,16 @@ div {
 ## Text Formatting
 
 * a color name - like "red"
-
 * a HEX value - like "#ff0000"
-
 * an RGB value - like "rgb(255,0,0)"
 
 Also,
 
 * text-align
-
-
+* text-decoration
+* text-transform
+* text-indent
+* font
+** asd
 
 
