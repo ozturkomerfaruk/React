@@ -1,0 +1,129 @@
+
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .container {
+            margin: auto;
+            width: 75%;
+            margin-top: 25px;
+            background-color: white;
+        }
+
+        .product {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .product-properties {
+            width: 50%;
+            margin-left: 10px;
+            background-color: #eee;
+            padding-bottom: 20px;
+        }
+
+        .image {
+            width: 50%;
+            margin-left: 15px;
+        }
+
+        .list {
+            margin-top: 15px;
+        }
+
+        .features {
+            margin-left: 31px;
+        }
+
+        .subtitle {
+            color: blue;
+            border-bottom: 2px solid gray;
+            margin: 15px 0px 20px 0px;
+        }
+
+
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td,
+        th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+
+        tr:hover {
+            background-color: gray;
+            color: white;
+        }
+
+        .title{
+            font-size: 23px;
+            text-align: center;
+            
+        }
+
+        .blueWords {
+            color: rgb(20, 156, 229);
+            font-size: 18px;
+        }
+
+        .upperLetter {
+            font-size: 29px !important;
+        }
+
+        .choose-piece {
+            display: flex;
+        }
+
+        .choose-piece > .box-border {
+            padding: 5px 10px 5px 10px;
+            font-size: 18 px;
+            flex-wrap: 1;
+            border: blue solid .5px;
+        }
+
+        .addToCart {
+            font-size: 18px;
+            color: white;
+            background-color: green;
+            border-color: green;
+            margin-left: 5px;
+            padding: 2px 4px 2px 4px;
+        }
+
+        .addToCart:hover {
+            background-color: blue;
+        }
+
+        .my-cart{
+            color: green;
+            border-left: green solid 5px;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .properties>li {
+            list-style-type: none;
+            margin: 8px 0px 8px 0px;
+            padding: 10px;
+            font-size: 18px;
+        }
+
+        .properties>li:nth-child(odd) {
+            border-left: blue solid 4px;
+        }
+
+        .properties>li:nth-child(even) {
+            border-left: green solid 4px;
+        }
+
+    

@@ -1,0 +1,91 @@
+
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .container {
+            margin: auto;
+            width: 75%;
+            background-color: #eee;
+            padding: 25px;
+        }
+
+        .container2 {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .card {
+            position: relative;
+            height: 290px;
+            width: 45%;
+            box-shadow: 2px 2px 20px black;
+            border-radius: 8px;
+        }
+
+        .image img {
+            width: 100%;
+            height: 230px;
+        }
+
+        .title {
+            padding: 15px;
+            text-align: center;
+        }
+
+        button {
+            background-color: white;
+            border: 1px solid blue;
+            text-shadow: blue;
+            float: right;
+            justify-content: space-around;
+            height: 28px;
+            border-radius: 5px;
+            color: blue;
+        }
+
+        button:hover {
+            background-color: green;
+            color: white;
+            transition: 0.5s;
+            cursor: pointer;
+        }
+
+        .text {
+            float: left;
+        }
+
+        .card-footer {
+            margin: 10px;
+            background-color: white;
+        }
+
+
+        .image>i {
+            position: absolute;
+            background: white;
+            left: 0;
+            top: 0;
+        }
+
+        .item {
+            position: absolute;
+            background-color: #ddd;
+            top: 12px;
+            left: 12px;
+            padding: 4px;
+            border-radius: 35px;
+        }
+
+        .material-icons {
+            float: left;
+            padding-right: 4px;
+            font-size: medium;
+        }
+
+        .icon-text {
+            float: right;
+            font-size: small;
+        }
+    
