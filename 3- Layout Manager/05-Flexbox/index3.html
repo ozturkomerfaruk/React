@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Flex box 3</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }        
+        .button {
+            border: 1px solid black;
+            color: black;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+        
+        .button1 {
+            background-color: white;
+        }
+        
+        .button2 {
+            background-color: #4CAF50;
+        }
+        
+        .row {
+            display: flex;
+            border: 1px solid black;
+            margin: 0 30px;     /* top&bottom=0, left&right=30px */
+            background-color: aquamarine;
+        }
+        
+        .column {
+            display: flex;
+            flex-direction: column;
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid black;
+        }
+        
+        .column1 {
+            background-color: gray;
+            width: 20%;
+            /*            flex: 2; */
+            /* Instead of width, we can do this */
+        }
+        
+        .column2 {
+            background-color: blue;
+            width: 40%;
+            /*            flex: 4; */
+            /* Instead of width, we can do this */
+        }
+        
+        .column3 {
+            background-color: greenyellow;
+            width: 40%;
+            /*            flex: 4; */
+            /* Instead of width, we can do this */
+        }
+        
+        div {
+            border: 1px solid black;
+            background-color: azure;
+            padding: 20px;
+            margin: 5px;
+        }
+        
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            text-align: left;
+            padding: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="row">
+        <div class="column column1">
+            <div>
+                Column11
+            </div>
+
+            <div>
+                Column12
+            </div>
+
+            <div>
+                Column13
+            </div>
+
+        </div>
+
+        <div class="column column2">
+            <div>
+                Column21
+            </div>
+            <div style="display:flex; justify-content: space-around;">
+                <div class="button button2" style="flex:1">Press Here </div>
+                <div class="button button2" style="flex:2">Say Hello </div>
+            </div>
+
+            <div style="display:flex;">
+                <div class="button button2" style="width: 100%;">Press Here </div>
+            </div>
+        </div>
+
+        <div class="column column3">
+            <div>
+                Column31
+            </div>
+
+            <div style="display: flex;">
+                <table style="flex: 1;">
+                    <tr>
+                        <th>Company</th>
+                        <th>Contact</th>
+                        <th>Country</th>
+                    </tr>
+                    <tr>
+                        <td>Alfreds Futterkiste</td>
+                        <td>Maria Anders</td>
+                        <td>Germany</td>
+                    </tr>
+                    <tr>
+                        <td>Centro comercial Moctezuma</td>
+                        <td>Francisco Chang</td>
+                        <td>Mexico</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>

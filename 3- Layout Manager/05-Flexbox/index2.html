@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CSS Flexbox 2</title>
+  <style>
+    body {
+      padding: 0;
+      margin: 0;
+    }
+    .flex-container {
+        display: flex;
+        flex-wrap: nowrap;
+        background-color: DodgerBlue;
+        justify-content: center;
+        align-items: center;
+        height: 100vh; /* 100 % of the viewport height */
+    }
+
+    .box {
+        background-color: #f1f1f1;
+        margin: 10px;
+        text-align: center;
+        line-height: 75px;
+        font-size: 30px;
+    }
+
+    .one {
+      width: 100px;
+      min-height: 100px;
+    }    
+
+    .two {
+      width: 100px;
+      min-height: 300px;
+    }
+    
+    .three {
+      width: 100px;
+      min-height: 200px;
+    }    
+  </style>
+
+</head>
+<body>
+  <div class="flex-container">
+    <div class="box one">1</div>
+    <span class="box two">2</span>
+    <div class="box three">3</div>
+  </div>
+</body>
+</html>
