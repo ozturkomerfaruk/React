@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Responsive Web Page using the Grid System</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        html {
+            font-family: "Lucida Sans", sans-serif;
+        }
+        
+        .header {
+            background-color: #9933cc;
+            color: #ffffff;
+            padding: 15px;
+        }
+        
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        
+        .menu ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .menu li {
+            padding: 8px;
+            margin-bottom: 7px;
+            background-color: #33b5e5;
+            color: #ffffff;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+        }
+        
+        .menu li:hover {
+            background-color: #0099cc;
+        }
+        
+        .content {
+            padding: 15px;
+        }
+        
+        .aside {
+            background-color: #33b5e5;
+            padding: 15px;
+            color: #ffffff;
+            text-align: center;
+            font-size: 14px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+        }
+        
+        .footer {
+            background-color: #0099cc;
+            color: #ffffff;
+            text-align: center;
+            font-size: 12px;
+            padding: 15px;
+        }
+        /* The order of the media queries is important due to cascading order processing of the style sheets */
+        /* You always want the @media queries for mobile devices, followed by the @media queries for tablet
+     * followed by the @media queries for the desktop devices in this order. The reason is obvious: As the
+     * screen size grows, you want the class for the particular screen size to take over, overriding 
+     * previous the styles defined in the previous class decleration, which is for the smaller screen size.
+     * Thus when you have an element having classes: "col-3 col-s-6 col-xs-12", this would really mean
+     * that you want the element to occupy:
+     *            3 columns (25%) of its container on a desktop
+     *            6 columns (50%) of its container on a tablet
+     *            12 columns (100%) of its container on a mobile phone
+     * As we will see next week, this is exactly how bootstrap works :-)
+     */
+        
+        @media only screen and (max-width: 600px) {
+            /* For mobile devices: */
+            .col-xs-1 {
+                width: 8.33%;
+            }
+            .col-xs-2 {
+                width: 16.66%;
+            }
+            .col-xs-3 {
+                width: 25%;
+            }
+            .col-xs-4 {
+                width: 33.33%;
+            }
+            .col-xs-5 {
+                width: 41.66%;
+            }
+            .col-xs-6 {
+                width: 50%;
+            }
+            .col-xs-7 {
+                width: 58.33%;
+            }
+            .col-xs-8 {
+                width: 66.66%;
+            }
+            .col-xs-9 {
+                width: 75%;
+            }
+            .col-xs-10 {
+                width: 83.33%;
+            }
+            .col-xs-11 {
+                width: 91.66%;
+            }
+            .col-xs-12 {
+                width: 100%;
+            }
+        }
+        
+        @media only screen and (min-width: 600px) {
+            /* For tablets: */
+            .col-s-1 {
+                width: 8.33%;
+            }
+            .col-s-2 {
+                width: 16.66%;
+            }
+            .col-s-3 {
+                width: 25%;
+            }
+            .col-s-4 {
+                width: 33.33%;
+            }
+            .col-s-5 {
+                width: 41.66%;
+            }
+            .col-s-6 {
+                width: 50%;
+            }
+            .col-s-7 {
+                width: 58.33%;
+            }
+            .col-s-8 {
+                width: 66.66%;
+            }
+            .col-s-9 {
+                width: 75%;
+            }
+            .col-s-10 {
+                width: 83.33%;
+            }
+            .col-s-11 {
+                width: 91.66%;
+            }
+            .col-s-12 {
+                width: 100%;
+            }
+        }
+        
+        @media only screen and (min-width: 768px) {
+            /* For desktop: */
+            .col-1 {
+                width: 8.33%;
+            }
+            .col-2 {
+                width: 16.66%;
+            }
+            .col-3 {
+                width: 25%;
+            }
+            .col-4 {
+                width: 33.33%;
+            }
+            .col-5 {
+                width: 41.66%;
+            }
+            .col-6 {
+                width: 50%;
+            }
+            .col-7 {
+                width: 58.33%;
+            }
+            .col-8 {
+                width: 66.66%;
+            }
+            .col-9 {
+                width: 75%;
+            }
+            .col-10 {
+                width: 83.33%;
+            }
+            .col-11 {
+                width: 91.66%;
+            }
+            .col-12 {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>Chania</h1>
+    </div>
+
+    <div class="row">
+        <div class="menu col-xs-12 col-s-3 col-3">
+            <ul>
+                <li>The Flight</li>
+                <li>The City</li>
+                <li>The Island</li>
+                <li>The Food</li>
+            </ul>
+        </div>
+
+        <div class="content col-xs-12 col-s-9 col-6">
+            <h1>The City</h1>
+            <p>Chania is the capital of the Chania region on the island of Crete. The city can be divided in two parts, the old town and the modern city.</p>
+        </div>
+
+        <div class="aside col-xs-12 col-s-12 col-3">
+            <h2>What?</h2>
+            <p>Chania is a city on the island of Crete.</p>
+            <h2>Where?</h2>
+            <p>Crete is a Greek island in the Mediterranean Sea.</p>
+            <h2>How?</h2>
+            <p>You can reach Chania airport from all over Europe.</p>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>Resize the browser window to see how the content respond to the resizing.</p>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Responsive Design Example</title>
+
+  <!-- This meta tag is necessary for responsive web pages -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      background-color: aqua;     /* Default background color */
+    }
+
+    /* Kicks in when screen-size <= 800 */
+    @media (max-width: 800px){
+        body {
+          background-color: lightgreen;  
+        }
+    }
+
+    /* Kicks in when screen-size <= 600 */
+    @media (max-width: 600px){
+        body {
+          background-color: lightgray;   
+        }
+    }
+
+    /* Kicks in when screen-size <= 400 */
+    @media (max-width: 400px){
+        body {
+          background-color: royalblue; 
+        }
+
+        /* The h2 inside div element will disappear for this screen size */
+        div > h2 {
+          display: none;
+        }
+    }
+  </style>
+</head>
+
+<body>
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione, magni accusamus! Doloremque iusto eaque cumque laboriosam voluptatibus eum, ipsum tempore nesciunt eligendi cum, vel id neque minus omnis nulla maiores? </p>
+  <div><h2>This heading will disappear for screen sizes <= 400px</h2></div>
+</body>
+</html>
