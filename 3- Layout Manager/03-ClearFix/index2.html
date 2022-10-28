@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CSS Float Celarfix</title>
+    <style>
+        .container1 {
+            display: float;
+        }
+
+        .container2 {
+            display: float;
+        }
+
+        .container2::after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+
+        .box {
+            width: 50px;
+            height: 30px;
+            margin: 5px;
+            text-align: center;
+        }
+
+        .bordered {
+            border: 2px solid black;
+        }
+
+        .success {
+            background-color: lightgreen;
+        }
+
+        .neutral {
+            background-color: lightgray;
+        }
+
+        .float-left {
+            float: left;
+        }
+
+        .float-right {
+            float: right;
+        }
+
+    </style>
+</head>
+<body>
+  <h2>Here is float with clearfix</h2>
+  <div class="container2 bordered neutral">
+      <div class="box float-left bordered success">Box 1</div>
+      <div class="box float-left bordered success">Box 2</div>
+      <div class="box float-right bordered success">Box 3</div>
+  </div>
+
+  <h2>Here is float without clearfix</h2>
+    <div class="container1 bordered neutral">
+        <div class="box float-left bordered success">Box 1</div>
+        <div class="box float-left bordered success">Box 2</div>
+        <div class="box float-right bordered success">Box 3</div>
+  </div>  
+
+  <p>Paragraph after the float container</p>
+
+
+</body>
+</html>

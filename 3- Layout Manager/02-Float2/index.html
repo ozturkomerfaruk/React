@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CSS float property</title>
+  <link rel="stylesheet" type="text/css" href="mystyle.css">
+</head>
+<body>
+  <!-- Notice that it is possible to make the width of the elements inside a container the same,
+       but it is not possible to make their heights the same. If we fix the height to a some fixed
+       value in pixels, then the content that does not fit inside the container will overflow!
+  -->
+  <div class="mycontainer">
+    <div class="div1">div1</div>
+    <div class="div1">Another div1</div>
+    <div class="div1">Yet another div1</div>
+
+    <div class="div2">div2</div>
+    <div class="div2">Another div2</div>
+    <div class="div2">Yet another div2.</div>
+
+    <!-- Stops the current floats to the left & right and takes us to the next line -->
+    <!-- If we omit this, the following <hr> and <div> items will continue
+         floating inside this div container. -->
+    <div style="clear:both"></div>
+  </div>
+
+  <hr>
+
+  <div class="mycontainer">
+    <div class="div1">div1</div>
+    <div class="div1">Another div1</div>
+    <div class="div1">Yet another div1</div>
+    <div class="div1">Yet yet another div1</div>
+
+    <!-- Stops the current floats and takes us to the next line -->  
+    <!-- If we omit this, the following <hr> and <p> will continue 
+         floating inside this div container. -->
+    <div style="clear:left"></div>     
+  </div>
+    
+  <hr>
+  <div class = "mycontainer">
+    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Natus modi aut a magni consequatur inventore quibusdam excepturi? Quas at, nihil ipsa libero in accusantium voluptatem nisi odio ipsum, excepturi quasi.    
+    </p>
+</div>
+
+</body>
+</html>
