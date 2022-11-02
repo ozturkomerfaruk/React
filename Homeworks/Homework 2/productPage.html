@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Page</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .gridLayoutPageView {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        b #productBar {
+            background-color: white;
+        }
+
+        #productImage {
+            width: 100%;
+            padding: 0px 10px;
+            padding-top: 10px;
+            display: block;
+            margin: auto;
+        }
+
+        #productAbout {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .listItemProductAbout {
+            padding: 10px 20px;
+
+        }
+
+        .spaceBetween {
+            display: inline-block;
+            justify-content: space-between;
+        }
+
+        .inlineBlock {
+            display: inline-block;
+
+        }
+
+        #informationBar {
+            padding: 12px;
+            background-color: rgb(245, 245, 245);
+        }
+
+        #productName {
+            font-size: 22px;
+            margin-bottom: 0px;
+            padding-bottom: 0px;
+        }
+
+        #productBrand {
+            margin-top: 0px;
+            padding-top: 0px;
+            color: rgb(86, 130, 194);
+        }
+
+        .price {
+            float: left;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        #tl {
+            font-size: 16px;
+            font-weight: normal;
+        }
+
+        .stars {
+            float: right;
+        }
+
+        #starAvg {
+            font-size: 18px;
+            display: inline-block;
+        }
+
+        .star {
+            display: inline-block;
+        }
+
+        #evelauteNumber {
+            text-align: right;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .topPadding {
+            padding-top: 60px;
+            margin-left: 0px;
+            padding-left: 0px;
+        }
+
+        .whiteContainer {
+            display: inline-block;
+            background-color: white;
+            border-radius: 12px;
+            padding: 2px 8px;
+            margin: 8px 0px;
+        }
+
+        .yaziRengi {
+            color: grey;
+        }
+
+        #maviKisim {
+            color: rgb(103, 131, 196);
+        }
+
+        #yesilKisim {
+            background-color: rgb(0, 176, 41);
+            margin: 14px 0px;
+            padding: 5px 9px;
+            color: white;
+            border-radius: 12px;
+            display: inline-block;
+        }
+
+        #siyahKisim {
+            color: black;
+            font-weight: 600;
+        }
+
+        #turuncuKisim {
+            color: white;
+            background-color: rgb(255, 81, 0);
+            margin-left: 5px;
+            padding: 5px 10px;
+            border-radius: 50%;
+        }
+
+        #yesilYazi {
+            padding: 16px 0px;
+            color: green;
+        }
+
+        .addToCart {
+            color: white;
+            background-color: rgb(255, 81, 0);
+            text-align: center;
+            border-radius: 10px;
+            padding: 14px;
+            margin-left: 20px;
+            font-size: 22px;
+            display: inline;
+        }
+
+        #oldTechCart {
+            background-color: rgba(240, 234, 255);
+            border: 2px solid rgba(218, 206, 241);
+            margin-top: 8px;
+            border-radius: 14px;
+            padding: 12px 16px;
+            align-items: flex-start;
+            justify-content: center;
+            display: flex;
+        }
+
+        .oldTechText {
+            flex-grow: 1;
+        }
+
+        .oldTechIcon {
+            flex-shrink: 1;
+        }
+
+        #questionIcon {
+            background-color: rgb(255, 255, 255);
+            color: black;
+            font-weight: 600;
+            margin-left: 8px;
+            padding: 5px 9px;
+            border-radius: 50%;
+        }
+
+        #faydalanText {
+            background-color: rgb(255, 255, 255);
+            color: black;
+            font-weight: 600;
+            margin-left: 8px;
+            padding: 5px 10px;
+            border-radius: 12px;
+        }
+
+        .buttons {
+            display: inline-block;
+            font-size: 18px;
+        }
+
+        #likeButton {
+            display: inline-block;
+            padding: 16px 30px;
+
+        }
+
+        #saveButton {
+            padding: 16px 30px;
+            display: inline-block;
+        }
+
+        #compareButton {
+            padding: 16px 30px;
+            display: inline-block;
+        }
+
+        #deliveryCard {
+            background-color: white;
+            display: block;
+            padding-top: 8px;
+            border-radius: 12px;
+        }
+
+        .deliveryInfo {
+            display: flex;
+            margin: 8px;
+            padding: 8px;
+        }
+
+        .floatLeft {
+            float: left;
+        }
+
+        .floatRight {
+            float: right;
+        }
+
+        .bold {
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .locat {
+            font-weight: bold;
+            padding: 10px;
+            font-size: 14px;
+            background-color: rgba(255, 239, 228);
+            color: orange;
+            text-align: center;
+            display: inline;
+            border-radius: 12px;
+        }
+
+        #kargoYazisi {
+            margin-top: 0px;
+            padding-top: 0px;
+            font-size: 14px;
+            font-weight: normal;
+        }
+
+        .kargoImageView {
+            margin-top: 12px;
+            height: fit-content;
+        }
+
+        #vendorTitle {
+            font-size: 20px;
+            padding: 14px 2px;
+            font-weight: bold;
+        }
+
+        #turuncuYazi {
+            color: rgb(232, 120, 90);
+        }
+
+        #vendorBrands {
+            display: flex;
+            background-color: rgba(255, 255, 255);
+            border-radius: 12px;
+            padding-bottom: 16px;
+            padding: 12px 14px;
+        }
+
+        .ratio {
+            flex-grow: 1;
+        }
+
+        .flexible {
+            flex-shrink: 1;
+        }
+
+        #maviYazi {
+            color: rgb(154, 181, 228);
+        }
+
+        .addToCartWithoutIcon {
+            line-height: 100%;
+            padding-top: 16px;
+            padding-right: 8px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #priceToCart {
+            padding-right: 12px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        #orangeBoxForAddToCart {
+            text-align: center;
+            background-color: rgb(232, 120, 90);
+            color: white;
+            border-radius: 15px;
+            padding: 10px 15px;
+            font-size: 16px;
+        }
+
+        .installment {
+            padding-top: 60px;
+            text-align: start;
+        }
+
+        #plusMinusCount {
+            border-radius: 14px;
+            background-color: rgb(191, 191, 191);
+            justify-content: center;
+            align-items: center;
+            display: inline-flex;
+            text-align: center;
+        }
+
+        .minusPlus {
+            text-align: center;
+            border-radius: 8px;
+            font-size: 30px;
+            width: 50px;
+            margin: 0px;
+            height: 60px;
+            font-weight: bold;
+        }
+
+        .quantity {
+            background-color: white;
+            display: inline;
+            padding: 5px;
+            text-align: center;
+            height: 55px;
+            width: 60px;
+        }
+
+        #secondQuestionMarkIcon {
+            background-color: rgb(223, 223, 223);
+            float: right;
+            padding: 0px 20px;
+            border-radius: 30px;
+            width: 30px;
+            text-align: center;
+            margin-left: 6px;
+            padding: 0px 6px;
+            font-weight: 600;
+        }
+
+        #kargoYaziFontu {
+            font-size: 14px;
+        }
+
+        .textAlignEndItem {
+            flex-shrink: 1;
+        }
+
+        @media (max-width: 992px) {
+            .gridLayoutPageView {
+                grid-template-columns: repeat(1, 1fr);
+            }
+
+            #mobilDuzenlemesi {
+                align-items: center;
+                justify-content: center;
+                display: flex;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="gridLayoutPageView">
+        <div class="container-fluid" id="productBar">
+            <img id="productImage" src="P2-img/kulaklik.jfif" alt="Product Image">
+            <div id="productAbout">
+                <div class="listItemProductAbout">
+                    <hr>
+                    <p class="listItemProductAbout"><span class="font-weight-bold textAlignEndItem">Çift Telefon
+                            Desteği</span> Hayır</p>
+                    <p class="listItemProductAbout"><span class="font-weight-bold">Suya & Tere Dayanıklı</span> Hayır
+                    </p>
+                    <p class="listItemProductAbout"><span class="font-weight-bold">Kullanım Tipi</span> Kulakiçi</p>
+                </div>
+                <div class="listItemProductAbout">
+                    <hr>
+                    <p class="listItemProductAbout"><span class="font-weight-bold">Bluetooth Versiyon</span> 5.0</p>
+                    <p class="listItemProductAbout"><span class="font-weight-bold">Aktif Gürültü Önleme(ANC)</span> Yok
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid" id="informationBar">
+            <p id="productName">TWS i12 Bluetooth 5.0 Kulaklık - Şarj Üniteli</p>
+            <p id="productBrand">TWS</ğ>
+            <div id="priceInformation">
+                <div>
+                    <p class="price">115,00 <span id="tl">TL</span></p>
+                </div>
+                <div class="stars">
+                    <h3 id="starAvg">3,5</h3>
+                    <div class="star">
+                        <i class="fa fa-star" style="color: orange;"></i>
+                        <i class="fa fa-star" style="color: orange;"></i>
+                        <i class="fa fa-star" style="color: orange;"></i>
+                        <i class="fa fa-star" style="color: orange;"></i>
+                        <i class="fa fa-star" style="color: gray;"></i>
+                    </div>
+                    <p id="evelauteNumber">7469 Değerlendirme</p>
+                </div>
+            </div>
+            <div class="installment">19 TL x 6 aya varan <span class="font-weight-bold">Taksitle</span></div>
+            <div class="whiteContainer">
+                <p class="yaziRengi">Satıcı<span id="maviKisim" class="font-weight-bold">: SFIT TEKNOLOJI ...</span>
+                    | Puan <span id="yesilKisim"> 9.4 </span> <span class="qmark">?</span> |
+                    <span id="siyahKisim">Kampanyaları Gör</span> <span id="turuncuKisim">3</span>
+                </p>
+            </div>
+            <div id="yesilYazi" class="font-weight-bold space">
+                Seçili Telefon Alana TWS i12 Bluetooth 5.0 Kulaklık %10 İndirimli!
+            </div>
+            <div id="mobilDuzenlemesi">
+                <div id="plusMinusCount">
+                    <p class="minusPlus">-</p>
+                    <div class="quantity">
+                        <h5>1</h5>
+                        <h7>Adet</h7>
+                    </div>
+                    <p class="excl minusPlus">+</p>
+                </div>
+
+                <p class="addToCart">
+                    <i class="fa fa-shopping-cart"></i> Sepete Ekle
+                </p>
+            </div>
+            <div id="oldTechCart">
+                <p class="oldTechText">Eski ürününü yenisi ile değiştirmek ister misin?</p>
+                <p class="oldTechIcon">
+                    <span id="questionIcon">?</span>
+                    <span id="faydalanText">Faydalan</span>
+                </p>
+            </div>
+            <div class="buttons">
+                <p id="likeButton"><i class="fa fa-heart-o"></i> Beğen</p>
+                <p id="saveButton"><i class="fa fa-bookmark-o"></i> Listeme Ekle</p>
+                <p id="compareButton"><i class="fa fa-arrow-right"></i> Karşılaştır</p>
+                <!--Karşılıklı ok çalışmıyor.-->
+            </div>
+            <hr>
+            <div id="deliveryCard">
+                <div class="deliveryInfo">
+                    <p class="bold ratio">Teslimat Seçenekleri</p>
+                    <p class="locat flexible"><i class="fa fa-map-marker"></i> Konum seç</p>
+                </div>
+                <div class="deliveryInfo">
+                    <div class="bold ratio">
+                        <p class="bold">Standart Teslimat</p>
+                        <p id="kargoYazisi">En geç 14 Ekim Cuma günü kargoda</p>
+                    </div>
+                    <img class="flexible kargoImageView" src="P2-img/hepsijet.jpg" alt="Hepsi Jet resmi">
+                </div>
+            </div>
+            <div class="otherVendors">
+                <p id="vendorTitle">Diğer Satıcılar - <span id="turuncuYazi">Tümü (2)</span>
+                    <span id="secondQuestionMarkIcon">?</span>
+                </p>
+                <div id="vendorBrands">
+                    <div class="ratio">
+                        <div><span class="yesilKisim">9.7</span> <span id="maviYazi" class="font-weight-bold">
+                                Torima</span>
+                        </div>
+                        <div id="kargoYaziFontu">
+                            <span class="font-weight-bold">21 saat 42 dakika</span>
+                            içinde sipariş verirsen yarın kargoda
+                        </div>
+                    </div>
+                    <div class="addToCartWithoutIcon" class="flexible">
+                        <p id="priceToCart">148.97 TL</p>
+                        <p id="orangeBoxForAddToCart">Sepete Ekle</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
