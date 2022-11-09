@@ -74,7 +74,6 @@ This week we will look into 4 very popular CSS frameworks: Bootstrap, Materializ
 
 <img width="639" alt="image" src="https://user-images.githubusercontent.com/56068905/200780912-f4c56a6b-a204-458d-b4b1-4095f3313e1b.png">
 
-
 ## Colors
 
 ```
@@ -87,4 +86,107 @@ This week we will look into 4 very popular CSS frameworks: Bootstrap, Materializ
 <p class="bg-dark text-white">asd</p>
 <p class="bg-light text-dark">asd</p>
 ```
+
+## Jumbotron
+
+```
+<div class="jumbotron jumbotron-fluid">
+	  <div class="container">
+		<h1>Bootstrap Tutorial</h1>
+		<p>Bootstrap is the most popular HTML, CSS, and JS framework for developing responsive, mobile-first projects on the web.</p>
+	  </div>
+</div>
+```
+
+```
+<img src="../images/newyork.jpg" class="rounded" alt="New York" width="304" height="236">
+
+<img src="../images/newyork.jpg" class="rounded-circle" alt="New York" width="304" height="236">
+
+<img src="../images/newyork.jpg" class="img-thumbnail" alt="CNew York" width="100" height="80">
+```
+
+##  List
+
+```
+<li class="list-group-item">First item</li>
+<li class="list-group-item active">Second item</li>
+<li class="list-group-item">Third item</li>
+```     
+
+## Table 
+
+table klasorunde detaylar mevcut
+
+## Buttons
+
+buton klasorunde detaylar mevcut
+
+## Forms
+
+forms klasorunde detaylar mevcut
+
+## dropdown menu
+
+dropdown klasorunde detaylar mevcut
+
+## Tabbar
+
+tab klasorunde detaylar mevcut
+
+## navigation bar
+
+navbar klasorunde detaylar mevcut
+
+## alerts
+
+alerts klasorunde detaylar mevcut
+
+## Carousel, haber sitelerinde vs. resim kaydırma 
+
+ilgili klasorde detaylar mevcut
+
+## pop up ekran açma
+
+modals klasorunde detaylar mevcut
+
+## badges
+
+ilgili klasorde detaylar mevcut
+
+## progress bar ve çeşitleri
+
+ilgili klasorde detaylar mevcut
+
+## spinner, Circle Waiting 
+
+ilgili klasorde detaylar mevcut
+
+
+# Float
+
+<img width="605" alt="image" src="https://user-images.githubusercontent.com/56068905/200788121-f1c4d85b-60d3-4e47-988b-f571801398e9.png">
+
+
+```
+<div class="container clearfix">
+        <div class="float-right">Floated to the right 1</div>
+        <div class="float-right">Floated to the right 2</div>
+        <div class="float-left">Floated to the left 1</div>
+        <div class="float-left">Floated to the left 2</div>
+</div>
+
+<div class="container d-flex flex-row">
+        <div class="flex-fill bg-primary">Element 1</div>
+        <div class="flex-fill bg-success">Element 2</div>
+        <div class="flex-fill bg-warning">Element 3</div>
+</div>
+    
+<div class="container d-flex flex-column">
+        <div class="flex-fill bg-primary">Element 1</div>
+        <div class="flex-fill bg-success">Element 2</div>
+        <div class="flex-fill bg-warning">Element 3</div>
+</div>    
+```
+
 
