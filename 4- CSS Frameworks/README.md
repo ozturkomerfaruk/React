@@ -130,40 +130,40 @@ forms klasorunde detaylar mevcut
 
 dropdown klasorunde detaylar mevcut
 
-## Tabbar
+##	Tabbar
 
 tab klasorunde detaylar mevcut
 
-## navigation bar
+##	avigation bar
 
 navbar klasorunde detaylar mevcut
 
-## alerts
+##	alerts
 
 alerts klasorunde detaylar mevcut
 
-## Carousel, haber sitelerinde vs. resim kaydırma 
+##	 Carousel, haber sitelerinde vs. resim kaydırma 
 
 ilgili klasorde detaylar mevcut
 
-## pop up ekran açma
+##	pop up ekran açma
 
 modals klasorunde detaylar mevcut
 
-## badges
+##	badges
 
 ilgili klasorde detaylar mevcut
 
-## progress bar ve çeşitleri
+##	progress bar ve çeşitleri
 
 ilgili klasorde detaylar mevcut
 
-## spinner, Circle Waiting 
+##	spinner, Circle Waiting 
 
 ilgili klasorde detaylar mevcut
 
 
-# Float
+#	Float
 
 <img width="605" alt="image" src="https://user-images.githubusercontent.com/56068905/200788121-f1c4d85b-60d3-4e47-988b-f571801398e9.png">
 
