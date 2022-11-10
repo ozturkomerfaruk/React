@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>DOM Selectors</title>
+
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <header>
+      <h1>Item List App</h1>
+    </header>
+
+    <section class="container1">
+          <label for="search"><strong>Item filter:</strong></label>
+          <input type="text" id="itemFilterInput">
+    </section>
+
+    <section class="container2">
+      <form id="my-form">
+        <h1>Add Item</h1>
+        <div class="msg" style="display:none;"></div>
+        <div>
+          <label for="item">Item:</label>
+          <input type="text" id="itemInput">
+        </div>
+        <input class="btn" type="submit" value="Submit">
+      </form>
+
+      <ul class="items" id="root"><ul>
+    </section>
+
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            width: 75%;    
+            margin: auto;        
+        }
+        .btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: lightgray;
+            font-size: 20px;
+        }
+        .btn.active {
+            background-color: gray;
+            color: white;
+        }
+
+        .btn:hover {
+            background-color: lightblue;
+        }
+
+        #pageNums{
+            display: flex;
+            justify-content: center;
+        }
+
+        h1 {
+            text-align: center;
+        }
+    </style>
+
+<script src="data.js" defer></script>
+<script src="index.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Todos</h1>
+        <div id="table"></div>
+        <div id="pageNums"></div>
+    </div>
+</body>
+</html>

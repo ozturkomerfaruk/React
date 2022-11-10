@@ -1,0 +1,93 @@
+<!--
+https://medium.com/altcampus/implementing-simple-spa-routing-using-vanilla-javascript-53abe399bf3c
+https://jstutorial.medium.com/making-your-own-vanilla-js-router-2e621ffdee88
+-->
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Routing in JS</title>
+    <style>
+        button {
+            padding: 5px;
+            border-radius: 3px;
+            margin: 5px;
+        }
+        button:hover {
+            background-color: yellow;
+        }
+
+        #root {
+            color: blue;
+            font-size: 1.5em;
+        }
+    </style>
+
+</head>
+<body>
+    <nav>
+        <button data-route="/">Home</button>
+        <button data-route="/about">About</button></div>
+        <button data-route="/contact">Contact</button></div>
+    </nav>
+
+    <br>
+
+    <div id="root"></div>
+
+    <script>
+        const rootDiv = document.querySelector('#root')
+
+        // Add onclick event handler to routes
+        window.onload = function(){
+            const els = document.querySelectorAll('[data-route]')
+            els.forEach(el => {
+                const route = el.getAttribute('data-route')
+                el.onclick = () => {
+                    navigate(route)
+                    return false;                        
+                } // end-onclick
+            })
+        } // end-onload
+
+        function navigate(route){
+            // If we are already at this route, simply return
+            if (window.location.pathname == route) 
+                return;
+
+            // Push the route to the history                
+            window.history.pushState({}, '', route)
+
+            // Render the new page
+            renderRoute(route)
+        } // end-navigate
+
+        // This method is called each time we press back/forward buttons on the browser
+        window.onpopstate = () => {
+            renderRoute(window.location.pathname)
+        } // end-onpopstate 
+
+        function renderHome(){return "Home page content"}
+        function renderAbout(){return "About page content"}
+        function renderContact(){return "Contact page content"}
+
+        const routes = {
+            '/': renderHome,
+            '/about': renderAbout,
+            '/contact': renderContact
+        }
+        
+        // Render any route
+        function renderRoute(route){
+            rootDiv.innerHTML = routes[route]()
+        } // end-renderRoute
+
+        // At page load, render the root page
+        history.replaceState(null, '', '/');
+        renderRoute('/')
+    </script>
+
+</body>
+</html>
