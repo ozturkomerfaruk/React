@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>DOM Selectors</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+  </head>
+  <body>
+    <header>
+      <h1>DOM Element Selection and Manipulation using jQuery</h1>
+    </header>
+
+    <section class="container1">
+          <label for="search"><strong>Item filter:</strong></label>
+          <input type="text" id="itemFilterInput">
+    </section>
+
+    <section class="container2">
+      <form id="my-form">
+        <h1>Add Item</h1>
+        <div class="msg" style="display:none;"></div>
+        <div>
+          <label for="item">Item:</label>
+          <input type="text" id="itemInput">
+        </div>
+        <input class="btn" type="submit" value="Submit">
+      </form>
+
+      <ul class="items">
+        <li class="listItem">
+          <div class="listItemText">Item 1</div>
+          <button class="delbtn">X</button>
+        </li>        
+
+        <li class="listItem">
+          <div class="listItemText">Item 2</div>
+          <button class="delbtn">X</button>
+        </li>        
+
+        <li class="listItem">
+          <div class="listItemText">Item 3</div>
+          <button class="delbtn">X</button>
+        </li>        
+
+        <li class="listItem">
+          <div class="listItemText">Item 4</div>
+          <button class="delbtn">X</button>
+        </li>        
+      </ul>
+    </section>
+
+    <script src="script.js"></script>
+  </body>
+</html>
