@@ -1,0 +1,64 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NoteCard App with Materialize CSS</title>
+
+    <!--Import Google Icon Font-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <!--Import materialize.css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.css"/>
+
+    <!--JavaScript at end of body for optimized loading-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" defer></script>    
+
+    <!-- Get the Quicksand font library -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap">
+
+    <!-- Local styles -->
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+  <section class="flex">
+    <!-- Nav Bar on the left of the page -->
+    <section class="navbar">
+      <h6 style="font-size: 20px;">Note Card App</h6>
+      <h6 class="navbar-item" onClick="navigate('/')">
+        <i class="material-icons purple-text padding pr25">subject</i>
+        My Notes
+      </h6>
+      <h6 class="navbar-item" onClick="navigate('/create')">
+        <i class="material-icons purple-text padding pr25">add_circle_outline</i>
+        Create Note
+      </h6>
+    </section>
+
+    <!-- Main area on the right -->
+    <section class="main">
+      <header class="appbar">
+        <span id="todaysDate"></span>
+        <div class="flex-align-center">
+          <span>Mario</span>
+          <img src="mario-av.png" alt="">
+        </div>
+      </header>
+
+      <div class="container">
+        <div class="row" id="root">
+        </div>       
+      </div>
+    </section>      
+  </section>    
+
+  <script src="state.js"></script>
+  <script src="notes.js"></script>
+  <script src="create.js"></script>
+  <script src="edit.js"></script>
+  <script src="index.js"></script>
+
+</body>
+</html>
+
