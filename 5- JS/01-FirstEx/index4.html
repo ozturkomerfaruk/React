@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Introduction to JS</title>
+</head>
+
+<body>
+    <h2>What Can JavaScript Do?</h2>
+    <hr>
+
+    <!-- Change attribute values of HTML elements with JS -->
+    <h2>JS lets you change HTML attribute values</h2>
+    <!-- This is the HTML element we will modify with JS -->
+    <img id="myImage" src="pic_bulboff.gif" style="width:100px;padding-left: 70px;">
+
+    <br>
+    <button onclick="ChangeLightState(1);">Turn the light on</button>
+    <span style="padding-left: 10px;"></span>
+    <button onclick="ChangeLightState(0);">Turn the light off</button>
+
+    <hr>
+
+    <!-- Change CSS styles of HTML elements with JS -->
+    <h2 id="para1">JS lets you change CSS styles of HTML elements</h2>
+    <button onclick="ChangeFontSize(-4);">Smaller font size</button>
+    <span style="padding-left: 10px;"></span>
+    <button onclick="ChangeFontSize(4);">Bigger font size</button>
+    <span style="padding-left: 10px;"></span>
+
+    <!-- Notice that we use single quotes for JS string here. -->
+    <button onclick="ChangeColor('blue');">Make blue</button>
+    <span style="padding-left: 10px;"></span>
+    <button onclick="ChangeColor('red');">Make red</button>
+    <span style="padding-left: 10px;"></span>
+    <button onclick="ChangeColor('black');">Make black</button>
+    <span style="padding-left: 10px;"></span>
+
+    <!-- Buttons to add/remove border to the paragraph -->
+    <button onclick="ChangeBorder(1);">Add border</button>
+    <span style="padding-left: 10px;"></span>
+    <button onclick="ChangeBorder(0);">Remove border</button>
+
+    <br>
+    <hr>
+
+    <!-- Change the contents of HTML elements with JS -->
+    <h2> JS also lets you change the contents of HTML elements:</h2>
+
+    <button onclick="ShowTime();">Show time</button>
+    <br>
+    <p id="para2"></p>
+
+    <br>
+    <hr>
+
+    <!-- Add new HTML elements to the DOM with JS -->
+    <h2> JS also lets you add new elements to the DOM:</h2>
+
+    <label>Item: </label>
+    <input type="text" id="listItemInput" placeholder="Enter the item">
+    <input type="button" value="Add Item" onclick="AddNewListItem();">
+
+    <br>
+    <h3>List Items:</h3>
+    <ul id="list1">
+        <li>Item 1</li>
+    </ul>
+
+    <!-- JS code here inside the script tags -->
+    <script src="script4.js"></script>
+</body>
+
+</html>

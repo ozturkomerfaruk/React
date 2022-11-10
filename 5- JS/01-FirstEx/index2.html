@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Introduction to JS</title>
+</head>
+<body>
+<h2>What Can JavaScript Do?</h2>
+
+<p>JavaScript can change HTML attribute values.</p>
+<p>In this case JavaScript changes the value of the src (source) attribute of an image.</p>
+
+<!-- This is the HTML element we will modify with JS -->
+<img id="myImage" src="pic_bulboff.gif" style="width:100px;padding-left: 70px;">
+
+<br>
+<!-- Register callback functions for button-press events (onclick) -->
+<button onclick="ChangeLightState(1);">Turn the light on</button>
+<span style="padding-left: 10px;"></span>
+<button onclick="ChangeLightState(0);">Turn the light off</button>
+
+<!-- If you embded JS code inside the HTML file, put them at the end of the HTML file 
+    right before the end of the body tag as done here -->
+<script>
+    /* This is a JS function that gets called when the buttons are pressed*/
+    function ChangeLightState(newState){
+        /* Select the HTML element to modify */
+        const element = document.getElementById('myImage');
+
+        /* Change the 'src' attribute of the image element */        
+        if (newState == 1) element.src='pic_bulbon.gif';
+        else               element.src='pic_bulboff.gif';
+    } //end-ChangeLightState
+</script>
+
+</body>
+</html>
