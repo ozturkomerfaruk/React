@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation 4</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        form div {
+            margin: 10px;
+        }
+        input:focus{
+            outline-style: none;
+        }
+        input:valid {
+          border: 2px solid green;
+        }
+        input:invalid {
+          border: 2px dashed red;
+        }
+        .invalid-feedback {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <form novalidate>
+        <div>
+            <label for="name">Name:</label>
+            <input type="text" 
+                   name="name"
+                   id="name"
+                   minlength="3"
+                   maxlength="8"
+                   pattern="[a-zA-ZçÇğĞıİşŞöÖüÜ]{3,8}"
+                   placeholder="John"
+                   required/><br>
+            <div class="invalid-feedback"></div>
+        </div>
+
+        <div>
+            <label for="id">Id:</label>
+            <input type="number" 
+                   name="id"
+                   id="id"
+                   min="200"
+                   max="750"
+                   placeholder="200"
+                   required/><br>
+            <div class="invalid-feedback"></div>
+        </div>        
+
+        <div>
+            <input type="submit"/>
+        </div>
+    </form>
+
+<script>
+    const form = document.querySelector('form')
+    const nameEl = form.querySelector('#name')
+    const nameElErrMsg = form.querySelector('#name ~ div.invalid-feedback')
+
+    const idEl = form.querySelector('#id')
+    const idElErrMsg = form.querySelector('#id ~ div.invalid-feedback')
+
+    nameEl.addEventListener('input', ()=>{
+        console.log(nameEl.validity)
+        if (nameEl.validity.tooShort)
+            nameElErrMsg.textContent = "Name must have at least 3 letters";
+        else if (nameEl.validity.patternMismatch)
+            nameElErrMsg.textContent = "Name can only contain letters";
+        else
+            nameElErrMsg.textContent = "";
+    }) // end-addEventListener
+
+    idEl.addEventListener('input', ()=>{
+        const id = parseInt(idEl.value)
+        if (id < 200)
+            idElErrMsg.textContent = "Id must be >= 200"
+        else if (id > 750)
+            idElErrMsg.textContent = "Id must be <= 750"
+        else
+            idElErrMsg.textContent = "";
+    })
+
+    form.addEventListener('submit', (e)=>{
+        if (!form.checkValidity()){
+            e.preventDefault();
+            e.stopPropagation();
+        } else {
+            console.log('Name: ', form.name.value)
+            console.log('Id: ', form.id.value)
+        } // end-else
+    })
+</script>        
+</body>
+</html>
