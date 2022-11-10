@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Selectors</title>
+    <style>
+        #container1 {
+            background: lightblue;
+            margin-bottom: 20px;
+        }
+
+        #container2 {
+            background: lightgreen;
+        }        
+    </style>
+</head>
+<body>
+    <article id="container1">
+        <p>Container 1 Paragraph 1</p>
+        <p>Container 1 Paragraph 2</p>
+        <p>Container 1 Paragraph 3</p>
+    </article>    
+
+    <article id="container2">
+        <p>Container 2 Paragraph 1</p>
+        <p>Container 2 Paragraph 2</p>
+        <p>Container 2 Paragraph 3</p>
+        <p>Container 2 Paragraph 4</p>
+    </article>
+    
+<script>
+    const allParas = document.querySelectorAll('p')
+    console.log(`There are ${allParas.length} paragraphs in the document`)
+    console.log(allParas)
+    console.log('--------------------------------------')
+
+    const container1Par = document.querySelector('#container1').querySelectorAll('p')
+    console.log(`There are ${container1Par.length} paragraphs inside container1`)
+    console.log(container1Par)
+    console.log('--------------------------------------')
+
+    const parent = document.querySelector('#container2')
+    const container2Par = parent.querySelectorAll('p')
+    console.log(`There are ${container2Par.length} paragraphs inside container2`)
+    console.log(container2Par)
+    console.log('--------------------------------------')
+</script>    
+</body>
+</html>

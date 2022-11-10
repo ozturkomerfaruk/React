@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DOM Tutorial</title>
+  </head>
+
+  <body>
+    <h1>Header1</h1>
+    <p>Hello world!</p>
+    <h2>Header2</h2>
+
+    <script>
+        // Print the details of the document object
+        console.dir(document);   // same as window.document
+
+        // Things you can access from within the document object
+        console.log(document.domain);
+        console.log(document.doctype);
+        console.log(document.URL);
+        console.log(document.title);
+        console.log(document.head);
+        console.log(document.body);
+        console.log(document.forms);
+        console.log(document.links);
+        console.log(document.all);
+
+        // Get all DOM nodes from the document        
+        const all = document.all;
+        console.log(`DOM has ${all.length} nodes`);
+        for (let i=0; i<all.length; i++){
+            console.log(`[${i}]: ${all[i]}`);
+            console.dir(all[i]);
+            console.log('======================');
+        } //end-for
+        console.log('-----------------------------------------------');
+
+        // Print body's children
+        const body = document.body;
+        console.log(`body has ${body.children.length} children`);
+
+        for (let i=0; i<body.children.length; i++){
+            console.dir(body.children[i]);
+            console.log("========================");
+        } //end-for
+        console.log('-----------------------------------------------');
+    </script>
+
+  </body>
+
+</html>
