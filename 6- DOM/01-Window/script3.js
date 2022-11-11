@@ -5,7 +5,7 @@
 let periodicTimer = setInterval(updateClock, 1000);
 
 // Update the clock every 1 sec.
-function updateClock(){
+function updateClock() {
     document.getElementById('clock').innerHTML = "<h2>" + new Date().toString() + "</h2>";
 } // end-updateClock
 
