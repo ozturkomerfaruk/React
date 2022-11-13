@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="deneme.css">
+</head>
+
+<body onclick="myMove()">
+
+
+    <h1 id="cikisYap" onclick="cikisYap()">Çıkış Yap</h1>
+
+
+    <h2 id="baslik">My First Page</h2>
+
+    <p id="text"></p>
+    <p id="text2"></p>
+
+    <a name="html">HTML Tutorial</a>
+    <br>
+    <!-- <img id="image" src="smiley.gif" width="160" height="120">-->
+    <br>
+    <form name="myForm" action="/action_page.php" onsubmit="return validateForm()" method="post">
+        Name: <input type="text" name="fname">
+        <input type="submit" value="Submit">
+    </form>
+
+    <br><br>
+
+    <p>Please input a number between 1 and 10</p>
+    <input id="editTextNumber" type="text" name="valid1-10"> <input type="submit" value="Submit" onclick="checkGuess()">
+    <p id="checkGuess1-10"></p>
+
+    <form action="/action_page.php" method="post">
+        <input type="text" name="fname" required>
+        <input type="submit" value="Submit">
+    </form>
+
+    <div id="container">
+        <div id="animate">
+            <p>My animation</p>
+        </div>
+    </div>
+
+    <h1 onclick="changeDeneme(this)"> Bu Bir Deneme Başlığıdır</h1>
+
+    <p id="textChange" onmouseover="mOver(this)" onmouseout="mOut(this)">Text</p> <input type="text"
+        onchange="upperCase()" id="fdeneme">
+
+
+    <div id="buyukBirDiv" onmousedown="Asagi(this)" onmouseup="Yukari(this)">
+        <h1 id="h1De">H1 Başlık</h1>
+    </div>
+
+
+    <script src="deneme.js"></script>
+</body>
+
+</html>
