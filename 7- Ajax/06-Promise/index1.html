@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1" />
+    <title>Test</title>
+
+    <style>
+      .box {
+        display: inline-block;
+        width: 100px;
+        height: 100px;
+        background: gray;
+        position: absolute;
+        left: 0px;
+        top: 50px;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div id="root" class="box" onclick="console.log('Box clicked');"></div>
+
+    <script>
+        // Here is a promise that succeeds, i.e., resolves
+        let p1 = new Promise((resolve, reject)=>{resolve("Succeeded");});
+
+        // Here is a promise that fails, i.e., gets rejected
+        let p2 = new Promise((resolve, reject)=>{reject("Failed");});
+
+        // Check p1's status
+        p1
+        .then((msg)=>{console.log("Promise p1 resolves. msg: ", msg);})
+        .catch((err)=>{console.log("Promise p1 fails. err: ", err);});
+
+        // Check p2's status
+        p2
+        .then((msg)=>{console.log("Promise p2 resolves. msg: ", msg);})
+        .catch((err)=>{console.log("Promise p2 fails. err: ", err);});
+    </script>
+  </body>
+</html>

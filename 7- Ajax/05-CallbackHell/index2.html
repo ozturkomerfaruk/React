@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Callback hell</title>
+</head>
+<body>
+<script>
+    function GET(uri, callbackForSuccess, callbackForFailure){
+        let xhr = new XMLHttpRequest();
+
+        // Install the handler that will be called when the response has arrived from the HTTP server
+        xhr.onload = function (){
+            if (xhr.status == 200) {
+                callbackForSuccess(xhr.responseText)
+            
+            } else if (xhr.status >= 400){
+                callbackForFailure(xhr.status);                    
+            } //end-if
+        } //end-onload
+
+        // Initialize the xhr object.
+        xhr.open("GET", uri, true);
+        
+        // Send the HTTP request. When the response arrives, onload will be called
+        xhr.send();
+    } //end-GET
+
+    const uri1 = 'https://jsonplaceholder.typicode.com/todos/1';
+    const uri2 = 'https://jsonplaceholder.typicode.com/users/2';
+    const uri3 = 'https://jsonplaceholder.typicode.com/posts/5';    
+
+    // Get the first resource
+    GET(uri1, (res)=> {
+        const json = JSON.parse(res);
+        console.log(json);
+
+        // Get the second resource
+        GET(uri2, (res)=> {
+            const json = JSON.parse(res);
+            console.log(json);
+
+            // Get the third resource
+            GET(uri3, (res)=> {
+                const json = JSON.parse(res);
+                console.log(json);
+
+            }, (err) => console.log(`Error fetching ${uri3}. Error: ${err}`))
+
+        }, (err) => console.log(`Error fetching ${uri2}. Error: ${err}`))
+
+    }, (err) => console.log(`Error fetching ${uri1}. Error: ${err}`))
+</script>
+</body>
+</html>

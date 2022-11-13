@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Axios Examples</title>
+
+    <style>
+        .btn{
+            margin-left: 5px;
+        }
+    </style>
+</head>
+<body>
+    <!-- GET: To fetch an existing item.
+         POST: To create a new item.
+         PUT/PATCH: Update an existing item. PUT specifies all fields, patch just the ones to be updated
+         DELETE: Delete an existing item.
+    -->
+    <h2>Axios Library Test with Requests: GET, POST, PUT, PATCH and DELETE</h2>
+    <hr>
+    <button id="btn1">GET</button>
+    <button id="btn2" class="btn">POST</button>
+    <button id="btn3" class="btn">PUT</button>
+    <button id="btn4" class="btn">PATCH</button>
+    <button id="btn5" class="btn">DELETE</button>
+    <hr>
+
+    <div id="msg"></div>
+    <div id="todo"></div>
+    <hr>
+    <h3>Status</h3>
+    <div id="status"></div>
+    <hr>
+    <h3>Headers</h3>
+    <div id="headers"></div>
+    <hr>
+    <h3>Config</h3>
+    <div id="config"></div>
+    <hr>
+
+    <!-- Import the Axios Library from a CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>    
+
+    <!-- Our script below -->
+<script>
+    document.getElementById("btn1").addEventListener("click", GETRequest);    // GET request
+    document.getElementById("btn2").addEventListener("click", POSTRequest);   // POST request
+    document.getElementById("btn3").addEventListener("click", PUTRequest);    // PUT request
+    document.getElementById("btn4").addEventListener("click", PATCHRequest);  // PATCH request
+    document.getElementById("btn5").addEventListener("click", DELETERequest); // DELETE REQUEST
+
+    /// Display a progress message on the screen
+    function DisplayMessage(req){
+        document.getElementById("msg").innerHTML = 
+        `<h3>Executing ${req} request in the background</h3>`;
+        document.getElementById("todo").innerHTML = "";
+        document.getElementById("status").innerHTML = "";
+        document.getElementById("headers").innerHTML = "";
+        document.getElementById("config").innerHTML = "";
+    } //end-DisplayMessage
+
+    // When we get a reponse, shows the response on the screen
+    function ShowResponse(res){
+        const todo = res.data;    // res.data is the JS object returned (after being converted from a JSON object to a JS object)
+        console.log(todo);
+
+        const str = `<ul>
+                        <li><strong>UserId</strong>: ${todo.userId}</li>
+                        <li><strong>Id</strong>: ${todo.id}</li>
+                        <li><strong>Title</strong>: ${todo.title}</li>
+                        <li><strong>Completed</strong>: ${todo.completed?"Yes":"No"}</li>
+                    </ul>`;
+        if (todo.userId !== undefined) document.getElementById("todo").innerHTML = str;
+        else document.getElementById("todo").innerHTML = "";
+        
+        document.getElementById("status").innerHTML = res.status;
+        document.getElementById("headers").innerHTML = `<pre>${JSON.stringify(res.headers, null, 2)}</pre>`;
+        document.getElementById("config").innerHTML = `<pre>${JSON.stringify(res.config, null, 2)}</pre>`;
+    } //end-ShowResponse
+
+    /**********************************************************************************
+     * Fetches a ToDo in JSON format from https://jsonplaceholder.typicode.com/todos/1
+     **********************************************************************************/     
+    function GETRequest(e){
+        e.preventDefault();
+
+        DisplayMessage("GET");
+
+        // This is one way of sending a GET request using axios module:
+//        axios({
+//            method: 'GET',
+//            url: 'https://jsonplaceholder.typicode.com/todos/1',
+//        })
+        // This is an alternative way of sending the same request
+        axios.get('https://jsonplaceholder.typicode.com/todos/1')    
+        .then((res)=>{
+            document.getElementById("msg").innerHTML = "<h3>The following ToDo object is successfully fetched from the server</h3>";                         
+            ShowResponse(res);
+        })
+        .catch((err)=>{
+            document.getElementById("msg").innerHTML = "<h3>Error fetching ToDo: " + err + "</h3>";
+            document.getElementById("todo").innerHTML = "";
+        });
+    } //end-GETRequest
+
+    /**********************************************************************************
+     * Posts one ToDo to the server. The server replies with the "id" of the newly created ToDo
+     **********************************************************************************/
+    function POSTRequest(e){
+        e.preventDefault();
+
+        DisplayMessage("POST");
+
+        // Send the POST request
+        axios.post('https://jsonplaceholder.typicode.com/todos', 
+                   {userId: 1, title: 'This is a new todo', completed: true})    
+        .then((res)=>{
+            document.getElementById("msg").innerHTML = "<h3>The following ToDo object is successfully POSTed to the server</h3>";                         
+            ShowResponse(res);
+        })
+        .catch((err)=>{
+            document.getElementById("msg").innerHTML = "<h3>Error POSTing ToDo: " + err + "</h3>";
+            document.getElementById("todo").innerHTML = "";
+        });
+    } //end-POSTRequest
+
+
+    /**********************************************************************************
+     * PUTs one ToDo to the server. The server replies with the new updated ToDo
+     **********************************************************************************/
+     function PUTRequest(e){
+        e.preventDefault();
+
+        DisplayMessage("PUT");
+
+        // Send a PUT request to jsonplaceholder
+        axios.put('https://jsonplaceholder.typicode.com/todos/1', 
+                   {userId: 1, id: 1, title: 'New title of ToDo 1', completed: false})    
+        .then((res)=>{
+            document.getElementById("msg").innerHTML = "<h3>The following ToDo object is successfully PUT to the server</h3>";                         
+            ShowResponse(res);
+        })
+        .catch((err)=>{
+            document.getElementById("msg").innerHTML = "<h3>Error PUTting ToDo: " + err + "</h3>";
+            document.getElementById("todo").innerHTML = "";
+
+        });
+    } //end-PUTRequest
+
+    /**********************************************************************************
+     * PATCHes one ToDo on the the server. The server replies with the updated ToDo
+     **********************************************************************************/
+     function PATCHRequest(e){
+        e.preventDefault();
+
+        DisplayMessage("PATCH");
+
+        // Send a PATCH request to jsonplaceholder
+        axios.patch('https://jsonplaceholder.typicode.com/todos/1', 
+                   {completed: true})    
+        .then((res)=>{
+            document.getElementById("msg").innerHTML = "<h3>The following ToDo object is successfully PATCHED at the server</h3>";                         
+            ShowResponse(res);
+        })
+        .catch((err)=>{
+            document.getElementById("msg").innerHTML = "<h3>Error PATCHing ToDo: " + err + "</h3>";
+            document.getElementById("todo").innerHTML = "";
+
+        });
+    } //end-PATCHRequest
+
+    /**********************************************************************************
+     * DELETEs one ToDo at the the server. The server replies with an empty object
+     **********************************************************************************/
+     function DELETERequest(e){
+        e.preventDefault();
+
+        DisplayMessage("DELETE");
+
+        // Send a DELETE request to jsonplaceholder
+        axios.delete('https://jsonplaceholder.typicode.com/todos/3')
+        .then((res)=>{
+            document.getElementById("msg").innerHTML = "<h3>ToDo with id = 3 is successfully DELETEd at the server</h3>";                         
+            ShowResponse(res);
+        })
+        .catch((err)=>{
+            document.getElementById("msg").innerHTML = "<h3>Error DELETing ToDo: " + err + "</h3>";
+            document.getElementById("todo").innerHTML = "";
+
+        });
+    } //end-DELETERequest
+</script>
+</body>
+</html>

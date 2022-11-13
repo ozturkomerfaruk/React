@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1" />
+    <title>Test</title>
+
+    <style>
+      .box {
+        display: inline-block;
+        width: 100px;
+        height: 100px;
+        background: gray;
+        position: absolute;
+        left: 0px;
+        top: 50px;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div id="box" class="box"></div>
+
+    <script>
+      // Register a callback that is to be called back when BOX is clicked on
+      let timesClicked = 0;
+      function boxClickHandler(){console.log(`Box clicked ${++timesClicked} times.`);}
+      document.getElementById("box").addEventListener("click", boxClickHandler);
+
+      const s = new Date().getSeconds();
+
+      // Register a callback that is to be called back after 500 milliseconss.
+      setTimeout(function() {
+        // prints out "2", meaning that the callback is not called immediately after 500 milliseconds.
+        console.log("SetTimeout callback ran after " + (new Date().getSeconds() - s) + " seconds");
+      }, 500)
+
+      // Main thread comes here and busy waits for 2 seconds
+      while (true) {
+        if (new Date().getSeconds() - s >= 2) {
+          console.log("Good, looped for 2 seconds")
+          break;
+        } //end-if
+      } //end-while
+
+      // Main thread comes here, prints the following message
+      console.log("I am here");
+
+      // Now the main thread is done executing the main script
+      // It now enters the main event loop, and starts executing the enqued events.
+    </script>
+  </body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON</title>
+
+    <style>
+        table {
+        border-collapse: collapse;
+        }
+
+        table, th, td {
+        border: 1px solid black;
+        }
+
+        th, td {
+            padding: 5px;
+        }
+
+
+        #cdtable tr:nth-child(even){
+            background-color: lightgray;
+        }
+
+        #cdtable td:nth-child(5){
+            text-align: right;
+        }
+
+    </style>
+
+</head>
+<body>
+    <button id="btn1">Get CD</button>
+    <button id="btn2">Get CDs</button>
+    <hr>
+
+    <h2>CD</h2>
+    <div id="cd"></div>
+
+    <hr>
+    <h2>CDs</h2>
+    <div id="cds"></div>
+
+<script>
+    document.getElementById("btn1").addEventListener("click", GetCD);    // Get one CD
+    document.getElementById("btn2").addEventListener("click", GetCDs);   // Get ALL CDs
+
+    /**********************************************************************************
+     * Fetches on CD in XML format from the local HTTP server
+     **********************************************************************************/
+    function GetCD(e){
+        e.preventDefault();
+
+        let xhr = new XMLHttpRequest();
+
+        // Install the handler that will be called when the response has arrived from the HTTP server
+        xhr.onload = function (){
+            if (xhr.status == 200) {
+                console.log(xhr.responseText);
+
+                // Convert the JSON string to JS object
+                const cd = JSON.parse(xhr.responseText); 
+                console.log(cd);
+
+                const str = `<ul>
+                             <li><strong>Artist</strong>: ${cd.artist}</li>
+                             <li><strong>Title</strong>: ${cd.title}</li>
+                             <li><strong>Country</strong>: ${cd.country}</li>
+                             <li><strong>Company</strong>: ${cd.company}</li>
+                             <li><strong>Price</strong>: ${cd.price}</li>
+                             <li><strong>Year</strong>: ${cd.year}</li>
+                             </ul>`;
+
+//                console.log(str);                             
+                document.getElementById("cd").innerHTML = str;
+            } //end-if
+        } //end-onload
+
+        // Initialize the xht object and send the request
+        xhr.open("GET", "cd.json", true);
+        xhr.send();
+    } //end-GetCD
+
+    /**********************************************************************************
+     * Fetches ALL CDs in XML format from the local HTTP server
+     **********************************************************************************/
+    function GetCDs(e){
+        e.preventDefault();
+
+        let xhr = new XMLHttpRequest();
+
+        // Install the handler that will be called when the response has arrived from the HTTP server
+        xhr.onload = function (){
+            if (this.status == 200) {
+                console.log(this.responseText);
+
+                // Get an array of CD objects    
+                const cds = JSON.parse(this.responseText);
+
+                let str = `<table id="cdtable">
+                <tr>
+                    <th><strong>Artist</strong></th>
+                    <th><strong>Title</strong></th>
+                    <th><strong>Country</strong></th>
+                    <th><strong>Company</strong></td>
+                    <th><strong>Price</strong></th>
+                    <th><strong>Year</strong></th>
+                </tr>`;
+                for (let i=0; i<cds.length; i++){
+                    str += `<tr>
+                    <td>${cds[i].artist}</td>
+                    <td>${cds[i].title}</td>
+                    <td>${cds[i].country}</td>
+                    <td>${cds[i].company}</td>
+                    <td>${cds[i].price}</td>
+                    <td>${cds[i].year}</td>
+                             </tr>`;
+                } //end-for
+
+                str += "</table>"                             
+                document.getElementById("cds").innerHTML = str;
+            } //end-if
+        } //end-onload
+
+        // Initialize the xht object and send the request
+        xhr.open("GET", "cds.json", true);
+        xhr.send();
+    } //end-GetCDs
+</script>
+</body>
+</html>

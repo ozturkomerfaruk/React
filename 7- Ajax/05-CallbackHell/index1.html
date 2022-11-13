@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1" />
+    <title>Test</title>
+
+    <style>
+      .box {
+        display: inline-block;
+        width: 100px;
+        height: 100px;
+        background: gray;
+        position: absolute;
+        left: 0px;
+        top: 50px;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div id="root" class="box" onclick="console.log('Box clicked');"></div>
+
+    <script>
+        let now = new Date();
+
+        // Set-up our call-back functions to perform OP1, OP2 and OP3 in sequence
+        setTimeout(()=>{
+            console.log(`Performing OP1. Time passed: ${new Date() - now}.`);
+
+            setTimeout(()=>{
+                console.log(`Performing OP2. Time passed: ${new Date() - now}.`);
+
+                setTimeout(()=>{
+                     console.log(`Performing OP3. Time passed: ${new Date() - now}.`);
+                }, 3000);          
+            }, 2000);          
+        }, 1000);
+
+        console.log('Main thread is here and is entering the Event Loop');
+    </script>
+  </body>
+</html>

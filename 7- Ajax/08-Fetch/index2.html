@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch 1</title>
+</head>
+<body>
+    <button id="btn1">Get file</button>
+    <hr>
+
+    <p id="para1"></p>
+
+<script>
+    document.getElementById("btn1").addEventListener("click", ButtonClickHandler);
+
+    function ButtonClickHandler(e){
+        e.preventDefault();
+
+        fetch("file.html")
+        .then((res)=>res.text())
+        .then((data)=>{
+//            console.log(data);
+            document.getElementById("para1").innerHTML = data;
+
+        }).catch((err)=>{
+            console.log("Fetch error: " + err);
+        });
+    } //end-ButtonClickHandler
+</script>
+</body>
+</html>

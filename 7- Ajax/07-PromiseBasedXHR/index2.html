@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON</title>
+
+    <style>
+        table {
+        border-collapse: collapse;
+        }
+
+        table, th, td {
+        border: 1px solid black;
+        }
+
+        th, td {
+            padding: 5px;
+        }
+
+
+        #cdtable tr:nth-child(even){
+            background-color: lightgray;
+        }
+
+        #cdtable td:nth-child(5){
+            text-align: right;
+        }
+
+    </style>
+
+</head>
+<body>
+    <button id="btn1">Fetch CD, CDs, Person</button>
+    <hr>
+
+    <h2>CD</h2>
+    <div id="cd"></div>
+
+    <hr>
+    <h2>CDs</h2>
+    <div id="cds"></div>
+
+    <hr>
+    <h2>Person</h2>
+    <div id="person"></div>
+
+<script>
+    document.getElementById("btn1").addEventListener("click", FetchObjects); // Fetch 3 objects one after the other
+
+    /*********************************************************************************
+     * Implement a GET function that takes the URL of the object to fetch, and returns a Promise 
+     */
+     function GET(url){
+        return new Promise((resolve, reject)=>{
+            let xhr = new XMLHttpRequest();
+
+            xhr.onload = function (){
+                if (this.status == 200) {
+                    // Convert the JSON object to JS object
+                    const res = JSON.parse(this.responseText); 
+                    resolve(res);
+
+                } else if (this.status >= 400){
+                    reject(this.status);
+                } //end-else
+            } //end-onload
+
+            xhr.onerror = function(ev){
+                reject("GET Error!");
+            } //end-onerror             
+
+            // Initialize the xhr object and send the request
+            xhr.open("GET", url, true);
+            xhr.send();
+        });        
+     } //end-GET
+
+    /**********************************************************************************
+     * Starts the Fetch operation
+     **********************************************************************************/
+    function FetchObjects(e){
+        e.preventDefault();
+
+        GET("cd.json")    // Fetch the first object
+        .then((cd)=>{
+            console.log(cd);
+
+            const str = `<ul>
+                <li><strong>Artist</strong>: ${cd.artist}</li>
+                <li><strong>Title</strong>: ${cd.title}</li>
+                <li><strong>Country</strong>: ${cd.country}</li>
+                <li><strong>Company</strong>: ${cd.company}</li>
+                <li><strong>Price</strong>: ${cd.price}</li>
+                <li><strong>Year</strong>: ${cd.year}</li>
+                </ul>`;
+
+            document.getElementById("cd").innerHTML = str;
+
+            return GET("cds.json"); // Now fetch the second object
+        }).then((cds)=>{
+            console.log(cds);
+
+            let str = `<table id="cdtable">
+                <tr>
+                    <th><strong>Artist</strong></th>
+                    <th><strong>Title</strong></th>
+                    <th><strong>Country</strong></th>
+                    <th><strong>Company</strong></td>
+                    <th><strong>Price</strong></th>
+                    <th><strong>Year</strong></th>
+                </tr>`;
+            for (let i=0; i<cds.length; i++){
+                str += `<tr>
+                <td>${cds[i].artist}</td>
+                <td>${cds[i].title}</td>
+                <td>${cds[i].country}</td>
+                <td>${cds[i].company}</td>
+                <td>${cds[i].price}</td>
+                <td>${cds[i].year}</td>
+                            </tr>`;
+            } //end-for
+
+            str += "</table>"                             
+            document.getElementById("cds").innerHTML = str;
+
+            return GET("person.json"); // Finally, fetch the last object
+        }).then((person)=>{
+            console.log(person);
+
+            const str = `<ul>
+                <li><strong>Name</strong>: ${person.name}</li>
+                <li><strong>Email</strong>: ${person.email}</li>
+                <li><strong>Address</strong>: ${person.address}</li>
+                <li><strong>Age</strong>: ${person.age}</li>
+                <li><strong>Marital Status</strong>: ${person.maritalStatus}</li>
+                </ul>`;
+
+            document.getElementById("person").innerHTML = str;
+
+        }).catch(err=>console.log(err));
+    } //end-FetchObjects
+</script>
+</body>
+</html>

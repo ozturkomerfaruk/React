@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch 4: ToDos</title>
+
+    <style>
+        .btn{
+            margin-left: 5px;
+        }
+    </style>
+</head>
+<body>
+    <!-- GET: To fetch an existing item.
+         POST: To create a new item.
+         PUT/PATCH: Update an existing item. PUT specifies all fields, patch just the ones to be updated
+         DELETE: Delete an existing item.
+    -->
+    <h2>Fetch API Test with Requests: GET, POST, PUT, PATCH and DELETE</h2>
+    <hr>
+    <button id="btn1">GET</button>
+    <button id="btn2" class="btn">POST</button>
+    <button id="btn3" class="btn">PUT</button>
+    <button id="btn4" class="btn">PATCH</button>
+    <button id="btn5" class="btn">DELETE</button>
+    <hr>
+
+    <div id="msg"></div>
+    <div id="todo"></div>
+
+<script>
+    document.getElementById("btn1").addEventListener("click", GETRequest);    // GET request
+    document.getElementById("btn2").addEventListener("click", POSTRequest);   // POST request
+    document.getElementById("btn3").addEventListener("click", PUTRequest);    // PUT request
+    document.getElementById("btn4").addEventListener("click", PATCHRequest);  // PATCH request
+    document.getElementById("btn5").addEventListener("click", DELETERequest); // DELETE REQUEST
+
+    /// Display a progress message on the screen
+    function DisplayMessage(req){
+        document.getElementById("msg").innerHTML =
+        `<h3>Executing ${req} request in the background</h3>`;
+        document.getElementById("todo").innerHTML = "";
+    } //end-DisplayMessage
+
+
+    /**********************************************************************************
+     * Fetches a ToDo in JSON format from https://jsonplaceholder.typicode.com/todos/1
+     **********************************************************************************/
+    function GETRequest(e){
+        e.preventDefault();
+
+        DisplayMessage("GET");
+
+        fetch("https://jsonplaceholder.typicode.com/todos/1")
+        .then((res)=>res.json())
+        .then((todo)=>{
+            console.log(todo);
+
+            const str = `<ul>
+                            <li><strong>UserId</strong>: ${todo.userId}</li>
+                            <li><strong>Id</strong>: ${todo.id}</li>
+                            <li><strong>Title</strong>: ${todo.title}</li>
+                            <li><strong>Completed</strong>: ${todo.completed?"Yes":"No"}</li>
+                        </ul>`;
+
+            document.getElementById("msg").innerHTML = "<h3>The following ToDo object is successfully fetched from the server</h3>";
+            document.getElementById("todo").innerHTML = str;
+        })
+        .catch((err)=>{
+            document.getElementById("msg").innerHTML = "<h3>Error fetching ToDo: " + err + "</h3>";
+            document.getElementById("todo").innerHTML = "";
+        });
+    } //end-GETRequest
+
+    /**********************************************************************************
+     * Posts one ToDo to the server. The server replies with the "id" of the newly created ToDo
+     **********************************************************************************/
+    function POSTRequest(e){
+        e.preventDefault();
+
+        DisplayMessage("POST");
+
+        // About the same-origin policy (CORS) error, and how to fix it:
+        // https://medium.com/@dtkatz/3-ways-to-fix-the-cors-error-and-how-access-control-allow-origin-works-d97d55946d9
+        // To by-pass CORS, here is a suggestion from https://stackoverflow.com/questions/43262121/trying-to-use-fetch-and-pass-in-mode-no-cors
+        // var proxyUrl = 'https://cors-anywhere.herokuapp.com/',
+        // targetUrl = 'http://catfacts-api.appspot.com/api/facts?number=99'
+        // fetch(proxyUrl + targetUrl)
+
+        // Send a post request to jsonplaceholder
+        fetch('http://jsonplaceholder.typicode.com/todos',
+                {
+                    method: 'POST',
+//                    mode: 'cors',
+                    cache: 'no-cache',
+                    headers: {
+                        'Accept': 'application/json, text/plain, */*',
+                        'Content-type': 'application/json',
+//                        'Access-Control-Allow-Origin': '*'   // To by-pass CORS?
+                    },
+                    body: JSON.stringify({userId: 1, title: 'This is a new todo', completed: true})
+                }
+            )
+        .then((res)=>res.json())   // Convert to JS object
+        .then((todo)=>{
+            console.log(todo);
+
+            const str = `<ul>
+                            <li><strong>UserId</strong>: ${todo.userId}</li>
+                            <li><strong>Id</strong>: ${todo.id}</li>
+                            <li><strong>Title</strong>: ${todo.title}</li>
+                            <li><strong>Completed</strong>: ${todo.completed?"Yes":"No"}</li>
+                        </ul>`;
+
+            document.getElementById("msg").innerHTML = "<h3>The following ToDo object is successfully POSTed to the server</h3>";
+            document.getElementById("todo").innerHTML = str;
+        })
+        .catch((err)=>{
+            document.getElementById("msg").innerHTML = "<h3>Error POSTing ToDo: " + err + "</h3>";
+            document.getElementById("todo").innerHTML = "";
+        });
+    } //end-POSTRequest
+
+
+    /**********************************************************************************
+     * PUTs one ToDo to the server. The server replies with the new updated ToDo
+     **********************************************************************************/
+     function PUTRequest(e){
+        e.preventDefault();
+
+        DisplayMessage("PUT");
+
+        // Send a PUT request to jsonplaceholder
+        fetch('http://jsonplaceholder.typicode.com/todos/1',
+                {
+                    method: 'PUT',
+//                    mode: 'cors',
+                    cache: 'no-cache',
+                    headers: {
+                        'Accept': 'application/json, text/plain, */*',
+                        'Content-type': 'application/json',
+//                        'Access-Control-Allow-Origin': '*'   // To by-pass CORS?
+                    },
+                    body: JSON.stringify({userId: 1, id: 1, title: 'New title of ToDo 1', completed: false})
+                }
+            )
+        .then((res)=>res.json())   // Convert to JS object
+        .then((todo)=>{
+            console.log(todo);
+
+            const str = `<ul>
+                            <li><strong>UserId</strong>: ${todo.userId}</li>
+                            <li><strong>Id</strong>: ${todo.id}</li>
+                            <li><strong>Title</strong>: ${todo.title}</li>
+                            <li><strong>Completed</strong>: ${todo.completed?"Yes":"No"}</li>
+                        </ul>`;
+
+            document.getElementById("msg").innerHTML = "<h3>The following ToDo object is successfully PUT to the server</h3>";
+            document.getElementById("todo").innerHTML = str;
+        })
+        .catch((err)=>{
+            document.getElementById("msg").innerHTML = "<h3>Error PUTting ToDo: " + err + "</h3>";
+            document.getElementById("todo").innerHTML = "";
+
+        });
+    } //end-PUTRequest
+
+    /**********************************************************************************
+     * PATCHes one ToDo on the the server. The server replies with the updated ToDo
+     **********************************************************************************/
+     function PATCHRequest(e){
+        e.preventDefault();
+
+        DisplayMessage("PATCH");
+
+        // Send a PATCH request to jsonplaceholder
+        fetch('http://jsonplaceholder.typicode.com/todos/1',
+                {
+                    method: 'PATCH',
+//                    mode: 'cors',
+                    cache: 'no-cache',
+                    headers: {
+                        'Accept': 'application/json, text/plain, */*',
+                        'Content-type': 'application/json',
+//                        'Access-Control-Allow-Origin': '*'   // To by-pass CORS?
+                    },
+                    body: JSON.stringify({completed: true})         // Just update the completed field
+                }
+            )
+        .then((res)=>res.json())   // Convert to JS object
+        .then((todo)=>{
+            console.log(todo);
+
+            const str = `<ul>
+                            <li><strong>UserId</strong>: ${todo.userId}</li>
+                            <li><strong>Id</strong>: ${todo.id}</li>
+                            <li><strong>Title</strong>: ${todo.title}</li>
+                            <li><strong>Completed</strong>: ${todo.completed?"Yes":"No"}</li>
+                        </ul>`;
+
+            document.getElementById("msg").innerHTML = "<h3>The following ToDo object is successfully PATCHED at the server</h3>";
+            document.getElementById("todo").innerHTML = str;
+        })
+        .catch((err)=>{
+            document.getElementById("msg").innerHTML = "<h3>Error PATCHing ToDo: " + err + "</h3>";
+            document.getElementById("todo").innerHTML = "";
+
+        });
+    } //end-PATCHRequest
+
+    /**********************************************************************************
+     * DELETEs one ToDo at the the server. The server replies with an empty object
+     **********************************************************************************/
+     function DELETERequest(e){
+        e.preventDefault();
+
+        DisplayMessage("DELETE");
+
+        // Send a DELETE request to jsonplaceholder
+        fetch('http://jsonplaceholder.typicode.com/todos/3',
+                {
+                    method: 'DELETE'
+                }
+            )
+        .then((res)=>res.json())   // Convert to JS object
+        .then((todo)=>{
+            console.log(todo);
+
+            document.getElementById("msg").innerHTML = "<h3>ToDo with id = 3 is successfully DELETEd at the server</h3>";
+        })
+        .catch((err)=>{
+            document.getElementById("msg").innerHTML = "<h3>Error DELETing ToDo: " + err + "</h3>";
+            document.getElementById("todo").innerHTML = "";
+
+        });
+    } //end-DELETERequest
+
+
+</script>
+</body>
+</html>

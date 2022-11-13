@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XMLHttpRequest 1</title>
+</head>
+<body>
+<script>
+    function GET(resource){
+        let xhr = new XMLHttpRequest();
+
+        // Install the handler that will be called when the response has arrived from the HTTP server
+        xhr.onload = function (){
+            if (xhr.status == 200) {
+                console.log(xhr.responseText)
+            
+            } else if (xhr.status >= 400){
+                console.log(`Error occurred. ${xhr.status}`);                    
+            } //end-if
+        } //end-onload
+
+        // This error handler gets called when a network error occurs
+        xhr.onerror = (err) => {
+            console.log("Error occurred: ", err);
+        } //end-onerror
+
+        // Initialize the xhr object.
+        // method: the type of request: GET, POST, PUT, DELETE, PATCH
+        // url: resource
+        // async: true (asynchronous) or false (synchronous)
+        xhr.open("GET", resource, true);
+        
+        // Send the HTTP request. When the response arrives, onload will be called
+        xhr.send();
+    } //end-GET
+
+    // Get this resource
+    console.log(1)
+    console.log(2)
+
+    // Get this resource asynchronously
+    GET('https://jsonplaceholder.typicode.com/todos/1')    
+//    GET('http://127.0.0.1:5500/file.txt')   // Get the data from a local Web server   
+
+    console.log(3)
+    console.log(4)
+</script>
+</body>
+</html>

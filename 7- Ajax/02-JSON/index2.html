@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON 2</title>
+
+</head>
+<body>
+    <button id="btn1">Get ToDo</button>
+    <button id="btn2">Post ToDo</button>
+    <hr>
+
+    <h2>To do</h2>
+    <div id="todo1"></div>
+
+    <hr>
+    <h2>New To do</h2>
+    <div id="todo2"></div>
+
+<script>
+    document.getElementById("btn1").addEventListener("click", GetToDo);    // Get one ToDo
+    document.getElementById("btn2").addEventListener("click", PostToDo);   // Send one ToDo to the server
+
+    /**********************************************************************************
+     * Fetches on user in JSON format from https://jsonplaceholder.typicode.com/todos/1
+     **********************************************************************************/
+    function GetToDo(e){
+        e.preventDefault();
+
+        let xhr = new XMLHttpRequest();
+
+        // Install the handler that will be called when the response has arrived from the HTTP server
+        xhr.onload = function (){
+            if (xhr.status == 200) {
+                console.log(xhr.responseText);
+
+                // Convert the JSON object to JS object
+                const todo = JSON.parse(xhr.responseText); 
+                console.log(todo);
+
+                const str = `<ul>
+                             <li><strong>UserId</strong>: ${todo.userId}</li>
+                             <li><strong>Id</strong>: ${todo.id}</li>
+                             <li><strong>Title</strong>: ${todo.title}</li>
+                             <li><strong>Completed</strong>: ${todo.completed?"Yes":"No"}</li>
+                             </ul>`;
+
+                document.getElementById("todo1").innerHTML = str;
+            } //end-if
+        } //end-onload
+
+        // Initialize the xht object and send the request
+        xhr.open("GET", "https://jsonplaceholder.typicode.com/todos/1", true);
+        xhr.send();
+    } //end-GetCD
+
+    /**********************************************************************************
+     * Posts one ToDo to the server. The server replies with the "id" of the newly created ToDo
+     **********************************************************************************/
+    function PostToDo(e){
+        e.preventDefault();
+
+        let xhr = new XMLHttpRequest();
+
+        // Install the handler that will be called when the response has arrived from the HTTP server
+        xhr.onload = function (){
+            // We must get a 201: Created response. 
+            // "id" of the new post must have been filled by the server
+            if (xhr.status == 201) {
+                console.log(xhr.responseText);
+
+                // Convert the JSON object to JS object
+                const todo = JSON.parse(xhr.responseText); 
+                console.log(todo);
+
+                const str = `<ul>
+                             <li><strong>UserId</strong>: ${todo.userId}</li>
+                             <li><strong>Id</strong>: ${todo.id}</li>
+                             <li><strong>Title</strong>: ${todo.title}</li>
+                             <li><strong>Completed</strong>: ${todo.completed?"Yes":"No"}</li>
+                             </ul>`;
+
+                document.getElementById("todo2").innerHTML = str;
+
+            } //end-if 
+        } //end-onload
+
+        // Also install a onreadystatechange to notify the user on the progress of the request execution
+        xhr.onreadystatechange = function(){
+            if (xhr.readyState < 4)
+                document.getElementById("todo2").innerHTML = "<p>Request to create a new 'to do' is sent to the server</p>";
+        } //end-onreadystatechange
+
+        // Prepare the new ToDo object and send it to the server
+        const newToDo = {userId: "1", title: "This is a new to do", completed: true};        
+        xhr.open("POST", "https://jsonplaceholder.typicode.com/todos", true);
+        xhr.setRequestHeader("Content-type", "application/json");
+
+        // Now, send the request
+        xhr.send(JSON.stringify(newToDo));   // Send the new JSON object in the body of the message
+    } //end-PostToDo
+</script>
+</body>
+</html>
