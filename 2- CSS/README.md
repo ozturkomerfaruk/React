@@ -114,7 +114,6 @@ div'denra p gelenler için mesela şöyle oluşturulur. İlk çocuk için geçer
 div p {
   background-color: yellow;
 }
-}
 ```
 
 ## Child Selector
