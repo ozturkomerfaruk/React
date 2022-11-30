@@ -1,0 +1,58 @@
+[
+    {
+        "title": "Empire Burlesque",
+        "artist": "Bob Dylan",
+        "country": "USA",
+        "company": "Columbia",
+        "price": 10.90,
+        "year": 1985
+    },
+    {
+        "title": "Hide your heart",
+        "artist": "Bonnie Tyler",
+        "country": "UK",
+        "company": "CBS Records",
+        "price": 9.90,
+        "year": 1988
+    },
+    {
+        "title": "Greatest Hits",
+        "artist": "Dolly Parton",
+        "country": "USA",
+        "company": "RCA",
+        "price": 9.90,
+        "year": 1982
+    },
+    {
+        "title": "Still got the blues<",
+        "artist": "Gary Moore",
+        "country": "UK",
+        "company": "Virgin records",
+        "price": 10.20,
+        "year": 1990
+    },
+    {
+        "title": "Eros",
+        "artist": "Eros Ramazzotti",
+        "country": "EU",
+        "company": "BMG",
+        "price": 9.90,
+        "year": 1997
+    },
+    {
+        "title": "One night only",
+        "artist": "Bee Gees",
+        "country": "UK",
+        "company": "Polydor",
+        "price": 10.90,
+        "year": 1998
+    },
+    {
+        "title": "Sylvias Mother",
+        "artist": "Dr.Hook",
+        "country": "UK",
+        "company": "CBS",
+        "price": 8.10,
+        "year": 1973
+    }
+]

@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Document</title>
+    <style>
+        * {
+            text-align: center;
+            align-items: center;
+            padding: 0px;
+            margin: 0px;
+        }
+
+        body {
+            align-items: flex-start;
+            display: flex;
+        }
+
+        .AytCol {
+            width: 50%;
+            padding: 20px;
+        }
+    
+        .TytCol {
+            width: 50%;
+        }
+
+        .empty {
+            padding: 35px;
+        }
+
+        @media screen and (max-width: 992px) {
+            body {
+                display: block;
+            }
+
+            .AytCol{
+                width: 100%;
+            }
+
+            .TytCol {
+                width: 100%;
+            }
+        }
+
+        .header {
+            font-size: 34px;
+            padding-top: 14px;
+        }
+
+        .test_header {
+            color: grey;
+            font-size: 24px;
+            font-weight: 700;
+            text-align: start;
+            margin: 0px;
+            padding: 0px 13px;
+        }
+        
+        .boldLetter {
+            font-weight: 800;
+        }
+
+        .column {
+            background-color: white;
+            display: grid;
+            width: 100%;
+            grid-template-columns: repeat(1, 1fr);
+            box-shadow: 0px 0px 8px 8px rgb(236, 236, 236);
+            border-radius: 13px;
+        }
+
+        .lesson {
+            padding: 0px 16px;
+        }
+
+        .lesson-body {
+            display: flex;
+            padding-top: 13px;
+            background-color: white;
+        }
+
+        .lesson-body>div>input,
+        .lesson-body>input {
+            width: 80px;
+            height: 40px;
+            margin: 10px;
+            border-radius: 15px;
+            border: 2px solid grey;
+            box-shadow: 0 6px rgba(128, 128, 128, .5);
+        }
+
+        .net {
+            width: 80px;
+            font-weight: 600;
+        }
+
+        .relative {
+            position: relative;
+        }
+
+        .icon_absolute {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+        }
+
+        .lesson-title {
+            flex-grow: 1;
+            text-align: start;
+            align-items: start;
+            padding-left: 12px;
+            font-size: 21px;
+        }
+
+        .question-text {
+            color: blue;
+            font-size: 15px;
+        }
+
+        
+        .table {
+            padding: 0px 16px;
+        }
+
+        .table>hr {
+            border: 0.6px solid rgb(180, 180, 180);
+        }
+
+        .tableElements,
+        .table_dataCell {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .button-card {
+            display: flex;
+        }
+
+        .button-card>button {
+            margin: 7px 14px;
+        }
+
+        .header_icons {
+            width: 100%;
+            font-size: 20px;
+            font-weight: 700;
+            display: flex;
+            position: relative;
+            padding: 0px 16px;
+        }
+
+        .header_icons>*:nth-child(n+2) {
+            width: 80px;
+            margin: 10px;
+        }
+
+        .header_icons>*:last-child {
+            margin: 0px;
+        }
+
+        .flex_grow {
+            flex-grow: 1;
+        }
+
+        .checkbox_text {
+            padding: 0px 18px;
+        }
+
+        .checkbox {
+            display: flex;
+            text-align: center;
+            align-items: center;
+            font-weight: 600;
+        }
+
+        .checkbox>input {
+            margin: 14px;
+            width: 21px;
+            height: 22px;
+        }
+
+        .calculateButton {
+            color: white;
+            border-color: rgb(255, 0, 58);
+            background-color: rgb(255, 0, 58);
+            flex-grow: 1;
+            padding: 8px 0px;
+            border-radius: 12px;
+        }
+
+        .clearPageButton {
+            border-color: rgb(255, 0, 58);
+            background-color: white;
+            color: rgb(255, 0, 58);
+            flex-grow: 1;
+            padding: 8px 0px;
+            border-radius: 12px;
+        }
+
+        .calculateButton:hover,
+        .clearPageButton:hover {
+            background-color: rgb(153, 79, 96);
+            border-color: rgb(153, 79, 96);
+            color: white;
+        }
+
+        hr {
+            border: 1px solid rgb(138, 140, 142);
+            margin: 7px 0px 7px 0px;
+        }
+
+
+    </style>
+</head>
+
+<body>
+    <div class="AytCol">
+        <div class="column">
+            <p class="header"><span class="boldLetter">AYT</span> Puanı Hesaplama</p>
+            <div class="header_icons">
+                <div class="flex_grow"> </div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-check"
+                    style="color: black;" viewBox="0 0 16 16">
+                    <path
+                        d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z" />
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-x"
+                    style="color: black;" viewBox="0 0 16 16">
+                    <path
+                        d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+                </svg>
+                <p>Net</p>
+            </div>
+            <p class="test_header">Türk Dili ve Edebiyatı ve Sosyal Bilimler-1 Testi</p>
+            <lesson-class field="sözel" name="Türk Dili ve Edebiyatı" question="24"></lesson-class>
+            <lesson-class field="sözel" name="Tarih-1" question="10"></lesson-class>
+            <lesson-class field="sözel" name="Coğrafya-1" question="6"></lesson-class>
+            <br>
+            <br>
+            <p class="test_header">Sosyal Bilimler-2 Testi</p>
+            <lesson-class field="sözel" name="Tarih-2" question="11" ></lesson-class>
+            <lesson-class field="sözel" name="Coğrafya-2" question="11"></lesson-class>
+            <lesson-class field="sözel" name="Felsefe Grubu" question="12"></lesson-class>
+            <lesson-class field="sözel" name="Din Kültürü ve Ahlak Bilgisi / Ek Felsefe Grubu" question="6"></lesson-class>
+            <br>
+            <br>
+            <p class="test_header">Matematik Testi</p>
+            <lesson-class field="sayısal" name="Matematik" question="40"></lesson-class>
+            <br>
+            <br>
+            <p class="test_header">Fen Bilimleri Testi</p>
+            <lesson-class field="sayısal" name="Fizik" question="14"></lesson-class>
+            <lesson-class field="sayısal" name="Kimya" question="13"></lesson-class>
+            <lesson-class field="sayısal" name="Biyoloji" question="13"></lesson-class>
+        </div>
+    </div>
+
+    <div class="TytCol">
+        <div class="empty">
+            <div class="column">
+                <p class="header"><span class="boldLetter">TYT</span> Puanı Hesaplama</p>
+                <div class="header_icons">
+                    <div class="flex_grow"> </div>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-check"
+                        style="color: black;" viewBox="0 0 16 16">
+                        <path
+                            d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z" />
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-x"
+                        style="color: black;" viewBox="0 0 16 16">
+                        <path
+                            d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+                    </svg>
+                    <p>Net</p>
+                </div>
+                <lesson-class field="TYT" name="Türkçe" question="40"></lesson-class>
+                <lesson-class field="TYT" name="Sosyal Bilimler" question="20"></lesson-class>
+                <lesson-class field="TYT" name="Temel Matematik" question="40"></lesson-class>
+                <lesson-class field="TYT" name="Fen Bilimleri" question="20"></lesson-class>
+            </div>
+        </div>
+
+        <div class="empty">
+            <div class="column">
+                <p class="header"><span class="boldLetter">Ortaöğretim</span> Başarı Puanı</p>
+                <div class="lesson">
+                    <div class="lesson-body">
+                        <div class="lesson-title">Diploma Notu</div>
+                        <input type="text" name="not" id="not" value="0" onchange="calculateObp();">
+                    </div>
+                    <hr>
+                </div>
+                <div class="lesson">
+                    <div class="lesson-body">
+                        <div class="lesson-title">OBP</div>
+                        <input type="text" name="obp" id="obp" value="0" readonly>
+                    </div>
+                    <hr>
+                </div>
+                <div class="checkbox_text">
+                    <div class="checkbox">
+                        <input type="checkbox" id="checkbox">
+                        <p>Geçen Sene Bir Bölüme Yerleştim</p>
+                    </div>
+                    <hr>
+                </div>
+            </div>
+        </div>
+
+        <div class="empty">
+            <div class="column">
+                <p class="header boldLetter">SONUÇLAR</p>
+                <div class="table">
+                    <div class="tableElements">
+                        <p>Puan Türü</p>
+                        <p>Ham Puan</p>
+                        <p>Yerleştirme Puanı</p>
+                    </div>
+                    <hr>
+                    <div class="table_dataCell">
+                        <p>TYT</p>
+                        <p id="tyt_hamPuan">-</p>
+                        <p id="tyt_yerlestirmePuan">-</p>
+                    </div>
+                    <hr>
+                    <div class="table_dataCell">
+                        <p>SAY</p>
+                        <p id="say_hamPuan">-</p>
+                        <p id="say_yerlestirmePuan">-</p>
+                    </div>
+                    <hr>
+                    <div class="table_dataCell">
+                        <p>EA</p>
+                        <p id="ea_hamPuan">-</p>
+                        <p id="ea_yerlestirmePuan">-</p>
+                    </div>
+                    <hr>
+                    <div class="table_dataCell">
+                        <p>SÖZ</p>
+                        <p id="söz_hamPuan">-</p>
+                        <p id="söz_yerlestirmePuan">-</p>
+                    </div>
+
+                </div>
+                <div class="button-card">
+                    <button class="btn btn-primary calculateButton" type="submit" onclick="calculate();">Hesapla</button>
+                    <button class="btn btn-primary clearPageButton" type="submit" onclick="clearPage();">Temizle</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        {
+            function calculateObp() {
+                const not_input = document.querySelector("#not");
+                const obp_input = document.querySelector("#obp");
+                if (isNaN(not_input.value)) {
+                    alert(`Diploma notunu giriniz... (Diploma Notu)`);
+                    return;
+                }
+                if (not_input.value > 100 || not_input.value < 0) {
+                    alert(`Diploma notunu  0 ile 100 arasında olmalıdır...`);
+                    return;
+                }
+                not_input.setAttribute(`value`, not_input.value);
+                obp_input.setAttribute(`value`, not_input.value * 5);
+            }
+
+            function calculate() {
+                let obp = document.getElementById("obp").value;
+                let checkbox = document.getElementById("checkbox").checked;
+               
+                let tyt = 0;
+                document.querySelectorAll(".TYT").forEach(el => {
+                    let net = el.querySelector(".net");
+                    tyt +=  parseInt(net.innerHTML);
+                });
+                let tyt_hamPuan = tyt * 5;
+                let tyt_yerlestirmePuan = (obp * (checkbox ? 0.3 : 0.6)) + tyt_hamPuan;
+                document.getElementById("tyt_hamPuan").innerText = tyt_hamPuan;
+                document.getElementById("tyt_yerlestirmePuan").innerText = tyt_yerlestirmePuan;           
+
+                // sözel için
+                let sozel = 0;
+                document.querySelectorAll(".sözel").forEach(e => {
+                    let net = e.querySelector(".net");
+                    sozel += parseInt(net.innerHTML);
+                });
+                let sozelHamPuan = sozel * 6.25;
+                sozelHamPuan = (sozelHamPuan * 0.6) + (tyt_hamPuan * 0.4)
+                let soz_yer = (obp * (checkbox ? 0.3 : 0.6)) + sozelHamPuan;
+                document.getElementById("söz_hamPuan").innerText = sozelHamPuan;
+                document.getElementById("söz_yerlestirmePuan").innerText = soz_yer;
+
+                // sayısal için
+                let say = 0;
+                document.querySelectorAll(".sayısal").forEach(e => {
+                    let net = e.querySelector(".net");
+                    say += parseInt(net.innerHTML);
+                });
+                let say_hamPuan = say * 6.25;
+                say_hamPuan = (say_hamPuan * 0.6) + (tyt_hamPuan * 0.4)
+                let say_yerlestirmePuan = (obp * (checkbox ? 0.3 : 0.6)) + say_hamPuan;
+                document.getElementById("say_hamPuan").innerText = say_hamPuan;
+                document.getElementById("say_yerlestirmePuan").innerText = say_yerlestirmePuan;
+
+                               // eşit ağırlık için
+                let matNet = 0;
+                document.querySelectorAll("lesson-class").forEach(e => {
+                    if (e.name === "Matematik") {
+                        matNet = parseInt(e.querySelector(".net").innerHTML);
+                    }
+                })
+                let ea_hamPuan = (sozelHamPuan + (matNet * 12.5)) * 0.5;
+                let ea_yerlestirmePuan = (obp * (checkbox ? 0.3 : 0.6)) + ea_hamPuan;
+                document.getElementById("ea_hamPuan").innerText = ea_hamPuan;
+                document.getElementById("ea_yerlestirmePuan").innerText = ea_yerlestirmePuan;
+               
+            }
+
+            function clearPage() {
+                document.querySelectorAll(".table_dataCell").forEach(e => {
+                    let array = Array.from(e.querySelectorAll("p"));
+                    for (let i = 1; i < array.length; i++) {
+                        array[i].innerHTML = "-";
+                    }
+                });
+
+                document.querySelectorAll(".net").forEach(e => {
+                    e.innerHTML = "-";
+                });
+
+                document.getElementById("checkbox").checked = false;
+
+                document.querySelectorAll("input").forEach(e => {
+                    e.value = 0;
+                });
+               
+
+            }
+
+            class Lesson extends HTMLElement {
+                connectedCallback() {
+                    this.correct = 0;
+                    this.incorrect = 0;
+                    this.net = "-";
+                    this.name = this.getAttribute('name');
+                    this.field = this.getAttribute('field');
+                    this.question = this.getAttribute('question');
+                    this.innerHTML =
+                        `<div class="lesson ` + this.field + `">
+                        <div class="lesson-body">
+                            <div class="lesson-title">` + this.name + `</br><span class="question-text">` + this.question + ` soru</span></div>
+                            <div class="relative">
+                                <input type="text" name="correct" id="correct" value="0">
+                                <div class="icon_absolute">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-check"
+                                        style="color: green;" viewBox="0 0 16 16">
+                                        <path
+                                            d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="relative">
+                                <input type="text" name="incorrect" id="incorrect" value="0">
+                                <div class="icon_absolute">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-x"
+                                        style="color: red;" viewBox="0 0 16 16">
+                                        <path
+                                            d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="net">` + this.net + `</div>
+                        </div>
+                        <hr>
+                    </div>`
+                    const net_value = this.querySelector(".net");
+                    const correct_input = this.querySelector("#correct");
+                    const incorrect_input = this.querySelector("#incorrect");
+                    correct_input.addEventListener("change", (event) => {
+                        if (isNaN(correct_input.value)) {
+                            alert(`Geçersiz input... Lütfen bir sayı giriniz !!! (` + this.name + `)`);
+                            return;
+                        }
+                        this.correct = correct_input.value;
+                        this.incorrect = parseInt(this.question) - parseInt(this.correct);
+                        this.net = this.correct - this.incorrect;
+                        if (this.incorrect > this.question || (parseInt(this.correct) + parseInt(this.incorrect)) > this.question || this.correct < 0 || this.incorrect < 0) {
+                            alert(`Soru sayısı doğru ve yanlış cevapların toplamından fazla olmamalıdır !!!! (`+ this.name + `) dersinde  ` + this.question + ` adet soru bulunmaktadır.`);
+                            return;
+                        }
+                        correct_input.setAttribute(`value`, this.correct);
+                        incorrect_input.setAttribute(`value`, this.incorrect);
+                        net_value.innerHTML = this.net;
+                    });
+                    incorrect_input.addEventListener("change", (event) => {
+                        if (isNaN(incorrect_input.value)) {
+                            alert(`Lütfen bir sayı giriniz !!! (` + this.name + `)`);
+                            return;
+                        }
+                        this.incorrect = incorrect_input.value;
+                        this.correct = parseInt(this.question) - parseInt(this.incorrect);
+                        this.net = this.correct - this.incorrect;
+                        if (this.incorrect > this.question || (parseInt(this.correct) + parseInt(this.incorrect)) > this.question || this.correct < 0 || this.incorrect < 0) {
+                            alert(`Soru sayısı doğru ve yanlış cevapların toplamından fazla olmamalıdır !!!! (`+ this.name + `) dersinde  ` + this.question + ` adet soru bulunmaktadır.`);
+                            return;
+                        }
+                        incorrect_input.setAttribute(`value`, this.incorrect);
+                        correct_input.setAttribute(`value`, this.correct);
+                        net_value.innerHTML = this.net;
+                    });
+                }
+            }
+
+            customElements.define('lesson-class', Lesson);
+        }
+    </script>
+</body>
+
+</html>
