@@ -1,0 +1,21 @@
+* {
+    color: black;
+}
+
+.container {
+    background-color: rgba(238, 238, 238);
+}
+
+.gridView>button {
+    border: none;
+    background-color: rgb(192, 192, 192);
+}
+
+.displayView {
+    background-color: rgb(86, 195, 245);
+    border: black solid 6px;
+}
+
+#equalButton {
+    background-color: rgb(77, 160, 255);
+}
