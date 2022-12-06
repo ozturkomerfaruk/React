@@ -38,7 +38,7 @@ class Calculator {
             result = oldNum * newNum;
             compString += ' * ';
         } else if (this.process === '/') {
-            result = oldNum * newNum;
+            result = oldNum / newNum;
             compString += ' / ';
 
             if (newNum === 0) {
@@ -54,29 +54,28 @@ class Calculator {
         this.process = undefined;
     }
 
-    getDisplayNumber(number) {
-        //değişecek
+    displayViewFunc(number) {
+
         const temp = number.toString();
-        const intDigit = parseFloat(temp);
+        const tamSayi = parseFloat(temp);
 
-        let decimalDigits = temp.split(`.`)[1];
+        let kusurluSayi = temp.split('.')[1];
 
-        if (decimalDigits != undefined) {
-            decimalDigits = decimalDigits.toString()
-            if (decimalDigits.length > 4)
-                decimalDigits = decimalDigits.substring(0, 4);
+        if (kusurluSayi != undefined) {
+            kusurluSayi = kusurluSayi.toString()
+            if (kusurluSayi.length > 4)
+                kusurluSayi = kusurluSayi.substring(0, 4);
         }
 
-        let intDisplay = isNaN(intDigit) ? `` : intDigit.toLocaleString(`en`, { maximumFractionDigits: 0 });
-        return (decimalDigits != null) ? `${intDisplay}.${decimalDigits}` : intDisplay;
+        let intDisplay = isNaN(tamSayi) ? '' : tamSayi.toLocaleString('en', { maximumFractionDigits: 0 });
+        return (kusurluSayi != null) ? `${intDisplay}.${kusurluSayi}` : intDisplay;
     }
 
-    updateDisplay() {
-        //değişecek
-        this.newValueText.innerText = this.getDisplayNumber(this.inTheProcress);
-        const op = (this.process != null) ? ` ${this.process}` : ``;
+    updateDisplayViewFunc() {
+        this.newValueText.innerText = this.displayViewFunc(this.inTheProcress);
+        const op = (this.process != null) ? ` ${this.process}` : '';
         this.oldValueText.innerText = (this.process != null) ?
-            `${this.getDisplayNumber(this.threaded)} ${op}` : this.threaded;
+            `${this.displayViewFunc(this.threaded)} ${op}` : this.threaded;
     }
 
     selectSymbol(operation) {
@@ -95,32 +94,30 @@ class Calculator {
     }
 }
 
-//isimler değişecek
-
 const calculator = new Calculator(oldValueText, newValueText);
 
 numberButtons.forEach(button => {
     button.addEventListener(`click`, () => {
         calculator.addNumberToCalculate(button.innerText);
-        calculator.updateDisplay();
+        calculator.updateDisplayViewFunc();
     });
 });
 
 operandButtons.forEach(button => {
     button.addEventListener(`click`, () => {
         calculator.selectSymbol(button.innerText);
-        calculator.updateDisplay();
+        calculator.updateDisplayViewFunc();
     });
 });
 
 equalBtn.addEventListener(`click`, () => {
     calculator.calculateProcress();
-    calculator.updateDisplay();
+    calculator.updateDisplayViewFunc();
 });
 
 clearButton.addEventListener(`click`, () => {
     calculator.clearView();
-    calculator.updateDisplay();
+    calculator.updateDisplayViewFunc();
 });
 
 var isDark = false
