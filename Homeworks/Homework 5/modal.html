@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Document</title>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="modal.css">
+
+</head>
+
+<body>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#studentAddUpdate">
+        Yeni Öğrenci Ekle
+    </button>
+
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#studentDelete">
+        Öğrenci Sil
+    </button>
+
+    <div class="modal fade" id="studentDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor"
+                        style="color: rgb(220, 53, 69);" class="bi bi-exclamation-triangle" viewBox="0 0 16 16">
+                        <path
+                            d="M7.938 2.016A.13.13 0 0 1 8.002 2a.13.13 0 0 1 .063.016.146.146 0 0 1 .054.057l6.857 11.667c.036.06.035.124.002.183a.163.163 0 0 1-.054.06.116.116 0 0 1-.066.017H1.146a.115.115 0 0 1-.066-.017.163.163 0 0 1-.054-.06.176.176 0 0 1 .002-.183L7.884 2.073a.147.147 0 0 1 .054-.057zm1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566z" />
+                        <path
+                            d="M7.002 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 5.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995z" />
+                    </svg>
+
+                    <h5 class="modal-title" id="exampleModalLabel">Öğrenci Sil</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>İsim25 Soyisim25</strong> isimli öğrenciyi siliyorsunuz. Bu işlem geri alınamaz. Devam
+                        etmek istediğinize emin misiniz?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Vazgeç</button>
+                    <input type="submit" onclick="deleteButtonAction()" value="Sil" class="btn btn-danger" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="studentAddUpdate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Eklenecek Öğrenci Kayıt Bilgileri</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="needs-validation" novalidate>
+                        <div class="row">
+                            <div class="col-md-6 form-group" id="nameForm">
+                                <label for="name">İsim</label>
+                                <input type="text" class="form-control" id="name" />
+                                <div class="valid">Geçerli</div>
+                                <div class="invalid">İsim en az 3 harf içermelidir</div>
+                            </div>
+
+                            <div class="col-md-6 form-group" id="studentNumberForm">
+                                <label for="studentNumber">Öğrenci Numarası</label>
+                                <input type="number" class="form-control" id="studentNumber" />
+                                <div class="valid">Geçerli</div>
+                                <div class="invalid">Öğrenci numarası en az 12 rakam içermelidir.</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 form-group" id="placeBirthForm">
+                                <label for="placeBirth">Doğum Yeri</label>
+                                <input type="text" class="form-control" id="placeBirth" />
+                                <div class="valid">Geçerli</div>
+                                <div class="invalid">Doğum yeri en az 3 harf içermelidir</div>
+                            </div>
+                            <div class="col-md-6 form-group" id="surnameForm">
+                                <label for="surname">Soyisim</label>
+                                <input type="text" class="form-control" id="surname" />
+                                <div class="valid">Geçerli</div>
+                                <div class="invalid">İsim en az 3 harf içermelidir</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 form-group" id="studentDepartmantForm">
+                                <label for="studentDepartmant">Bölüm</label>
+                                <select class="form-control" id="studentDepartmant">
+                                    <option selected>Bölüm Seçiniz</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+                                <div class="valid">Geçerli</div>
+                                <div class="invalid">Bölüm seçiniz</div>
+                            </div>
+                            <div class="col-md-6 form-group" id="dateBirthForm">
+                                <label for="dateBirth">Doğum Tarihi</label>
+                                <input type="date" class="form-control" id=dateBirth />
+                                <div class="valid">Geçerli</div>
+                                <div class="invalid">Tarih giriniz</div>
+                            </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+                    <input type="submit" onclick="addUpdateButtonAction()" value="Ekle" class="btn btn-primary" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+</body>
+
+
+
+
+<script>
+    var validValue = document.querySelectorAll(".valid")
+    var invalidValue = document.querySelectorAll(".invalid")
+
+    const changeVisible = (valid, invalid) => {
+        validValue.forEach((e) => { e.style.display = !valid ? "none" : "block" })
+        invalidValue.forEach((e) => { e.style.display = !invalid ? "none" : "block" })
+    }
+
+    changeVisible(false, false)
+
+    function addUpdateButtonAction() {
+        const nameForm = document.querySelector('#nameForm')
+        const name = document.querySelector('#name');
+
+        const surnameForm = document.querySelector('#surnameForm')
+        const surname = document.querySelector('#surname');
+
+        const studentNumberForm = document.querySelector('#studentNumberForm')
+        const studentNumber = document.querySelector('#studentNumber');
+
+        const studentDepartmantForm = document.querySelector('#studentDepartmantForm')
+        const studentDepartmant = document.querySelector('#studentDepartmant');
+
+        const placeBirthForm = document.querySelector('#placeBirthForm')
+        const placeBirth = document.querySelector('#placeBirth');
+
+        const dateBirthForm = document.querySelector('#dateBirthForm')
+        const dateBirth = document.querySelector('#dateBirth');
+
+        nameForm.querySelector(".valid").style.display = name.value.length >= 3 ? "block" : "none"
+        nameForm.querySelector(".invalid").style.display = name.value.length < 3 ? "block" : "none"
+        if (name.value.length >= 3) {
+            name.classList.add('validForm')
+            name.classList.remove('invalidForm')
+        } else {
+            name.classList.add('invalidForm')
+            name.classList.remove('validForm')
+        }
+        surnameForm.querySelector(".valid").style.display = surname.value.length >= 3 ? "block" : "none"
+        surnameForm.querySelector(".invalid").style.display = surname.value.length < 3 ? "block" : "none"
+        if (surname.value.length >= 3) {
+            surname.classList.add('validForm')
+            surname.classList.remove('invalidForm')
+        } else {
+            surname.classList.add('invalidForm')
+            surname.classList.remove('validForm')
+        }
+        studentNumberForm.querySelector(".valid").style.display = studentNumber.value.length >= 3 ? "block" : "none"
+        studentNumberForm.querySelector(".invalid").style.display = studentNumber.value.length < 3 ? "block" : "none"
+        if (studentNumber.value.length >= 3) {
+            studentNumber.classList.add('validForm')
+            studentNumber.classList.remove('invalidForm')
+        } else {
+            studentNumber.classList.add('invalidForm')
+            studentNumber.classList.remove('validForm')
+        }
+        studentDepartmantForm.querySelector(".valid").style.display = studentDepartmant.value.length < 3 ? "block" : "none"
+        studentDepartmantForm.querySelector(".invalid").style.display = studentDepartmant.value.length > 3 ? "block" : "none"
+        if (studentDepartmant.value == "Bölüm Seçiniz") {
+            studentDepartmant.classList.add('invalidForm')
+            studentDepartmant.classList.remove('validForm')
+
+        } else {
+            studentDepartmant.classList.add('validForm')
+            studentDepartmant.classList.remove('invalidForm')
+        }
+        console.log(studentDepartmant.value)
+
+
+
+        placeBirthForm.querySelector(".valid").style.display = placeBirth.value.length >= 3 ? "block" : "none"
+        placeBirthForm.querySelector(".invalid").style.display = placeBirth.value.length < 3 ? "block" : "none"
+        if (placeBirth.value.length >= 3) {
+            placeBirth.classList.add('validForm')
+            placeBirth.classList.remove('invalidForm')
+        } else {
+            placeBirth.classList.add('invalidForm')
+            placeBirth.classList.remove('validForm')
+        }
+        dateBirthForm.querySelector(".valid").style.display = dateBirth.value.length >= 3 ? "block" : "none"
+        dateBirthForm.querySelector(".invalid").style.display = dateBirth.value.length < 3 ? "block" : "none"
+        if (dateBirth.value.length >= 3) {
+            dateBirth.classList.add('validForm')
+            dateBirth.classList.remove('invalidForm')
+        } else {
+            dateBirth.classList.add('invalidForm')
+            dateBirth.classList.remove('validForm')
+        }
+    }
+
+</script>
+
+</html>
