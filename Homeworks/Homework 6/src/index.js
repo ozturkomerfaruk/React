@@ -5,7 +5,7 @@ import HeaderCard from './headerCard';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import TableCardHeader from './tableCardHeader';
 import TableCard from './tableCard';
-import VeriEkle from './veriEkle';
+import App from './deneme.js';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -13,6 +13,6 @@ root.render(
     <HeaderCard />
     <TableCardHeader />
     <TableCard />
-    {/* <VeriEkle /> */}
+    <App />
   </React.StrictMode>
 );

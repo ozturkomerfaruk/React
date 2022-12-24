@@ -2,8 +2,7 @@ import React, { Component } from "react";
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import "./tableCardHeader.css"
 import "./modal.js"
-import VeriEkle from './veriEkle';
-
+import VeriEkle from './veriEkle.js';
 
 class TableCardHeader extends Component {
     render() {

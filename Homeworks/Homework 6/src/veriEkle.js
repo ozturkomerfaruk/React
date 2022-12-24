@@ -1,34 +1,58 @@
-import React, { Component, useState } from 'react';
-import { Container, Row, Col, Button, Modal, Form } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Row, Col, Button, Modal, Form } from 'react-bootstrap';
 
 import "./modal.css"
 
-function FormAreaValidate({ name, valid, invalid, callback }) {
-    const [value, setValue] = useState("")
-    function handleChange(event) {
-        setValue(event.target.value)
-        callback(event.target.value)
+const VeriEkle = () => {
+
+    const [form, setForm] = useState({})
+    const [errors, setErrors] = useState({})
+
+    const setField = (field, value) => {
+        setForm({
+            ...form,
+            [field]: value
+        })
+
+        if (!!errors[field]) setErrors({
+            ...errors,
+            [field]: null
+        })
     }
-    return <Col className='form-group' md="6">
-        <label for="isim">{name}</label>
-        <input type="text" class="form-control" value={value} onChange={handleChange} />
-        <div class="valid">{valid}</div>
-        <div class="invalid">{invalid}</div>
-    </Col>;
-}
 
-export default function VeriEkle({ title }) {
-    const [name, setName] = useState("")
-
-    const handleSubmit = (event) => {
-        //name is valid ?? name <3 
-        const form = event.currentTarget;
-        if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
+    const handleSubmit = e => {
+        e.preventDefault()
+        const newErrors = findFormErrors()
+        if (Object.keys(newErrors).length > 0) {
+            setErrors(newErrors)
+        } else {
+            alert('Thank you for your feedback!')
         }
-    };
+    }
 
+    const findFormErrors = () => {
+        const { ogrNo, isim, soyisim, dep, dogumTarihi, dogumYeri } = form
+        const newErrors = {}
+        // name errors
+        if (!ogrNo || ogrNo === '' || ogrNo.length < 3) newErrors.ogrNo = ' 3 harf '
+        else if (ogrNo.length > 12) newErrors.ogrNo = 'çok girdin'
+
+        if (!isim || isim === '' || isim.length < 3) newErrors.isim = ' 3 harf '
+        else if (isim.length > 12) newErrors.isim = 'çok girdin'
+
+        if (!soyisim || soyisim === '' || soyisim.length < 3) newErrors.soyisim = ' 3 harf '
+        else if (soyisim.length > 12) newErrors.soyisim = 'çok girdin'
+
+        if (!dep || dep === '') newErrors.dep = 'select a food!'
+
+        if (!dogumTarihi || dogumTarihi === '') newErrors.dogumTarihi = ' 3 harf '
+        else if (dogumTarihi.length > 12) newErrors.dogumTarihi = 'çok girdin'
+
+        if (!dogumYeri || dogumYeri === '' || dogumYeri.length < 3) newErrors.dogumYeri = ' 3 harf '
+        else if (dogumYeri.length > 12) newErrors.dogumYeri = 'çok girdin'
+
+        return newErrors
+    }
 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -43,67 +67,91 @@ export default function VeriEkle({ title }) {
                     d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z" />
             </svg>
             </Button>
-            <Modal show={show} onHide={handleClose}>
+            <Modal show={show} onHide={handleClose} >
                 <Modal.Header closeButton>
-                    <Modal.Title id="exampleModalLabel">{title}</Modal.Title>
+                    <Modal.Title id="studentAdd">"title"</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <Form class="needs-validation" novalidate>
+                    <Form class="needs-validation" noValidate>
                         <Row>
-                            <FormAreaValidate name="İsim" valid="Geçerli" invalid="İsim en az 3 harf içermelidir" callback={e => { setName(e) }} />
-                            <div class="col-md-6 form-group" id="soyadFormu">
-                                <label for="soyad">Soyisim</label>
-                                <input type="text" class="form-control" id="soyad" />
-                                <div class="valid">Geçerli</div>
-                                <div class="invalid">İsim en az 3 harf içermelidir</div>
-                            </div>
+                            <Form.Group as={Col} md="6">
+                                <Form.Label>İsim</Form.Label>
+                                <Form.Control
+                                    type='text'
+                                    onChange={e => setField('isim', e.target.value)}
+                                    isInvalid={!!errors.isim}
+                                />
+                                <Form.Control.Feedback type='invalid'>{errors.isim}</Form.Control.Feedback>
+                            </Form.Group>
+                            <Form.Group as={Col} md="6">
+                                <Form.Label>Soyisim</Form.Label>
+                                <Form.Control
+                                    type='text'
+                                    onChange={e => setField('soyisim', e.target.value)}
+                                    isInvalid={!!errors.soyisim}
+                                />
+                                <Form.Control.Feedback type='invalid'>{errors.soyisim}</Form.Control.Feedback>
+                            </Form.Group>
                         </Row>
-                        <Row>
 
-                            <div class="col-md-6 form-group" id="ogrNoFormu">
-                                <label for="ogrNo">Öğrenci Numarası</label>
-                                <input type="number" class="form-control" id="ogrNo" />
-                                <div class="valid">Geçerli</div>
-                                <div class="invalid">Öğrenci numarası en az 12 rakam içermelidir.</div>
-                            </div>
-                            <div class="col-md-6 form-group" id="depFormu">
-                                <label for="dep">Bölüm</label>
-                                <select class="form-control" id="dep">
-                                    <option selected>Bölüm Seçiniz</option>
-                                    <option value="1">Bilgisayar Müh.</option>
-                                    <option value="2">Elektrik-Elektronik Müh.</option>
-                                    <option value="3">Endüstri Müh.</option>
-                                    <option value="4">İnşaat Müh.</option>
-                                </select>
-                                <div class="valid">Geçerli</div>
-                                <div class="invalid">Bölüm seçiniz</div>
-                            </div>
-                        </Row>
                         <Row>
-                            <div class="row">
-                                <div class="col-md-6 form-group" id="dogumYeriFormu">
-                                    <label for="dogumYeri">Doğum Yeri</label>
-                                    <input type="text" class="form-control" id="dogumYeri" />
-                                    <div class="valid">Geçerli</div>
-                                    <div class="invalid">Doğum yeri en az 3 harf içermelidir</div>
-                                </div>
-                                <div class="col-md-6 form-group" id="dogumTarihiFormu">
-                                    <label for="dogumTarihi">Doğum Tarihi</label>
-                                    <input type="date" class="form-control" id="dogumTarihi" />
-                                    <div class="valid">Geçerli</div>
-                                    <div class="invalid">Tarih giriniz</div>
-                                </div>
-                            </div>
+                            <Form.Group as={Col} md="6">
+                                <Form.Label>Öğrenci Numarası</Form.Label>
+                                <Form.Control
+                                    type='number'
+                                    onChange={e => setField('ogrNo', e.target.value)}
+                                    isInvalid={!!errors.ogrNo}
+                                />
+                                <Form.Control.Feedback type='invalid'>{errors.ogrNo}</Form.Control.Feedback>
+                            </Form.Group>
+
+                            <Form.Group as={Col} md="6">
+                                <Form.Label>Bölüm</Form.Label>
+                                <Form.Control
+                                    as='Select'
+                                    onChange={e => setField('dep', e.target.value)}
+                                    isInvalid={!!errors.dep}
+                                >
+                                    <option value=''>Bölüm Seçiniz</option>
+                                    <option value='bm'>Bilgisayar Müh.</option>
+                                    <option value='eem'>Elektrik-Elektronik Müh.</option>
+                                    <option value='em'>Endüstri Müh.</option>
+                                    <option value='im'>İnşaat Müh.</option>
+                                </Form.Control>
+                                <Form.Control.Feedback type='invalid'>{errors.dep}</Form.Control.Feedback>
+                            </Form.Group>
+                        </Row>
+
+                        <Row>
+                            <Form.Group as={Col} md="6">
+                                <Form.Label>Doğum Yeri</Form.Label>
+                                <Form.Control
+                                    type='text'
+                                    onChange={e => setField('dogumYeri', e.target.value)}
+                                    isInvalid={!!errors.dogumYeri}
+                                />
+                                <Form.Control.Feedback type='invalid'>{errors.dogumYeri}</Form.Control.Feedback>
+                            </Form.Group>
+
+                            <Form.Group as={Col} md="6">
+                                <Form.Label>Doğum Tarihi</Form.Label>
+                                <Form.Control
+                                    type='date'
+                                    onChange={e => setField('dogumTarihi', e.target.value)}
+                                    isInvalid={!!errors.dogumTarihi}
+                                />
+                                <Form.Control.Feedback type='invalid'>{errors.dogumTarihi}</Form.Control.Feedback>
+                            </Form.Group>
                         </Row>
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
-                        {"asd" === "" ? '' : <input type="submit" value={"buttonName"} class="btn btn-primary" onClick={handleSubmit} />}
-                    </div>
+                    <Button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</Button>
+                    {"asd" === "" ? '' : <Button type='submit' onClick={handleSubmit}>Submit</Button>}
                 </Modal.Footer>
             </Modal>
         </>
     );
 }
+
+export default VeriEkle;
