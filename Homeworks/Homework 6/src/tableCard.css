@@ -1,0 +1,51 @@
+table {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+.table c-tablo:nth-of-type(odd) {
+    background-color: white;
+}
+
+.table c-tablo:nth-of-type(even) {
+    background-color: rgb(218, 224, 255);
+}
+
+.table button {
+    padding: 4px 6px;
+    margin: 6px;
+}
+
+.table c-tablo {
+    height: 50px;
+    padding: 0px 8px;
+}
+
+.table c-tablo>.col {
+    display: flex;
+    align-items: center;
+    text-align: start;
+}
+
+.table .row {
+    margin: 0px;
+}
+
+.table-header,
+.table-footer {
+    font-weight: bold;
+    text-align: start;
+    background-color: rgb(225, 225, 225);
+    height: 55px;
+    align-items: center;
+    padding: 0px 8px;
+}
+
+.pageNo {
+    font-weight: 600;
+}
+
+.bold {
+    font-weight: bold;
+}

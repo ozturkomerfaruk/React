@@ -1,0 +1,19 @@
+#logoEsogu {
+    height: max-content;
+    width: 100px;
+    align-self: center;
+    margin-left: 18px;
+}
+
+.header {
+    font-size: 23px;
+}
+
+.closeApp>* {
+    display: block;
+    text-align: end;
+}
+
+.bold {
+    font-weight: bold;
+}
