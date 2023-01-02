@@ -32,9 +32,34 @@ table {
     margin: 0px;
 }
 
-.table-header,
-.table-footer {
+.sayfalamaCSS {
+    justify-content: center;
+    display: flex;
+    height: 50px;
+}
+
+.sayfalamaCSS>* {
+    border-radius: 5px;
+    text-align: center;
+    margin-right: 6px;
+    padding: 1px 8px;
+    font-size: 20px;
+    background-color: white;
+    border: 1px solid grey;
+    cursor: pointer;
+}
+
+.sayfalamaCSS .current {
+    color: #fff;
+    background: blue;
+}
+
+.bold {
     font-weight: bold;
+}
+
+.table-header,
+.tableFooter {
     text-align: start;
     background-color: rgb(225, 225, 225);
     height: 55px;
@@ -42,10 +67,46 @@ table {
     padding: 0px 8px;
 }
 
-.pageNo {
-    font-weight: 600;
+.totalPage .current {
+    background-color: blue;
+    color: white;
 }
 
-.bold {
-    font-weight: bold;
+.totalPage {
+    height: 50px;
+    display: flex;
+    text-align: center;
+    justify-content: flex-end;
+}
+
+.totalPage>* {
+    width: 35px;
+    cursor: pointer;
+    margin: 0px;
+    padding: 3px 0px;
+    background-color: transparent;
+    border: 1px solid blue;
+    color: blue;
+}
+
+
+
+.totalPage>*:first-of-type {
+    border-radius: 8px 0px 0px 8px;
+}
+
+.totalPage>*:last-of-type {
+    border-radius: 0px 8px 8px 0px;
+}
+
+@media (max-width: 992px) {
+    .table .dept {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .table .number {
+        display: none;
+    }
 }

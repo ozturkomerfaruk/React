@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Row, Col, Button, Modal, Form } from 'react-bootstrap';
 
 import "./modal.css"
 
-const VeriEkle = () => {
+const VeriEkle = ({ tid, detail, callBack, child, variant }) => {
+    const [title, setTitle] = useState("")
+    const [buttonName, setButtonName] = useState("")
 
     const [form, setForm] = useState({})
     const [errors, setErrors] = useState({})
@@ -26,14 +28,74 @@ const VeriEkle = () => {
         if (Object.keys(newErrors).length > 0) {
             setErrors(newErrors)
         } else {
-            alert('Thank you for your feedback!')
+            const { ogrNo, isim, soyisim, dep, dogumTarihi, dogumYeri } = form
+            if (tid === -1 || tid === null) {
+                let data = {
+                    "fname": isim,
+                    "lname": soyisim,
+                    "num": ogrNo,
+                    "dept": dep,
+                    "pob": dogumYeri,
+                    "dob": dogumTarihi
+                }
+                console.log('New Student')
+                fetch('http://localhost:8000/students', {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                })
+                    .then((response) => {
+                        console.log('New Student', response.status)
+                    })
+            } else {
+                let data = {
+                    "id": tid,
+                    "fname": isim,
+                    "lname": soyisim,
+                    "num": ogrNo,
+                    "dept": dep,
+                    "pob": dogumYeri,
+                    "dob": dogumTarihi
+                }
+                console.log('Update Student')
+                fetch('http://localhost:8000/students/' + tid, {
+                    method: 'PUT',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                })
+                    .then((response) => {
+                        console.log('Update Student', response.status)
+                    })
+            }
+            callBack()
+            setShow(false)
         }
     }
+
+    useEffect(() => {
+        if (detail !== null && tid !== null && tid !== -1) {
+            setTitle("Öğrenci Detay Bilgileri")
+            setButtonName("")
+        } else if (tid !== null && tid !== -1) {
+            setTitle("Güncellenecek Öğrenci Bilgileri")
+            setButtonName("Güncelle")
+        } else {
+            setTitle("Eklenecek Öğrenci Bilgileri")
+            setButtonName("Ekle")
+        }
+    }, [detail, tid])
+
 
     const findFormErrors = () => {
         const { ogrNo, isim, soyisim, dep, dogumTarihi, dogumYeri } = form
         const newErrors = {}
-        // name errors
+
         if (!ogrNo || ogrNo === '' || ogrNo.length < 3) newErrors.ogrNo = ' 3 harf '
         else if (ogrNo.length > 12) newErrors.ogrNo = 'çok girdin'
 
@@ -54,22 +116,39 @@ const VeriEkle = () => {
         return newErrors
     }
 
+    async function initialize() {
+        await fetch('http://localhost:8000/students/' + tid, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+        })
+            .then(async (response) => {
+                let _response = await response.json()
+                console.log("initialize", _response)
+                setForm({
+                    isim: _response.fname,
+                    soyisim: _response.lname,
+                    ogrNo: _response.num,
+                    dep: _response.dept,
+                    dogumYeri: _response.pob,
+                    dogumTarihi: _response.dob,
+                })
+            })
+        handleShow()
+    }
+
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     return (
         <>
-            <Button onClick={handleShow} variant="primary" data-toggle="modal" data-target="#studentAdd"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-person-plus"
-                viewBox="0 0 16 16">
-                <path
-                    d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
-                <path fillRule="evenodd"
-                    d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z" />
-            </svg>
+            <Button onClick={() => initialize()} variant={variant} data-toggle="modal" data-target="#studentAdd">{child}
             </Button>
             <Modal show={show} onHide={handleClose} >
                 <Modal.Header closeButton>
-                    <Modal.Title id="studentAdd">"title"</Modal.Title>
+                    <Modal.Title id="studentAdd">{title}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form class="needs-validation" noValidate>
@@ -78,17 +157,21 @@ const VeriEkle = () => {
                                 <Form.Label>İsim</Form.Label>
                                 <Form.Control
                                     type='text'
+                                    disabled={buttonName === ""}
+                                    value={form.isim}
                                     onChange={e => setField('isim', e.target.value)}
-                                    isInvalid={!!errors.isim}
+                                    isInvalid={errors.isim}
                                 />
-                                <Form.Control.Feedback type='invalid'>{errors.isim}</Form.Control.Feedback>
+                                {!errors.isim ? <Form.Control.Feedback>Looks good!</Form.Control.Feedback> : <Form.Control.Feedback type='invalid'>{errors.isim}</Form.Control.Feedback>}
                             </Form.Group>
                             <Form.Group as={Col} md="6">
                                 <Form.Label>Soyisim</Form.Label>
                                 <Form.Control
                                     type='text'
+                                    disabled={buttonName === ""}
+                                    value={form.soyisim}
                                     onChange={e => setField('soyisim', e.target.value)}
-                                    isInvalid={!!errors.soyisim}
+                                    isInvalid={errors.soyisim}
                                 />
                                 <Form.Control.Feedback type='invalid'>{errors.soyisim}</Form.Control.Feedback>
                             </Form.Group>
@@ -98,9 +181,11 @@ const VeriEkle = () => {
                             <Form.Group as={Col} md="6">
                                 <Form.Label>Öğrenci Numarası</Form.Label>
                                 <Form.Control
+                                    disabled={buttonName === ""}
                                     type='number'
+                                    value={form.ogrNo}
                                     onChange={e => setField('ogrNo', e.target.value)}
-                                    isInvalid={!!errors.ogrNo}
+                                    isInvalid={errors.ogrNo}
                                 />
                                 <Form.Control.Feedback type='invalid'>{errors.ogrNo}</Form.Control.Feedback>
                             </Form.Group>
@@ -108,10 +193,11 @@ const VeriEkle = () => {
                             <Form.Group as={Col} md="6">
                                 <Form.Label>Bölüm</Form.Label>
                                 <Form.Control
-                                    as='Select'
+                                    disabled={buttonName === ""}
+                                    as={Form.Select}
                                     onChange={e => setField('dep', e.target.value)}
-                                    isInvalid={!!errors.dep}
-                                >
+                                    isInvalid={errors.dep}
+                                    value={form.dept}>
                                     <option value=''>Bölüm Seçiniz</option>
                                     <option value='bm'>Bilgisayar Müh.</option>
                                     <option value='eem'>Elektrik-Elektronik Müh.</option>
@@ -126,9 +212,11 @@ const VeriEkle = () => {
                             <Form.Group as={Col} md="6">
                                 <Form.Label>Doğum Yeri</Form.Label>
                                 <Form.Control
+                                    disabled={buttonName === ""}
                                     type='text'
+                                    value={form.dogumYeri}
                                     onChange={e => setField('dogumYeri', e.target.value)}
-                                    isInvalid={!!errors.dogumYeri}
+                                    isInvalid={errors.dogumYeri}
                                 />
                                 <Form.Control.Feedback type='invalid'>{errors.dogumYeri}</Form.Control.Feedback>
                             </Form.Group>
@@ -136,9 +224,11 @@ const VeriEkle = () => {
                             <Form.Group as={Col} md="6">
                                 <Form.Label>Doğum Tarihi</Form.Label>
                                 <Form.Control
+                                    disabled={buttonName === ""}
                                     type='date'
+                                    value={form.dogumTarihi}
                                     onChange={e => setField('dogumTarihi', e.target.value)}
-                                    isInvalid={!!errors.dogumTarihi}
+                                    isInvalid={errors.dogumTarihi}
                                 />
                                 <Form.Control.Feedback type='invalid'>{errors.dogumTarihi}</Form.Control.Feedback>
                             </Form.Group>
@@ -146,8 +236,8 @@ const VeriEkle = () => {
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</Button>
-                    {"asd" === "" ? '' : <Button type='submit' onClick={handleSubmit}>Submit</Button>}
+                    <Button onClick={handleClose} type="button" variant="secondary" data-dismiss="modal">Kapat</Button>
+                    {buttonName === "" ? <></> : <Button type='submit' onClick={handleSubmit}>{buttonName}</Button>}
                 </Modal.Footer>
             </Modal>
         </>

@@ -1,0 +1,37 @@
+.elements>.row:nth-of-type(even) {
+    background-color: rgb(225, 234, 255);
+}
+
+.elements:has(.cardView) {
+    display: grid;
+}
+
+.elements>.cardView {
+    margin: 6px 9px;
+    text-align: start;
+    background-color: rgb(233, 255, 255);
+}
+
+@media screen and (min-width:1200px) {
+    .elements:has(.cardView) {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media screen and (max-width:1200px) {
+    .elements:has(.cardView) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .elements:has(.cardView) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .elements:has(.cardView) {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
