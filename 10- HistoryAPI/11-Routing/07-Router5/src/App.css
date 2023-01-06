@@ -1,0 +1,19 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  margin: auto;   /* Centers the items inside the container */
+  width: 600px;
+}
+
+.navbar {
+  padding: 1.5em;
+  background-color: black;
+  color: white;
+  width: 100%;
+  display: flex;
+  margin-bottom: 1em;
+}

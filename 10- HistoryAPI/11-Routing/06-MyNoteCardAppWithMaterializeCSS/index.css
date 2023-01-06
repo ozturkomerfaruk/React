@@ -1,0 +1,98 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;  
+  }
+  :root {
+    --navbar-width: 200px;
+  }
+  .flex{
+    display: flex;
+  }
+
+  .flex-align-center{
+    display: flex;
+    align-items: center;
+  }
+
+  .navbar {
+    width: var(--navbar-width);
+    margin-top: 10;
+    background-color: #f9f9f9;
+    padding-left: 1.5em;
+  }
+
+  .navbar-item{
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .navbar-item:hover{
+    background: lightgray;
+  }
+
+  .main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+    width: calc(100% - var(--navbar-width));
+  }
+
+  .appbar {
+    display: flex;
+    width: 100%;
+    align-items: baseline;
+    justify-content: space-between;
+    height: 40px;
+    font-size: 1em;
+    padding: 10 10 50 10;
+    background-color: #f4f4f4;
+  }
+
+  .padding.pr25{
+    padding-right: 25px;
+  }
+
+  .color.purple{
+    color: purple;
+  }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+
+  .circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 24px;
+    margin-right: 10px;
+  }
+
+  .editIcon:hover {
+    color: blue;      
+  }
+
+
+  .deleteIcon:hover {
+    color: red;      
+  }
+
+  #todaysDate {
+    font-size: 1em;
+  }
+
+  section > header > div > img {
+    width: 40;
+    height: 40;
+    border-radius: 50%;
+    margin-left: 20px;
+  }
+
+  .modal { 
+    width: 400 !important; 
+  }
+

@@ -1,0 +1,80 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>History API</title>
+    <style>
+        button {
+            padding: 5px;
+            border-radius: 3px;
+            margin: 5px;
+        }
+        button:hover {
+            background-color: yellow;
+        }
+
+        div {
+            margin: 20 0px;
+            color: blue;
+            font-size: 1.5em;
+        }        
+    </style>
+
+</head>
+<body>
+    <button onclick="push()">Push</button>
+    <button onclick="replace()">Replace</button>
+    <button onclick="back()">Back</button>
+    <button onclick="forward()">Forward</button>
+
+    <br>    
+
+    <div id="root"></div>
+
+    <script>
+        // Get an handle to the root div
+        const rootDiv = document.querySelector('#root')
+
+        // This method is called each time we press back/forward buttons on the browser
+        // or call history.back()/history.forward()/history.go()
+        window.onpopstate = () => {
+            console.log('window.onpopstate called. ', history.length, history.state, location.pathname)
+            renderCurrentRoute();
+        } // end-onpopstate 
+
+       let page = 0;
+
+       function push(){
+            ++page;
+            const currPage = `page${page}` 
+            history.pushState({page: page}, '', currPage);
+            renderCurrentRoute();
+       }
+
+       function replace(){
+            ++page;
+            const currPage = `page${page}` 
+            history.replaceState({page: page}, '', currPage);
+            renderCurrentRoute();
+       }
+
+       function back(){history.back();}
+       function forward(){history.forward();}
+
+       function renderCurrentRoute(){
+           const p = history.state; // Current route object
+           if (p)
+               rootDiv.innerHTML = 'Page' + p.page;
+            else
+            rootDiv.innerHTML = 'Root page'
+       }
+
+       document.addEventListener('DOMContentLoaded', ()=>{
+            history.replaceState(null, '', '/');
+            renderCurrentRoute()
+       })
+    </script>
+
+</body>
+</html>
