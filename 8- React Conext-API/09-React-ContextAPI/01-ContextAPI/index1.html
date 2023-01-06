@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Context API</title>
+
+    <script src="https://unpkg.com/react@16/umd/react.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-size: 24px;
+      }
+
+      h1 {
+        font-size: 36px;
+      }
+
+      .container {
+        margin: auto;
+        max-width: 500px;
+        padding: 0.5em;
+        background: #eee;
+      }     
+
+      ul li {
+        list-style-type: none;
+        padding: 0.5em;
+        margin: 10px;
+        border-radius: 5px;
+      }      
+
+      .light {
+        background: #ccc;
+        color: #555;
+      }
+    </style>
+
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <!-- React JS Code below -->    
+    <script type="text/babel">
+        // Header class
+        class Header extends React.Component {
+            render(){
+                return (
+                    <header className="container light">
+                      <h1>Item List App</h1>
+                    </header>
+                );
+            } //end-render
+        } //end-Header
+
+        // ItemList class
+        class ItemList extends React.Component {
+          render(){
+            return (
+              <section className='container'>
+                <ul>
+                    <li className="light">Item 1</li>
+                    <li className="light">Item 2</li>
+                    <li className="light">Item 3</li>
+                </ul>
+              </section>
+            );
+          } //end-render
+        } //end-ItemList
+
+        // Footer class
+        class Footer extends React.Component {
+          render(){
+            return (
+              <footer className="container light">
+              <p> This is a simple item list application </p>
+              </footer>
+            );
+          } //end-render
+        } //end-ItemList
+
+        function App() {
+            return (
+              <div>
+                <Header />
+                <ItemList />
+                <Footer />
+              </div>
+            );
+        } // end-App
+
+        // Render the App component on the screen
+        ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+  </body>
+</html>

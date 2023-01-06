@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Context API</title>
+
+    <script src="https://unpkg.com/react@16/umd/react.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <!-- React JS Code below -->    
+    <script type="text/babel">
+        // AgeContext & its provider
+        const AgeContext = React.createContext();
+
+        // This is the reducer for AgeContext.
+        // Handles ALL actions related to this context inside a single function
+        // It takes the current state and returns the modified state, which is then committed to the Context
+        // We can also implement this reducer as an arrow function as follows:
+//         const ageReducer = (state, action) => { 
+        function ageReducer(state, action){
+          switch (action.type){
+              case 'RESET': return 50;
+              case 'ADD_ONE': return state+1;
+              case 'ADD_TEN': return state+10;
+              case 'SUBTRACT_ONE': return state-1;
+              case 'SUBTRACT_TEN': return state-10;
+              case 'ADD_AMOUNT': return state+parseInt(action.amount);
+              default: return state;
+          } //end-switch
+        } //end-ageReducer
+
+        // Write a functional component as the Context Provider
+        function AgeContextProvider(props){
+          const [age, dispatch] = React.useReducer(ageReducer, 50);
+
+          // Returns the JSX for the Age provider
+          return (
+            <AgeContext.Provider value={{age, dispatch}}>
+                {props.children}
+            </AgeContext.Provider>
+          );   
+        } //end-AgeContextProvider
+
+        // A simple consumer component
+        function Consumer(){
+          const {age, dispatch} = React.useContext(AgeContext);
+
+          const [amount, setAmount] = React.useState(1);
+          const onChange = (e)=>{
+            setAmount(e.target.value);
+          } //end-onChange
+
+          const onSubmit = (e) => {
+            e.preventDefault();
+
+            dispatch({type: 'ADD_AMOUNT', amount});
+          } //end-onSubmit
+
+          return (
+            <div>
+                <h2>Age: {age}</h2>
+                <button style={{margin: '5px'}} onClick={()=>dispatch({type: 'RESET'})}>Reset</button><br/>
+                <button style={{margin: '5px'}} onClick={()=>dispatch({type: 'ADD_ONE'})}>+1</button>
+                <button style={{margin: '5px'}} onClick={()=>dispatch({type: 'ADD_TEN'})}>+10</button><br/>
+                <button style={{margin: '5px'}} onClick={()=>dispatch({type: 'SUBTRACT_ONE'})}>-1</button>
+                <button style={{margin: '5px'}} onClick={()=>dispatch({type: 'SUBTRACT_TEN'})}>-10</button><br/>
+                <form onSubmit={(e)=>onSubmit(e)}>
+                  <input type="number" onChange={(e)=>onChange(e)} value={amount}/>
+                  <input type="submit" value="Add" />
+                </form>
+            </div>
+          );
+        }  //end-Consumer         
+
+        // App component
+        function App() {
+            return (
+              <AgeContextProvider> 
+                <Consumer />     
+              </AgeContextProvider>              
+            );
+        } // end-App
+
+        // Render the App component on the screen
+        ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+  </body>
+</html>

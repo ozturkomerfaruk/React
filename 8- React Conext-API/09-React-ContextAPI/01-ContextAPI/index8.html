@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Context API</title>
+
+    <script src="https://unpkg.com/react@16/umd/react.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <!-- React JS Code below -->    
+    <script type="text/babel">
+        // AgeContext & its provider
+        const AgeContext = React.createContext();
+
+        // We can also convert the Context Providers to function components
+        function AgeContextProvider(props){
+          const [age, setAge] = React.useState(50);
+
+          // Methods to change the data:
+          const reset = () => {setAge(50)}
+          const addOne = () => {setAge(age+1)}
+          const addTen = () => {setAge(age+10);}    
+          const subtractOne = () => {setAge(age-1);}    
+          const subtractTen = () => {setAge(age-10);}
+          const addAmount = (amount) => {setAge(age+parseInt(amount));}  
+
+          // Returns the JSX for the Age provider
+          return (
+            <AgeContext.Provider value={{age, reset, addOne, addTen, subtractOne, subtractTen, addAmount}}>
+                {props.children}
+            </AgeContext.Provider>
+          );   
+        } //end-AgeContextProvider
+
+        // A simple consumer component
+        function Consumer(){
+          const {age, reset, addOne, addTen, subtractOne, subtractTen, addAmount} = React.useContext(AgeContext);
+
+          const [amount, setAmount] = React.useState(1);
+
+          const onChange = (e)=>{
+            setAmount(e.target.value);
+          } //end-onChange
+
+          const onSubmit = (e) => {
+            e.preventDefault();
+
+            addAmount(amount);
+          } //end-onSubmit
+
+          return (
+            <div>
+                <h2>Age: {age}</h2>
+                <button style={{margin: '5px'}} onClick={()=>reset()}>Reset</button><br/>
+                <button style={{margin: '5px'}} onClick={()=>addOne()}>+1</button>
+                <button style={{margin: '5px'}} onClick={()=>addTen()}>+10</button><br/>
+                <button style={{margin: '5px'}} onClick={()=>subtractOne()}>-1</button>
+                <button style={{margin: '5px'}} onClick={()=>subtractTen()}>-10</button><br/>
+                <form onSubmit={(e)=>onSubmit(e)}>
+                  <input type="number" onChange={(e)=>onChange(e)} value={amount}/>
+                  <input type="submit" value="Add" />
+                </form>
+            </div>
+          );
+        }  //end-Consumer         
+
+        // App component
+        function App() {
+            return (
+              <AgeContextProvider> 
+                <Consumer />             
+              </AgeContextProvider>              
+            );
+        } // end-App
+
+        // Render the App component on the screen
+        ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+  </body>
+</html>

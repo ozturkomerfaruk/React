@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Context API</title>
+
+    <script src="https://unpkg.com/react@16/umd/react.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-size: 24px;
+      }
+
+      h1 {
+        font-size: 36px;
+      }
+
+      .container {
+        margin: auto;
+        max-width: 500px;
+        padding: 0.5em;
+      }     
+
+      .flex {
+        display: flex;
+      }
+
+      ul li {
+        list-style-type: none;
+        padding: 0.5em;
+        margin: 10px;
+        border-radius: 5px;
+      }      
+    </style>
+
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <!-- React JS Code below -->    
+    <script type="text/babel">
+        // Theme Context & its provider
+        const ThemeContext = React.createContext();
+
+        // We can also convert the Context Providers to a function component
+        function ThemeContextProvider ({children}){
+          const [theme, setTheme] = React.useState({
+              usingLightTheme: true,
+              light: {bgColor1: '#eee', bgColor2: '#ccc', color: '#555'},
+              dark: {bgColor1: '#666', bgColor2: '#333', color: 'white'}
+          });
+
+          const toggleTheme = ()=>{
+            setTheme({usingLightTheme: !theme.usingLightTheme, light: theme.light, dark: theme.dark});
+          } //end-toggleTheme
+
+          // Returns the JSX for the Theme provider
+          return (
+            <ThemeContext.Provider value={{...theme, toggleTheme}}>
+                {children}
+            </ThemeContext.Provider>
+          );   
+        } //end-ThemeContextProvider
+
+        // ItemsContext & its provider
+        const ItemsContext = React.createContext();
+        function ItemsContextProvider(props){
+            const [items, setItems] = React.useState([
+              {id: 1, title: "Item 1"},
+              {id: 2, title: "Item 2"},
+              {id: 3, title: "Item 3"},
+              {id: 4, title: "Item 4"},
+              {id: 5, title: "Item 5"}
+            ]);
+
+            // Returns the JSX for the ItemsContext provider
+            return (
+              <ItemsContext.Provider value={items}>
+                  {props.children}
+              </ItemsContext.Provider>
+            );   
+        } //end-ItemsContextProvider
+
+        // Header as function component
+        function Header(){
+            const {usingLightTheme, light, dark, toggleTheme} = React.useContext(ThemeContext);
+            const theme = usingLightTheme? light: dark;
+            const containerStyle = {background: theme.bgColor2, color: theme.color};
+
+            return (                   
+              <header className="container flex" style={containerStyle}>
+                <h1 style={{flex: '8'}}>Item List App</h1>
+                <button style={{flex: '2'}} onClick={toggleTheme.bind(this)}>Toggle Theme</button>
+              </header>
+            );
+        } //end-Header
+
+        // ItemList as function component
+        function ItemList(){
+            const {usingLightTheme, light, dark} = React.useContext(ThemeContext);
+            const items = React.useContext(ItemsContext);                        
+
+            const theme = usingLightTheme? light: dark;
+            const containerStyle = {background: theme.bgColor1, color: theme.color}; 
+
+            return (
+              <section className='container' style={containerStyle}>
+                <ul>
+                  {items.map((item)=>{
+                    return <li key={item.id} style={{background: theme.bgColor2}}>{item.title}</li>})}
+                </ul>                                  
+              </section>
+            );                    
+        } //end-ItemList
+
+        // Footer as function component
+        function Footer(){
+            const {usingLightTheme, light, dark} = React.useContext(ThemeContext);
+            const theme = usingLightTheme? light: dark;
+            const containerStyle = {background: theme.bgColor2, color: theme.color};
+
+            return (
+              <footer className="container" style={containerStyle}>
+                <p> This is a simple item list application </p>
+              </footer>
+            );
+        } //end-Footer
+
+        // App component
+        function App() {
+            return (
+              <ThemeContextProvider>              
+                <ItemsContextProvider>
+                  <Header/>
+                  <ItemList/>
+                  <Footer/>
+                </ItemsContextProvider>
+              </ThemeContextProvider>              
+            );
+        } // end-App
+
+        // Render the App component on the screen
+        ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+  </body>
+</html>

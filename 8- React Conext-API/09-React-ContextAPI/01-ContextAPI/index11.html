@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Redux with Actions</title>
+
+    <script src="https://unpkg.com/react@16/umd/react.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <!-- Redux & React-Redux libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.2.0/redux.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-redux/8.0.5/react-redux.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <!-- React JS Code below -->    
+    <script type="text/babel">
+        // Initial state
+        const initialState = {age: 50};
+
+        // This is the reducer for the reduxStore
+        function reduxReducer(state=initialState, action){
+          switch (action.type){
+              case 'RESET': return {age: 50};
+              case 'ADD_ONE': return {age: state.age+1};
+              case 'ADD_TEN': return {age: state.age+10};
+              case 'SUBTRACT_ONE': return {age: state.age-1};
+              case 'SUBTRACT_TEN': return {age: state.age-10}
+              case 'ADD_AMOUNT': return {age: state.age+parseInt(action.amount)};
+              default: return state;
+          } //end-switch
+        } //end-reduxReducer
+
+        // Define actions
+        function reset(){return {type: 'RESET'}}
+        function addOne(){return {type: 'ADD_ONE'}}
+        function addTen(){return {type: 'ADD_TEN'}}
+        function subtractOne(){return {type: 'SUBTRACT_ONE'}}
+        function subtractTen(){return {type: 'SUBTRACT_TEN'}}
+        function addAmount(amount){return {type: 'ADD_AMOUNT', amount}}
+
+        // Get createStore from Redux
+        const {createStore} = Redux;
+
+        // Create a Redux store named ageStore
+        const reduxStore = createStore(reduxReducer)
+        console.log('reduxStore: ', reduxStore.getState())
+
+        // Import two hooks from react-redux
+        const {useSelector, useDispatch} = ReactRedux;
+
+        // A simple consumer component
+        function Consumer(){
+          // Get the age and dispatch function from the Redux store
+          const age = useSelector(state=>state.age) 
+          const dispatch = useDispatch()
+
+          // Component state
+          const [amount, setAmount] = React.useState(1);
+          const onChange = (e)=>{
+            setAmount(e.target.value);
+          } //end-onChange
+
+          const onSubmit = (e) => {
+            e.preventDefault();
+
+            dispatch(addAmount(amount))
+          } //end-onSubmit
+
+          return (
+            <div>
+                <h2>Age: {age}</h2>
+                <button style={{margin: '5px'}} onClick={()=>dispatch(reset())}>Reset</button><br/>
+                <button style={{margin: '5px'}} onClick={()=>dispatch(addOne())}>+1</button>
+                <button style={{margin: '5px'}} onClick={()=>dispatch(addTen())}>+10</button><br/>
+                <button style={{margin: '5px'}} onClick={()=>dispatch(subtractOne())}>-1</button>
+                <button style={{margin: '5px'}} onClick={()=>dispatch(subtractTen())}>-10</button><br/>
+                <form onSubmit={(e)=>onSubmit(e)}>
+                  <input type="number" onChange={(e)=>onChange(e)} value={amount}/>
+                  <input type="submit" value="Add" />
+                </form>
+            </div>
+          );
+        }  //end-Consumer         
+
+        // Get the React-Redux Provider and wrap it around the app's components
+        const {Provider} = ReactRedux;
+        function App() {
+            return (
+              <Provider store={reduxStore}> 
+                <Consumer />
+              </Provider>
+            );
+        } // end-App
+
+        // Render the App component on the screen
+        ReactDOM.render((<App />), document.getElementById('root'));
+    </script>
+  </body>
+</html>

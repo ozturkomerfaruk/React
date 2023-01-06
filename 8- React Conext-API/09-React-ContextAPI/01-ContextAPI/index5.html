@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Context API</title>
+
+    <script src="https://unpkg.com/react@16/umd/react.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-size: 24px;
+      }
+
+      h1 {
+        font-size: 36px;
+      }
+
+      .container {
+        margin: auto;
+        max-width: 500px;
+        padding: 0.5em;
+      }     
+
+      .flex {
+        display: flex;
+      }
+
+      ul li {
+        list-style-type: none;
+        padding: 0.5em;
+        margin: 10px;
+        border-radius: 5px;
+      }      
+    </style>
+
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <!-- React JS Code below -->    
+    <script type="text/babel">
+        // Theme Context & its provider
+        const ThemeContext = React.createContext();
+
+        class ThemeContextProvider extends React.Component {
+          state = {
+              usingLightTheme: true,
+              light: {bgColor1: '#eee', bgColor2: '#ccc', color: '#555'},
+              dark: {bgColor1: '#666', bgColor2: '#333', color: 'white'}
+          };
+
+          toggleTheme = ()=>{this.setState({usingLightTheme: !this.state.usingLightTheme});}
+
+          // Returns the JSX for the Theme provider
+          render(){
+            return (
+              <ThemeContext.Provider value={{...this.state, toggleTheme: this.toggleTheme}}>
+                  {this.props.children}
+              </ThemeContext.Provider>
+            );   
+          } //end-render
+        } //end-ThemeContextProvider
+
+        // Header class
+        class Header extends React.Component {
+            render(){
+              return (
+                  <ThemeContext.Consumer>{(context) =>{
+                    const {usingLightTheme, light, dark, toggleTheme} = context;
+                    const theme = usingLightTheme? light: dark;
+                    const containerStyle = {background: theme.bgColor2, color: theme.color};
+                   
+                    return (
+                      <header className="container flex" style={containerStyle}>
+                        <h1 style={{flex: '8'}}>Item List App</h1>
+                        <button style={{flex: '2'}} onClick={toggleTheme.bind(this)}>Toggle Theme</button>
+                      </header>
+                    );
+                  }}
+                </ThemeContext.Consumer>                    
+              );
+            } //end-render
+        } //end-Header
+
+        // ItemList class
+        class ItemList extends React.Component {
+          render(){
+            return (
+                  <ThemeContext.Consumer>{(context) =>{
+                    const {usingLightTheme, light, dark} = context;
+                    const theme = usingLightTheme? light: dark;
+                    const containerStyle = {background: theme.bgColor1, color: theme.color};
+
+                    return (
+                      <section className='container' style={containerStyle}>
+                        <ul>
+                            <li style={{background: theme.bgColor2}}>Item 1</li>
+                            <li style={{background: theme.bgColor2}}>Item 2</li>
+                            <li style={{background: theme.bgColor2}}>Item 3</li>
+                        </ul>
+                      </section>
+                    );
+                  }}
+                </ThemeContext.Consumer>
+            );                    
+          } //end-render
+        } //end-ItemList
+
+        // Footer class
+        class Footer extends React.Component {
+          render(){
+            return (
+                  <ThemeContext.Consumer>{(context) =>{
+                    const {usingLightTheme, light, dark} = context;
+                    const theme = usingLightTheme? light: dark;
+                    const containerStyle = {background: theme.bgColor2, color: theme.color};
+
+                    return (
+                      <footer className="container" style={containerStyle}>
+                      <p> This is a simple item list application </p>
+                      </footer>
+                    );
+                  }}
+                 </ThemeContext.Consumer>
+            );
+          } //end-render
+        } //end-ItemList
+
+        // App component
+        function App() {
+            return (
+              <ThemeContextProvider>              
+                <Header/>
+                <ItemList/>
+                <Footer/>
+              </ThemeContextProvider>              
+            );
+        } // end-App
+
+        // Render the App component on the screen
+        ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+  </body>
+</html>
