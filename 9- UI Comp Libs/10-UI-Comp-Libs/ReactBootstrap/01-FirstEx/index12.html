@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>Bootstrap React</title>
+
+<!-- Load Bootstrap CSS -->
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+  integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+  crossorigin="anonymous"
+/>
+
+  <!-- Load React Bootstrap Library -->
+  <script src="https://cdn.jsdelivr.net/npm/react-bootstrap@next/dist/react-bootstrap.min.js" crossorigin defer></script>
+
+  <!-- React & React DOM -->
+  <script src="https://unpkg.com/react@latest/umd/react.development.js" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@latest/umd/react-dom.development.js"></script>
+
+  <!-- Babel -->
+  <script src="https://unpkg.com/babel-standalone@latest/babel.min.js" crossorigin="anonymous"></script>
+
+<body>
+    <div id="root"></div>
+
+<script type="text/babel">
+    const { Container, Button, Pagination} = ReactBootstrap;
+
+    function PaginationExample(props){
+        const [currPage, setCurrPage] = React.useState(2)
+        const handleClick = (page)=>{
+          console.log('Page', page, 'clicked')
+          setCurrPage(page)          
+        } // end-handleClick
+
+        let items = [];
+        for (let page = 1; page <= 5; page++) {
+          items.push(
+            <Pagination.Item key={page} active={page === currPage} onClick={()=>handleClick(page)}>
+              {page}
+            </Pagination.Item>
+          );
+        }
+
+        return (
+          <div className="mt-2">
+            <Pagination>{items}</Pagination>
+          </div>
+        )
+    }
+    function App() {
+        return (
+          <Container>
+            <PaginationExample />
+          </Container>
+        )
+    }        
+
+    // Finally, Render the React DOM on the Web page
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App/>);
+</script>
+</body>
+
+</html>

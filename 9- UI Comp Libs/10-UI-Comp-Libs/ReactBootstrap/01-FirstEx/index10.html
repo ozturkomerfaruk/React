@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>Bootstrap React</title>
+
+<!-- Load Bootstrap CSS -->
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+  integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+  crossorigin="anonymous"
+/>
+
+  <!-- Load React Bootstrap Library -->
+  <script src="https://cdn.jsdelivr.net/npm/react-bootstrap@next/dist/react-bootstrap.min.js" crossorigin defer></script>
+
+  <!-- React & React DOM -->
+  <script src="https://unpkg.com/react@latest/umd/react.development.js" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@latest/umd/react-dom.development.js"></script>
+
+  <!-- Babel -->
+  <script src="https://unpkg.com/babel-standalone@latest/babel.min.js" crossorigin="anonymous"></script>
+
+<body>
+    <div id="root"></div>
+
+<script type="text/babel">
+    const { Container, Button, Form, Row, Col, InputGroup} = ReactBootstrap;
+
+    function FormExample() {
+      const [validated, setValidated] = React.useState(false);
+
+      const handleSubmit = (e) => {
+        e.preventDefault();
+        const form = e.currentTarget;
+        if (form.checkValidity() === false) {
+          e.stopPropagation();
+        } else {
+          console.log('First name: ', form.fname.value)
+          console.log('Last name: ', form.lname.value)
+          console.log('Username: ', form.username.value)
+          console.log('City: ', form.city.value)
+          console.log('State: ', form.state.value)
+          console.log('Zip: ', form.zip.value)
+        } // end-else
+
+        setValidated(true);
+      };
+
+      return (
+        <Form noValidate validated={validated} onSubmit={handleSubmit}>
+          <Row className="mb-3">
+            <Form.Group as={Col} md="4" controlId="fname">
+              <Form.Label>First name</Form.Label>
+              <Form.Control
+                required
+                type="text"
+                placeholder="First name"
+                defaultValue="John"
+                pattern="\w{3,}"
+              />
+              <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+              <Form.Control.Feedback type="invalid">First name must have at least 3 letters</Form.Control.Feedback>
+            </Form.Group>
+
+            <Form.Group as={Col} md="4" controlId="lname">
+              <Form.Label>Last name</Form.Label>
+              <Form.Control
+                required
+                type="text"
+                placeholder="Last name"
+                defaultValue="Doe"
+                pattern="\w{3,}"
+              />
+              <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+            </Form.Group>
+
+            <Form.Group as={Col} md="4" controlId="username">
+              <Form.Label>Username</Form.Label>
+              <InputGroup hasValidation>
+                <InputGroup.Text id="inputGroupPrepend">@</InputGroup.Text>
+                <Form.Control
+                  type="text"
+                  placeholder="Username"
+                  aria-describedby="inputGroupPrepend"
+                  pattern="[\w\d]{3,}"
+                  required
+                />
+                <Form.Control.Feedback type="invalid">
+                  Username must have at least 3 chars
+                </Form.Control.Feedback>
+              </InputGroup>
+            </Form.Group>
+          </Row>
+
+          <Row className="mb-3">
+            <Form.Group as={Col} md="6" controlId="city">
+              <Form.Label>City</Form.Label>
+              <Form.Control type="text" placeholder="City" required />
+              <Form.Control.Feedback type="invalid">
+                Please provide a valid city.
+              </Form.Control.Feedback>
+            </Form.Group>
+
+            <Form.Group as={Col} md="3" controlId="state">
+              <Form.Label>State</Form.Label>
+              <Form.Control type="text" placeholder="State" required />
+              <Form.Control.Feedback type="invalid">
+                Please provide a valid state.
+              </Form.Control.Feedback>
+            </Form.Group>
+
+            <Form.Group as={Col} md="3" controlId="zip">
+              <Form.Label>Zip</Form.Label>
+              <Form.Control type="text" placeholder="Zip" required />
+              <Form.Control.Feedback type="invalid">
+                Please provide a valid zip.
+              </Form.Control.Feedback>
+            </Form.Group>
+          </Row>
+
+          <Form.Group className="mb-3">
+            <Form.Check
+              required
+              label="Agree to terms and conditions"
+              feedback="You must agree before submitting."
+              feedbackType="invalid"
+            />
+          </Form.Group>
+
+          <Button type="submit">Submit form</Button>
+        </Form>
+      );
+    }
+
+    function App() {
+        return (
+          <Container>
+            <FormExample />
+          </Container>
+        )
+    }        
+
+    // Finally, Render the React DOM on the Web page
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App/>);
+</script>
+</body>
+
+</html>

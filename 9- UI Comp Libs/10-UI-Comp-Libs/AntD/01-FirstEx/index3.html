@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>AntD First App</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+
+    <!-- React & React DOM -->
+    <script src="https://unpkg.com/react@latest/umd/react.development.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/react-dom@latest/umd/react-dom.development.js"></script>
+
+    <!-- AntD JS Library-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/antd/4.23.2/antd.min.js" integrity="sha512-ktMcWbnTz8JSq52/Y8fdaSL28qmPKIJMXQqgwkEJGge1oWZ599hssJFlA++F/PmPMPkp4aWZIgvDLp9Wt2PQZw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!-- Babel -->
+    <script src="https://unpkg.com/babel-standalone@latest/babel.min.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/antd/4.23.2/antd.min.css" integrity="sha512-sQujA/BbGZTcsUrHu5Vt3WL1CJlfB6aouojDf6dxjfKddXqQQKCHbW5Z9BkB0b4VjI8V77jv9tTAxn7/YhLDtQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      // Import Typography and Container components
+      const {
+        Card, Row, Col,
+      } = antd;
+
+      function App() {
+        return (
+          <div className="site-card-wrapper" style = {{backgroundColor: '#f4f4f4'}}>
+            <Row gutter={16}>
+              <Col span={8}>
+                <Card title="Card title" bordered={false}>
+                  Card content
+                </Card>
+              </Col>
+              <Col span={8}>
+                <Card title="Card title" bordered={false}>
+                  Card content
+                </Card>
+              </Col>
+              <Col span={8}>
+                <Card title="Card title" bordered={false}>
+                  Card content
+                </Card>
+              </Col>
+            </Row>
+          </div>          
+        );
+      }
+
+      const root = ReactDOM.createRoot(document.getElementById('root'));
+      root.render(<App/>);
+    </script>
+  </body>
+</html>

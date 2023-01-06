@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>Bootstrap React</title>
+
+<!-- Load Bootstrap CSS -->
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+  integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+  crossorigin="anonymous"
+/>
+
+  <!-- Load React Bootstrap Library -->
+  <script src="https://cdn.jsdelivr.net/npm/react-bootstrap@next/dist/react-bootstrap.min.js" crossorigin defer></script>
+
+  <!-- React & React DOM -->
+  <script src="https://unpkg.com/react@latest/umd/react.development.js" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@latest/umd/react-dom.development.js"></script>
+
+  <!-- Babel -->
+  <script src="https://unpkg.com/babel-standalone@latest/babel.min.js" crossorigin="anonymous"></script>
+
+<body>
+    <div id="root"></div>
+
+<script type="text/babel">
+    const { Container, Button, Modal} = ReactBootstrap;
+
+    function ModalExample() {
+      const [show, setShow] = React.useState(false);
+
+      const handleClose = () => setShow(false);
+      const handleShow = () => setShow(true);
+      const handleSave = () =>{
+        console.log('Save the changes.')
+        handleClose(); // Close the modal
+      } // end-handleSave
+
+      return (
+        <div>
+          <Button variant="primary" onClick={handleShow}>
+            Show Modal
+          </Button>
+
+          <Modal show={show} onHide={handleClose}>
+            <Modal.Header closeButton>
+              <Modal.Title>Modal heading</Modal.Title>
+            </Modal.Header>
+
+            <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+
+            <Modal.Footer>
+              <Button variant="secondary" onClick={handleClose}>
+                Close
+              </Button>
+              <Button variant="primary" onClick={handleSave}>
+                Save
+              </Button>
+            </Modal.Footer>
+          </Modal>
+        </div>
+      );      
+    }
+
+    function App() {
+        return (
+          <Container>
+            <ModalExample />
+          </Container>
+        )
+    }        
+
+    // Finally, Render the React DOM on the Web page
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App/>);
+</script>
+</body>
+
+</html>

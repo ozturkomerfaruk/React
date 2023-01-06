@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>Bootstrap React</title>
+
+<!-- Load Bootstrap CSS -->
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+  integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+  crossorigin="anonymous"
+/>
+
+  <!-- Load React Bootstrap Library -->
+  <script src="https://cdn.jsdelivr.net/npm/react-bootstrap@next/dist/react-bootstrap.min.js" crossorigin defer></script>
+
+  <!-- React & React DOM -->
+  <script src="https://unpkg.com/react@latest/umd/react.development.js" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@latest/umd/react-dom.development.js"></script>
+
+  <!-- Babel -->
+  <script src="https://unpkg.com/babel-standalone@latest/babel.min.js" crossorigin="anonymous"></script>
+
+<body>
+    <div id="root"></div>
+
+<script type="text/babel">
+    const { Container, Card, Row, Col } = ReactBootstrap;
+
+    function NoteCard({note}) {
+        return (
+            <Card className="mb-3">
+                <Card.Body>
+                    <Card.Title>{note.title}</Card.Title>
+                    <Card.Subtitle className="mb-2 text-muted">{note.category}</Card.Subtitle>
+                    <Card.Text>
+                        {note.details}
+                    </Card.Text>
+                </Card.Body>
+            </Card>
+        );
+    }
+
+    function App() {
+        const notes = [
+          {id: 1, title: "Note 1", category: "todos", details: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius atque officia sit provident nam expedita voluptatibus suscipit quis perspiciatis, deserunt tempore, quos vitae fugit totam minus tenetur. Veritatis, quam eius!"},
+          {id: 2, title: "Note 2", category: "money", details: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut optio obcaecati suscipit, repellendus soluta nostrum similique provident necessitatibus laudantium deleniti ipsa iste tempore maxime molestias odit officiis incidunt ducimus expedita. Ipsam saepe, odio aut neque beatae, libero voluptates accusamus eius eveniet iure quasi quia a reiciendis, provident in repellat excepturi?"},
+          {id: 3, title: "Note 3", category: "reminder", details: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut optio obcaecati suscipit, repellendus soluta nostrum similique provident necessitatibus laudantium deleniti ipsa iste tempore maxime molestias odit officiis incidunt ducimus expedita. Ipsam saepe, odio aut neque beatae, libero voluptates accusamus eius eveniet iure quasi quia a reiciendis, provident in repellat excepturi?"},
+          {id: 4, title: "Note 4", category: "work", details: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut optio obcaecati suscipit, repellendus soluta nostrum similique provident necessitatibus laudantium deleniti ipsa iste tempore maxime molestias odit officiis incidunt ducimus expedita. Ipsam saepe, odio aut neque beatae, libero voluptates accusamus eius eveniet iure quasi quia a reiciendis, provident in repellat excepturi?"},
+          {id: 5, title: "Note 5", category: "todos", details: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut optio obcaecati suscipit, repellendus soluta nostrum similique provident necessitatibus laudantium deleniti ipsa iste tempore maxime molestias odit officiis incidunt ducimus expedita. Ipsam saepe, odio aut neque beatae, libero voluptates accusamus eius eveniet iure quasi quia a reiciendis, provident in repellat excepturi?"},
+          {id: 6, title: "Note 6", category: "money", details: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut optio obcaecati suscipit, repellendus soluta nostrum similique provident necessitatibus laudantium deleniti ipsa iste tempore maxime molestias odit officiis incidunt ducimus expedita. Ipsam saepe, odio aut neque beatae, libero voluptates accusamus eius eveniet iure quasi quia a reiciendis, provident in repellat excepturi?"},
+        ];        
+        return (
+            <Container>
+                <Row>
+                    {notes.map(note => (
+                    <Col xs={12} md={6} lg={4} key={note.id}>
+                        <NoteCard note={note}/>
+                    </Col>
+                    ))}
+                </Row>                
+          </Container>
+        )
+    }        
+
+    // Finally, Render the React DOM on the Web page
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App/>);
+</script>
+</body>
+
+</html>
