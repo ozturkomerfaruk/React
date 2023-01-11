@@ -1,0 +1,1 @@
+(()=>{"use strict";!function(){const e=document.createElement("h1");e.innerText="Inside bar from bar.js",document.body.appendChild(e),console.log(e)}(),function(){const e=document.createElement("h1");e.innerText="Inside foo from foo.js",document.body.appendChild(e),console.log(e)}()})();

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+</head>
+
+<style>
+    * {
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+    }
+    .container {
+        width: 50%;
+        margin: auto;
+    }
+    p {
+        font-size: 1.5em;
+        font-weight: 600;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    button{
+        padding: 10px;
+        border-radius: 5px;
+        margin-top: 10px;
+        margin-right: 10px;
+        background-color: aquamarine;
+        border: 1px black solid;
+    }
+    button:hover {
+        background-color: bisque;
+    }
+</style>
+
+<body>
+    <div id="app" class="container">
+        <h1>Vue with Pinia</h1>
+        <p>Count: {{ count }}</p>            
+        <button @click="decrement">Decrement</button>
+        <button @click="increment">Increment</button>
+    </div>
+
+<script src="https://unpkg.com/vue@3"></script>
+
+<!-- vue-demi is required by pinia -->
+<script src="https://unpkg.com/vue-demi"></script>
+<script src="https://unpkg.com/pinia"></script>
+
+<script>
+    const useCounterStore = Pinia.defineStore('counter', {
+      state() {
+        return {
+          count: 0
+        }
+      },
+      actions: {
+        increment(){this.count++},
+        decrement(){this.count--}
+      }
+    })
+
+    const app = Vue.createApp({
+        computed: {
+          ...Pinia.mapState(useCounterStore, ['count'])
+        },
+        methods: {
+          ...Pinia.mapActions(useCounterStore, ['decrement']),
+          ...Pinia.mapActions(useCounterStore, ['increment'])
+        },
+    })
+
+  app.use(Pinia.createPinia())
+  app.mount('#app') 
+</script>
+</body>
+</html>

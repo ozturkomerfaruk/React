@@ -1,0 +1,86 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>First Vue App</title>
+    <style>
+        .container {
+            width: 75%;
+            margin: auto;
+        }
+        button {
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+        img {
+            margin-left: 20px;
+            width: 40px;
+            height: 50px;
+        }
+        .blue {
+            color: blue;
+        }
+        .red {
+            color: red;
+        }
+    </style>
+    <script src="https://unpkg.com/vue@3.0.2"></script>
+</head>
+<body>
+    <div class="container">
+        <div id="app"></div>
+    </div>
+
+<script>
+    const app = Vue.createApp({
+        data: ()=>{
+            return {
+                students: [
+                    {name: 'Cem Kaya', num: 100, picture: 'img/boy.jpg', colorRed: true},
+                    {name: 'Ayse Kurt', num: 101, picture: 'img/girl.jpg', colorRed: false},
+                    {name: 'John Doe', num: 102, picture: 'img/boy.jpg', colorRed: false},
+                    {name: 'Janet Doe', num: 103, picture: 'img/girl.jpg', colorRed: true}
+                ]
+            }
+        },
+        computed: {
+            // Changes as students change
+            redColoredStudents(){
+                return this.students.filter(student=>student.colorRed)
+            }
+        },
+        methods: {
+            toggleColor(e, student){
+                console.log(e.target)
+                student.colorRed = !student.colorRed;
+            }
+        },
+        template: `
+            <h2>Here is a list of our students</h2>
+            <ul>
+                <li v-for="student in students" 
+                  :key="student.num"
+                  class="blue" :class="{red: student.colorRed}" 
+                  @click="toggleColor($event, student)">
+                    Name: {{student.name}}, num: {{student.num}}
+                    <!-- Attribute binding using v-bind -->
+                    <img v-bind:src="student.picture" alt="student picture"/>
+                </li>
+            </ul>
+
+            <h2> Here is a list of red-colored students</h2>            
+            <ul>
+                <li v-for="student in redColoredStudents" 
+                   :key="student.num"
+                   class="red">
+                    Name: {{student.name}}, num: {{student.num}}
+                    <img v-bind:src="student.picture" alt="student picture"/>
+                </li>
+            </ul>            
+        `
+    })
+    app.mount('#app')    
+</script>    
+</body>
+</html>

@@ -1,0 +1,75 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2-way binding using v-model</title>
+    <style>
+        .container {
+            width: 75%;
+            margin: auto;
+        }
+        form {
+            padding: 10px;
+            background: #eee;
+        }
+        .formlabel {
+            display: inline-block;
+            width: 70px;
+        }
+        input[type="checkbox"] {
+            display: inline-block;
+        }
+        div {
+            margin: 10px;
+        }
+    </style>
+    <script src="https://unpkg.com/vue@3.0.2"></script>
+</head>
+<body>
+    <div class="container">
+        <div id="app"></div>
+    </div>
+
+<script>
+    const app = Vue.createApp({
+        data: ()=>{
+            return {
+                name: '',
+                num: '',
+                role: '',
+                terms: false
+            }
+        },
+        template: `
+            <form>
+                <div>
+                    <label class="formlabel">Name: </label>
+                    <input type='text' required v-model="name" />
+                </div>
+                <div>
+                    <label class="formlabel">Number: </label>
+                    <input type='number' required v-model="num" />
+                </div>
+                <div>
+                    <label class="formlabel">Role: </label>
+                    <select v-model="role">
+                        <option value="designer">Web Designer</option>
+                        <option value="developer">Web Developer</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Accept terms and conditions</label>
+                    <input type="checkbox" v-model="terms" required>
+                </div>                              
+            </form>
+            <p><b>Name:</b> {{name}}</p>
+            <p><b>Number:</b> {{num}}</p>                
+            <p><b>Role:</b> {{role}}</p>                
+            <p><b>Terms:</b> {{terms}}</p>                
+        `
+    })
+    app.mount('#app')    
+</script>    
+</body>
+</html>

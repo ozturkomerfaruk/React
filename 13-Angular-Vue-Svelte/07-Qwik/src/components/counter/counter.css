@@ -1,0 +1,17 @@
+.container {
+  width: 50%;
+  margin: auto;
+  background: #eee;
+}
+p{
+  font-size: x-large;
+  font-weight: 700;
+}
+button {
+  padding: 10px;
+  margin-right: 10px;
+  background: lightblue;
+}
+button:hover{
+  background: lightpink;
+}

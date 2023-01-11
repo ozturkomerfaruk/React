@@ -1,0 +1,28 @@
+---
+export interface Props {
+	name: string;
+	age: number;
+}
+
+const { name, age } = Astro.props;
+---
+
+<div class="outer-div">
+	<div class="inner-div">
+		<h4>Name: {name}</h4>
+		<h4>Age: {age}</h4>
+	</div>
+</div>
+
+<style>
+	.outer-div {
+		width: 200px;
+		padding: 10px;
+	}
+	.inner-div {		
+		padding: 0 10px;
+		background: #eee;
+		border-radius: 5px;
+		border: 1px black solid;
+	}	
+</style>

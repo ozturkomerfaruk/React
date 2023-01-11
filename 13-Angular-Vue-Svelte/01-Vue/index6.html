@@ -1,0 +1,256 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Item List App</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            margin: auto;   /* Centers the items inside the container */
+            width: 500px;
+        }
+
+        /* Styling for header */
+        .header{
+            padding: 1rem;
+            width: 100%;
+            color: white;
+            background-color: black;
+            text-align: center;
+        }
+
+        /* Styling for FilterItemForm component */
+        #FilterItemForm {
+            padding: 1rem;
+            background-color: lightblue;
+        }
+
+        #FilterItemForm label {
+            width: 25%;
+            padding-right: 10px;
+        }
+
+        #FilterItemForm input[type='text'] {
+            width: 75%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        /* Styling for AddItemForm component */
+        #AddItemForm {
+            padding: 1rem;
+            background: #f4f4f4;
+        }
+
+        #AddItemForm label {
+            width: 25%;
+            padding-right: 5px;
+        }
+
+        #AddItemForm input[type='text'] {
+            width: 75%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 10px 15px;
+            border: 0;
+            background: #333;
+            color: #fff;
+            border-radius: 5px;
+            margin: 5px 0;
+        }
+
+        .btn:hover {
+            background: #444;
+        }
+
+        .bg-dark {
+            background: #333;
+            color: #fff;
+        }
+
+        .error {
+            background: orangered;
+            color: #fff;
+            padding: 5px;
+            margin: 5px;
+        }
+
+        /* Styling for Item component */
+        .Item {
+            display: flex;
+            padding: 5px;
+            margin: 5px 0;
+            background-color: #f4f4f4;
+        }
+
+        .itemText {  
+            flex: 19;                        /* 95% */
+            padding-left: 2px;
+        }
+
+        .delbtn {
+            flex: 1;                         /* 5% */
+            background-color: red;
+            color: white;
+            padding-right: 1em;
+            text-align: center;
+            padding: 2px;
+            border-radius: 5px;
+        }
+    </style>
+    <script src="https://unpkg.com/vue@3"></script>
+</head>
+<body>
+    <div class="container">
+        <div id="app"></div>
+    </div>
+
+<script>
+    // Components
+    const FilterItemForm = {
+        props: ['setFilterStr'],
+        data: ()=>{
+            return {filterStr: ''};
+        },
+        template: `
+            <div id="FilterItemForm">
+                <label><strong>Item filter:</strong></label>
+                <input type="text" v-model="filterStr" @input="setFilterStr(filterStr)"/>
+            </div>
+        `
+    }
+
+    const AddItemForm = {
+        props: ['addItem'],
+        data: ()=>{
+            return {
+                title: '',
+                displayErrorMsg: false
+            }
+        },
+        methods: {
+            onSubmit(e) {
+                e.preventDefault();
+                const titleTrimmed = this.title.trim();
+    
+                if (titleTrimmed === ""){
+                    this.displayErrorMsg = true;
+                    setTimeout(()=>{this.displayErrorMsg = false}, 1000);
+                } else {
+                    this.addItem(titleTrimmed);
+                } //end-else
+
+                this.title = ''
+            }
+        },
+        computed: {
+            errorMsgStyle(){
+                return this.displayErrorMsg? 'block': 'none';
+            }
+        },
+        template: `
+            <form id="AddItemForm" @submit="onSubmit">
+                <div className="error" :style="{display: errorMsgStyle}">Please enter a title before pressing Submit</div>
+                <div>
+                    <label><strong>Item Title: </strong></label>
+                    <input type="text" v-model="title" />
+                </div>
+                <input className="btn" type="submit" value="Add Item"/>      
+            </form>
+        `
+    }
+
+    const Item = {
+        props: ['item', 'deleteItem'],
+        template: `
+            <div className="Item">
+                <div className="itemText">{{item.title}}</div>
+                <button className="delbtn" @click="deleteItem($event, item)">X</button>
+            </div>
+        `
+    }
+    
+    const ItemList = {
+        props: ['items', 'deleteItem'],
+        components: {
+            Item
+        },
+        template: `
+            <ul>
+                <Item v-for="item in items" 
+                    :key="item.id"
+                    :item="item"
+                    :deleteItem="deleteItem"
+                />
+            </ul>
+        ` 
+    }
+
+    // App Component
+    const App = {
+        data: ()=>{
+            return {
+                items: [
+                    {id: 1, title: "Item 1"}, 
+                    {id: 2, title: "Item 2"},
+                    {id: 3, title: "Item 3"},
+                    {id: 4, title: "Item 4"},
+                    {id: 5, title: "Item 5"},
+                ],
+                nextId: 6,
+                filterStr: ''
+            }
+        },
+        methods: {
+            setFilterStr(str){this.filterStr = str},
+            addItem(title){
+                this.items.push({id: this.nextId++, title})
+            },
+            deleteItem(event, item2Delete){
+                this.items = this.items.filter(item=>item.id != item2Delete.id)
+            }
+        },
+        components: {
+            FilterItemForm,
+            AddItemForm,
+            ItemList
+        },
+        computed: {
+            items2Display(){
+                const filterStrTrimmed = this.filterStr.trim().toLowerCase();
+                if (filterStrTrimmed === "") return this.items;
+                return this.items.filter((item)=>{
+                    return item.title.toLowerCase().indexOf(filterStrTrimmed) >= 0
+                })
+            }
+        },        
+        template: `
+            <div className="container">
+                <h1 className="header">Item List App</h1>
+                <FilterItemForm :setFilterStr="setFilterStr" />
+                <AddItemForm :addItem="addItem" />
+                <ItemList :items="items2Display" :deleteItem="deleteItem"/>
+            </div>
+        `
+    }
+    // Create and mount the app
+    const app = Vue.createApp(App)    
+    app.mount('#app')    
+</script>    
+</body>
+</html>

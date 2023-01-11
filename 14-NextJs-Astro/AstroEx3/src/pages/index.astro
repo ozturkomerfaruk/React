@@ -1,0 +1,42 @@
+---
+import Layout from '../layouts/Layout.astro'
+import Person from '../components/Person.astro'
+import Car from '../components/Car.jsx'
+import Counter from '../components/Counter.jsx'
+import Human from '../components/Human.vue'
+import Counter2 from '../components/Counter2.svelte'
+---
+<Layout title="Welcome to Astro.">
+	<div class="container">
+		<h1>An Astro page with components from different frameworks</h1>
+		<h3>Two Astro Person Components rendered using SSG</h3>
+		<section>
+			<Person name="John Doe" age={30} />
+			<Person name="Janet Doe" age={20} />
+		</section>
+		<hr/>
+		<h3>Two react Car components rendered using SSG</h3>
+		<Car make="Honda" model="Civic" />
+		<Car make="Toyota" model="Corolla" />
+		<hr/>
+		<Counter client:load/>
+		<hr/>
+		<Human client:load />
+		<hr/>
+		<Counter2 client:load />
+	</div>
+</Layout>
+
+<style>
+	.container {
+		width: 75%;
+		margin: auto;
+	}
+	h1 {
+		text-align: center;
+	}
+	section {
+		display: flex;
+		flex-wrap: wrap;
+	}
+</style>

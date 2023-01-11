@@ -1,0 +1,77 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>First Vue App</title>
+    <style>
+        .container {
+            width: 75%;
+            margin: auto;
+        }
+        button {
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
+    <script src="https://unpkg.com/vue@3.0.2"></script>
+</head>
+<body>
+    <div class="container">
+        <div id="app"></div>
+    </div>
+
+<script>
+    // Here is the root component of our Vue app.
+    // This component is of "Options API" style.
+    // https://vuejs.org/guide/introduction.html#api-styles
+    // Everything inside {} in createApp is a Vue component.
+    // data: is the state of this component
+    // methods: are used to manipulate the state
+    // mounted: is what is run when the component is first mounted
+    // template: is what is rendered from this component
+    const app = Vue.createApp({
+        data: ()=>{
+            return {
+                showData: true,
+                fname: 'Cem',
+                lname: 'Kaya',
+                num: 125,
+                age: 20
+            }
+        },
+        methods: {
+            toggleShowData(){this.showData = !this.showData;},
+            increment(){this.age++;},
+            decrement(){this.age--;}
+        },
+        // Lifecycle hooks are called at different stages of a component's lifecycle.
+        // This function will be called when the component is mounted.
+        mounted: () => {
+            console.log(`The initial age is ${this.age}.`)
+        },
+        template: `
+            <div v-if="showData">
+                <h2>Hello {{fname}} {{lname}}</h2>
+                <h3>Your id is {{num}}</h3>
+                <h3>Your age is {{age}}</h3>
+                <button v-on:click="increment">Age+</button>
+                <button @click="decrement">Age-</button>
+            </div>
+            <!-- The difference between v-if and v-show is this:
+                 v-if completely removes the element from the DOM.
+                 That is, it does not render it.
+                 v-show, however, simply sets its display property to none
+                 But the element stays in the DOM
+            --->
+            <p v-show="showData">We are showing the data</p>
+            <button @click="toggleShowData">
+                <span v-if="showData">Hide Data</span>
+                <span v-else>show Data</span>
+            </button>
+        `
+    })
+    app.mount('#app')    
+</script>    
+</body>
+</html>

@@ -1,0 +1,107 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  margin: auto;   /* Centers the items inside the container */
+  width: 500px;
+}
+
+/* Styling for header */
+.header{
+  padding: 1rem;
+  width: 100%;
+  color: white;
+  background-color: black;
+  text-align: center;
+}
+
+/* Styling for FilterItemForm component */
+#FilterItemForm {
+  padding: 1rem;
+  background-color: lightblue;
+}
+
+#FilterItemForm label {
+  width: 25%;
+  padding-right: 10px;
+}
+
+#FilterItemForm input[type='text'] {
+  width: 75%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+/* Styling for AddItemForm component */
+#AddItemForm {
+  padding: 1rem;
+  background: #f4f4f4;
+}
+
+#AddItemForm label {
+  width: 25%;
+  padding-right: 5px;
+}
+
+#AddItemForm input[type='text'] {
+  width: 75%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.btn {
+  display: block;
+  width: 100%;
+  padding: 10px 15px;
+  border: 0;
+  background: #333;
+  color: #fff;
+  border-radius: 5px;
+  margin: 5px 0;
+}
+
+.btn:hover {
+  background: #444;
+}
+
+.bg-dark {
+  background: #333;
+  color: #fff;
+}
+
+.error {
+  background: orangered;
+  color: #fff;
+  padding: 5px;
+  margin: 5px;
+}
+
+/* Styling for Item component */
+.Item {
+  display: flex;
+  padding: 5px;
+  margin: 5px 0;
+  background-color: #f4f4f4;
+}
+
+.itemText {  
+  flex: 19;                        /* 95% */
+  padding-left: 2px;
+}
+
+.delbtn {
+  flex: 1;                         /* 5% */
+  background-color: red;
+  color: white;
+  padding-right: 1em;
+  text-align: center;
+  padding: 2px;
+  border-radius: 5px;
+}

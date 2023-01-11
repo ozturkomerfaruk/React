@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Demo</title>
+  </head>
+  <body>
+    <script src="dist/bundle.js"></script>
+    <script>
+      // $ refers to the current module (bundle.js)
+      console.log($)  // Print the details of the module
+      $.addDOMContent($.capital("hello world"))
+      $.addDOMContent("Well It Works Fine!!!")
+    </script>
+  </body>
+</html>
